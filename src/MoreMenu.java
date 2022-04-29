@@ -1,8 +1,9 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MoreMenu {
 
-    public static void moreOperation() {
+    public static void moreOperation() throws FileNotFoundException {
         while (true) {
             System.out.println("=========More Menu=========");
             System.out.println("1. Enter administrator menu");

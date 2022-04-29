@@ -6,15 +6,17 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         File numOfAccountsFile = new File("numOfAccounts.txt");
         Scanner numOfAccountsFileInput = new Scanner(numOfAccountsFile);
-        int numOfAccounts = numOfAccountsFileInput.nextInt() - 1;
+        int maxID = numOfAccountsFileInput.nextInt()-1;
         while (true) {
             System.out.print("Enter an ID (Type \"more\" to see more options): ");
             Scanner input = new Scanner(System.in);
             String enter = input.nextLine();
             if (enter.matches("\\d+")) {
                 int id = Integer.parseInt(enter);
-                if (id <= numOfAccounts) {
-                    MainMenu.userOperation(id);
+                if (id <= maxID) {
+                    System.out.print("Enter your password: ");
+                    String password = input.nextLine();
+                    MainMenu.userOperation(id,password);
                 } else {
                     System.out.println("User not found");
                     Waiter.waiter();

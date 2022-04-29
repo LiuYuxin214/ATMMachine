@@ -20,6 +20,7 @@ public class MainMenu {
                 System.out.println("5. Exit");
                 System.out.println("6. Change Password");
                 System.out.println("7. Change Question and Answer");
+                System.out.println("8. Transfer");
                 System.out.print("Enter a choice: ");
                 Scanner input = new Scanner(System.in);
                 double amount;
@@ -64,6 +65,16 @@ public class MainMenu {
                         System.out.print("Enter a new answer: ");
                         String newAnswer = input.next();
                         account.setAnswer(newQuestion,newAnswer);
+                        break;
+                    case 8:
+                        System.out.print("Enter an account number to transfer to: ");
+                        int accountNumber = input.nextInt();
+                        System.out.print("Enter an amount to transfer: ");
+                        amount = input.nextDouble();
+                        Account transferAccount = new Account(accountNumber);
+                        transferAccount.deposit(amount);
+                        account.withdraw(amount);
+                        transferAccount.saveToFile();
                         break;
                     default:
                         System.out.println("Invalid choice");

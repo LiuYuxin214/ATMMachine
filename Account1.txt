@@ -1,7 +1,6 @@
 1
 123456
-23.0
-What is your favorite animal?
-cat
-1651261937494
-D 23.0 23.0 Sat Apr 30 04:06:18 CST 2022
+20.0
+What is your favorite color?
+red
+1651264289667

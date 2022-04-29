@@ -1,6 +1,6 @@
 0
 123456
-0.0
+20.0
 What is your favorite color?
-blue
-1651261937494
+red
+1651264289663

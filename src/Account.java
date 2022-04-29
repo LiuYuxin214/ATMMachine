@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Account {
     private final Date dateCreated;
     private int userID = 0;
     private double balance = 0;
     ArrayList<Transaction> transactions = new ArrayList<>();
+    Scanner waiter = new Scanner(System.in);
 
     public Account() {
         dateCreated = new Date();
@@ -38,13 +40,32 @@ public class Account {
     }
 
     public void withdraw(double amount) {
-        balance -= amount;
-        transactions.add(new Transaction('W',amount,balance,""));
+        if(amount<=0) {
+            System.out.println("Invalid amount");
+            System.out.println("Press enter to continue");
+            waiter.nextLine();
+        }
+        else if(balance>=amount) {
+            balance -= amount;
+            transactions.add(new Transaction('W',amount,balance,""));
+        }
+        else {
+            System.out.println("Insufficient funds");
+            System.out.println("Press enter to continue");
+            waiter.nextLine();
+        }
     }
 
     public void deposit(double amount) {
+        if(amount<=0) {
+            System.out.println("Invalid amount");
+            System.out.println("Press enter to continue");
+            waiter.nextLine();
+        }
+        else {
         balance += amount;
         transactions.add(new Transaction('D',amount,balance,""));
+        }
     }
     public void displayAll() {
         System.out.println("Trans Type Amount Balance Date");

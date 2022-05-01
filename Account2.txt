@@ -1,6 +1,0 @@
-2
-123456
-20.0
-What is your favorite color?
-red
-1651264289667

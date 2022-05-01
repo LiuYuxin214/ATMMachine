@@ -1,17 +1,18 @@
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-import java.io.File;
-import java.io.PrintWriter;
 
 public class Account {
     private Date dateCreated;
     private int userID = 0;
     private double balance = 0;
     private String password;
+    private int question;
     private String answer;
-    private String question;
+
     ArrayList<Transaction> transactions = new ArrayList<>();
     Scanner waiter = new Scanner(System.in);
 
@@ -21,10 +22,11 @@ public class Account {
     public Account(int userID) {
         this.userID = userID;
     }
-    public Account(int userID, double balance,String password) {
+
+    public Account(int userID, double balance, String password) {
         this.userID = userID;
         this.balance = balance;
-        this.password= password;
+        this.password = password;
     }
 
     public int getUserID() {
@@ -44,36 +46,43 @@ public class Account {
     }
 
     public String getQuestion() {
-        return question;
+        String questionString = "";
+        switch (question) {
+            case 1:
+                questionString = "What is your favorite color?";
+                break;
+            case 2:
+                questionString = "What is your favorite animal?";
+                break;
+            case 3:
+                questionString = "What is your favorite food?";
+                break;
+            case 4:
+                questionString = "What is your favorite movie?";
+                break;
+            case 5:
+                questionString = "What is your favorite sport?";
+                break;
+        }
+        return questionString;
     }
+
     public String getAnswer() {
         return answer;
     }
 
-    public void setAnswer(int question,String answer) {
-        switch (question) {
-            case 1:
-                this.question = "What is your favorite color?";
-                break;
-            case 2:
-                this.question = "What is your favorite animal?";
-                break;
-            case 3:
-                this.question = "What is your favorite food?";
-                break;
-            case 4:
-                this.question = "What is your favorite movie?";
-                break;
-            case 5:
-                this.question = "What is your favorite sport?";
-                break;
-        }
+    public void setQuestion(int question) {
+        this.question = question;
+    }
+
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 
-    public void resetDate() {
+    public void setDateCreate() {
         dateCreated = new Date();
     }
+
     public double getBalance() {
         return balance;
     }
@@ -87,72 +96,68 @@ public class Account {
     }
 
     public void withdraw(double amount) {
-        if(amount<=0) {
+        if (amount <= 0) {
             System.out.println("Invalid amount");
             Waiter.waiter();
-        }
-        else if(balance>=amount) {
+        } else if (balance >= amount) {
             balance -= amount;
-            transactions.add(new Transaction('W',amount,balance,""));
-        }
-        else {
+            transactions.add(new Transaction('W', amount, balance, ""));
+        } else {
             System.out.println("Insufficient funds");
             Waiter.waiter();
         }
     }
 
     public void deposit(double amount) {
-        if(amount<=0) {
+        if (amount <= 0) {
             System.out.println("Invalid amount");
             Waiter.waiter();
-        }
-        else {
-        balance += amount;
-        transactions.add(new Transaction('D',amount,balance,""));
+        } else {
+            balance += amount;
+            transactions.add(new Transaction('D', amount, balance, ""));
         }
     }
+
     public void displayAll() {
-        System.out.println("User ID: "+userID);
-        System.out.println("Balance: "+balance);
-        System.out.println("Date created: "+dateCreated);
+        System.out.println("User ID: " + userID);
+        System.out.println("Balance: " + balance);
+        System.out.println("Date created: " + dateCreated);
         System.out.println("                  Transactions");
         System.out.println("Type Amount Balance Date");
         System.out.println("------------------------------------------------");
-        for(int i = 0;i<transactions.size();i++){
-            System.out.println(transactions.get(i).getType()+"    "+transactions.get(i).getAmount()+"   "+transactions.get(i).getBalance()+"    "+transactions.get(i).getUpdatedDate().toString());
+        for (int i = 0; i < transactions.size(); i++) {
+            System.out.println(transactions.get(i).getType() + "    " + transactions.get(i).getAmount() + "   " + transactions.get(i).getBalance() + "    " + transactions.get(i).getUpdatedDate().toString());
         }
     }
+
     public void saveToFile() throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter("Account"+userID+".txt");
+        PrintWriter writer = new PrintWriter("Account " + userID + ".txt");
         writer.println(userID);
         writer.println(password);
         writer.println(balance);
         writer.println(question);
         writer.println(answer);
         writer.println(dateCreated.getTime());
-        for(int i = 0;i<transactions.size();i++){
-            writer.println(transactions.get(i).getType()+" "+transactions.get(i).getAmount()+" "+transactions.get(i).getBalance()+" "+transactions.get(i).getUpdatedDate().toString());
+        for (int i = 0; i < transactions.size(); i++) {
+            writer.println(transactions.get(i).getType() + " " + transactions.get(i).getAmount() + " " + transactions.get(i).getBalance() + " " + transactions.get(i).getUpdatedDate().toString());
         }
         writer.close();
     }
+
     public void getFromFile() throws FileNotFoundException {
-        File file = new File("Account"+userID+".txt");
+        File file = new File("Account " + userID + ".txt");
         Scanner reader = new Scanner(file);
-        userID=reader.nextInt();
-        password=reader.next();
-        balance=reader.nextDouble();
-        question=reader.nextLine();
-        question=reader.nextLine();
-        answer=reader.next();
+        userID = reader.nextInt();
+        password = reader.next();
+        balance = reader.nextDouble();
+        question = reader.nextInt();
+        answer = reader.next();
         long time = reader.nextLong();
         dateCreated = new Date(time);
-        while(reader.hasNext()) {
-            transactions.add(new Transaction(reader.next().charAt(0),reader.nextDouble(),reader.nextDouble(),reader.nextLine()));
+        while (reader.hasNext()) {
+            transactions.add(new Transaction(reader.next().charAt(0), reader.nextDouble(), reader.nextDouble(), reader.nextLine()));
         }
-    }
-    public void deleteFile() {
-        File deleteFile = new File("Account"+userID+".txt");
-        deleteFile.delete();
+        reader.close();
     }
 
 }

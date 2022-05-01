@@ -1,6 +1,6 @@
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class AccountMaker {
 
@@ -8,7 +8,7 @@ public class AccountMaker {
         Account[] accounts = new Account[10];
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the number of the file: ");
-        int n=sc.nextInt();
+        int n = sc.nextInt();
         System.out.print("Enter the balance of the file: ");
         double b = sc.nextDouble();
         System.out.print("Enter the password of the file: ");
@@ -17,13 +17,14 @@ public class AccountMaker {
         int q = sc.nextInt();
         System.out.print("Enter the answer of the file: ");
         String a = sc.next();
-        for(int i = 0; i < n; i++) {
-            accounts[i] = new Account(i,b,p);
-            accounts[i].resetDate();
-            accounts[i].setAnswer(q,a);
+        for (int i = 0; i < n; i++) {
+            accounts[i] = new Account(i, b, p);
+            accounts[i].setDateCreate();
+            accounts[i].setQuestion(q);
+            accounts[i].setAnswer(a);
             accounts[i].saveToFile();
         }
-        PrintWriter pw = new PrintWriter("numOfAccounts.txt");
+        PrintWriter pw = new PrintWriter("AccountList.txt");
         pw.println(n);
         pw.close();
         System.out.println("Accounts created successfully!");

@@ -192,8 +192,16 @@ public class MainMenu {
                     case 1:
                         System.out.println("=========Create new account=========");
                         System.out.println("Recommended ID: " + (maxID + 1));
-                        System.out.print("Enter a new ID: ");
-                        int newID = input.nextInt();
+                        int newID = 0;
+                        while (true) {
+                            System.out.print("Enter a new ID: ");
+                            newID = input.nextInt();
+                            if (accountListArray.contains(newID)) {
+                                System.out.println("ID already exists");
+                            } else {
+                                break;
+                            }
+                        }
                         System.out.print("Enter a balance: ");
                         double newBalance = input.nextDouble();
                         System.out.print("Enter a password: ");
@@ -431,7 +439,7 @@ public class MainMenu {
                 }
             }
         } else {
-            System.out.println("Wrong Username or Password");
+            System.out.println("Wrong Password");
             Waiter.waiter();
             return;
         }
@@ -473,6 +481,16 @@ public class MainMenu {
                         String newPassword = input.next();
                         Administrator newAdmin = new Administrator(newUserName, newPassword);
                         newAdmin.saveToFile();
+                        numOfAdministrators++;
+                        PrintWriter numOfAdministratorFileOutput = new PrintWriter(numOfAdministratorFile);
+                        numOfAdministratorFileOutput.print(numOfAdministrators++);
+                        numOfAdministratorFileOutput.close();
+                        administratorListArray.add(newUserName);
+                        PrintWriter administratorListOutput = new PrintWriter(administratorList);
+                        for (int i = 0; i < administratorListArray.size(); i++) {
+                            administratorListOutput.print(administratorListArray.get(i) + " ");
+                        }
+                        administratorListOutput.close();
                         System.out.println("New Administrator added successfully");
                         Waiter.waiter();
                         break;
@@ -507,6 +525,13 @@ public class MainMenu {
                                     String newUserNameToEdit = input.next();
                                     adminToEdit.setUserName(newUserNameToEdit);
                                     adminToEdit.saveToFile();
+                                    administratorListArray.remove(userNameToEdit);
+                                    administratorListArray.add(newUserNameToEdit);
+                                    PrintWriter administratorListOutput2 = new PrintWriter(administratorList);
+                                    for (int i = 0; i < administratorListArray.size(); i++) {
+                                        administratorListOutput2.print(administratorListArray.get(i) + " ");
+                                    }
+                                    administratorListOutput2.close();
                                     System.out.println("User name changed successfully");
                                     Waiter.waiter();
                                     break;
@@ -526,6 +551,13 @@ public class MainMenu {
                                     adminToEdit.setUserName(newUserNameToEdit1);
                                     adminToEdit.setPassword(newPasswordToEdit1);
                                     adminToEdit.saveToFile();
+                                    administratorListArray.remove(userNameToEdit);
+                                    administratorListArray.add(newUserNameToEdit1);
+                                    PrintWriter administratorListOutput3 = new PrintWriter(administratorList);
+                                    for (int i = 0; i < administratorListArray.size(); i++) {
+                                        administratorListOutput3.print(administratorListArray.get(i) + " ");
+                                    }
+                                    administratorListOutput3.close();
                                     System.out.println("Administrator's information edited successfully");
                                     Waiter.waiter();
                                     break;

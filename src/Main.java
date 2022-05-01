@@ -5,12 +5,13 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         File accountList = new File("AccountList.txt");
         Scanner accountListInput = new Scanner(accountList);
-        ArrayList<Integer> accountListArray = new ArrayList<Integer>();
-        while (accountListInput.hasNextLine()) {
-            accountListArray.add(accountListInput.nextInt());
+        ArrayList<Integer> accountListArray = new ArrayList<>();
+        while (accountListInput.hasNextInt()) {
+            int n = accountListInput.nextInt();
+            accountListArray.add(n);
         }
         while (true) {
             System.out.print("Enter an ID (Type \"more\" to see more options): ");

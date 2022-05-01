@@ -43,8 +43,8 @@ public class Administrator {
 
     public void saveToFile() throws FileNotFoundException {
         PrintWriter writer = new PrintWriter("Administrator " + userName + ".txt");
-        writer.println(userName);
-        writer.println(password);
+        writer.print(userName + " ");
+        writer.print(password);
         writer.close();
     }
 

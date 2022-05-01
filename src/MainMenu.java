@@ -4,9 +4,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static java.lang.Thread.sleep;
+
 public class MainMenu {
 
-    public static void userOperation(int id, String password) throws FileNotFoundException {
+    public static void userOperation(int id, String password) throws FileNotFoundException, InterruptedException {
 
         Account account = new Account(id);
         account.getFromFile();
@@ -84,7 +86,7 @@ public class MainMenu {
                     case 8:
                         account.saveToFile();
                         System.out.println("Thank you for using our ATM");
-                        Waiter.waiter();
+                        sleep(1000);
                         return;
                     default:
                         System.out.println("Invalid choice");
@@ -124,8 +126,8 @@ public class MainMenu {
         }
     }
 
-    public static void adminOperation(String username, String password) throws FileNotFoundException {
-        Administrator admin = new Administrator();
+    public static void administratorOperation(String username, String password) throws FileNotFoundException, InterruptedException {
+        Administrator admin = new Administrator(username);
         admin.getFromFile();
         if (admin.isAdministrator(username, password)) {
             while (true) {
@@ -136,7 +138,7 @@ public class MainMenu {
                 File accountList = new File("AccountList.txt");
                 Scanner accountListInput = new Scanner(accountList);
                 ArrayList<Integer> accountListArray = new ArrayList<Integer>();
-                while (accountListInput.hasNextLine()) {
+                while (accountListInput.hasNextInt()) {
                     accountListArray.add(accountListInput.nextInt());
                 }
                 System.out.println("Welcome to the administrator menu, " + username);
@@ -155,7 +157,11 @@ public class MainMenu {
                 switch (option) {
                     case 1:
                         System.out.println("=========Create new account=========");
-                        System.out.println("ID: " + (maxID + 1));
+                        System.out.println("Recommended ID: " + (maxID + 1));
+                        System.out.print("Enter a new ID: ");
+                        int newID = input.nextInt();
+                        System.out.print("Enter a balance: ");
+                        double newBalance = input.nextDouble();
                         System.out.print("Enter a password: ");
                         String newPassword = input.next();
                         System.out.println("1. What is your favorite color?");
@@ -167,9 +173,7 @@ public class MainMenu {
                         int newQuestion = input.nextInt();
                         System.out.print("Enter an answer: ");
                         String newAnswer = input.next();
-                        System.out.print("Enter a balance: ");
-                        double newBalance = input.nextDouble();
-                        Account newAccount = new Account(maxID + 1, newBalance, newPassword);
+                        Account newAccount = new Account(newID, newBalance, newPassword);
                         newAccount.setQuestion(newQuestion);
                         newAccount.setAnswer(newAnswer);
                         newAccount.setDateCreate();
@@ -181,7 +185,7 @@ public class MainMenu {
                         accountListArray.add(newAccount.getUserID());
                         PrintWriter accountListOutput = new PrintWriter(accountList);
                         for (int i = 0; i < accountListArray.size(); i++) {
-                            accountListOutput.println(accountListArray.get(i));
+                            accountListOutput.print(accountListArray.get(i) + " ");
                         }
                         accountListOutput.close();
                         System.out.println("Account created successfully");
@@ -191,7 +195,7 @@ public class MainMenu {
                         System.out.println("=========Display all accounts=========");
                         System.out.println("ID Balance Password Creation date Question Answer");
                         System.out.println("-------------------------------------------------");
-                        for (int i = 0; i <= accountListArray.size(); i++) {
+                        for (int i = 0; i < accountListArray.size(); i++) {
                             Account account = new Account(accountListArray.get(i));
                             account.getFromFile();
                             System.out.println(account.getUserID() + " " + account.getBalance() + " " + account.getPassword() + " " + account.getDateCreate() + " " + account.getQuestion() + " " + account.getAnswer());
@@ -208,7 +212,7 @@ public class MainMenu {
                             System.out.println("ID Balance Password Creation date Question Answer");
                             System.out.println("-------------------------------------------------");
                             System.out.println(searchAccount.getUserID() + " " + searchAccount.getBalance() + " " + searchAccount.getDateCreate() + " " + searchAccount.getPassword() + " " + searchAccount.getQuestion() + " " + searchAccount.getAnswer());
-                            searchAccount.displayAll();
+                            searchAccount.displayTransactions();
                             Waiter.waiter();
                             break;
                         } else {
@@ -295,6 +299,7 @@ public class MainMenu {
                                     editAccount.saveToFile();
                                     System.out.println("All updated");
                                     Waiter.waiter();
+                                    break;
                                 case 6:
                                     editAccount.setDateCreate();
                                     editAccount.setDateCreate();
@@ -304,7 +309,13 @@ public class MainMenu {
                                     break;
                                 case 7:
                                     break;
+                                default:
+                                    System.out.println("Invalid choice");
+                                    Waiter.waiter();
+                                    break;
+
                             }
+                            break;
                         }
                     case 5:
                         System.out.println("=========Delete an account=========");
@@ -314,14 +325,13 @@ public class MainMenu {
                             System.out.println("Are you sure you want to delete this account? (Y/N)");
                             String deleteAnswer = input.next();
                             if (deleteAnswer.equals("Y")) {
-                                accountListArray.remove(deleteID);
                                 PrintWriter numOfAccountsFileOutput2 = new PrintWriter(numOfAccountsFile);
                                 numOfAccountsFileOutput2.println(numOfAccounts - 1);
                                 numOfAccountsFileOutput2.close();
                                 accountListArray.remove(deleteID);
                                 PrintWriter accountListOutput2 = new PrintWriter(accountList);
                                 for (int i = 0; i < accountListArray.size(); i++) {
-                                    accountListOutput2.println(accountListArray.get(i));
+                                    accountListOutput2.print(accountListArray.get(i) + " ");
                                 }
                                 accountListOutput2.close();
                                 File deleteFile = new File("Accounts " + deleteID + ".txt");
@@ -345,7 +355,8 @@ public class MainMenu {
                         System.out.print("Now announcement: ");
                         System.out.println(announcement.getAnnouncement());
                         System.out.print("Enter new announcement: ");
-                        String newAnnouncement = input.nextLine();
+                        Scanner announcementInput = new Scanner(System.in);
+                        String newAnnouncement = announcementInput.nextLine();
                         announcement.setAnnouncement(newAnnouncement);
                         System.out.println("Announcement changed successfully");
                         Waiter.waiter();
@@ -381,6 +392,7 @@ public class MainMenu {
                         }
                     case 8:
                         System.out.println("Thank you for using");
+                        sleep(1000);
                         return;
                 }
             }
@@ -391,18 +403,18 @@ public class MainMenu {
         }
     }
 
-    public static void rootOperation(String password) throws FileNotFoundException {
+    public static void rootOperation(String password) throws FileNotFoundException, InterruptedException {
         Root root = new Root();
         root.getFromFile();
         if (root.getPassword().equals(password)) {
             while (true) {
-                File numOfAdministratorFile = new File("numOfAdministrator.txt");
+                File numOfAdministratorFile = new File("numOfAdministrators.txt");
                 Scanner numOfAdministratorFileInput = new Scanner(numOfAdministratorFile);
                 int numOfAdministrators = numOfAdministratorFileInput.nextInt();
                 File administratorList = new File("AdministratorList.txt");
                 Scanner administratorListInput = new Scanner(administratorList);
                 ArrayList<String> administratorListArray = new ArrayList<>();
-                while (administratorListInput.hasNextLine()) {
+                while (administratorListInput.hasNext()) {
                     administratorListArray.add(administratorListInput.next());
                 }
                 System.out.println("Welcome to the root menu");
@@ -436,6 +448,7 @@ public class MainMenu {
                         System.out.println("------------------");
                         for (int i = 0; i < numOfAdministrators; i++) {
                             Administrator admin = new Administrator(administratorListArray.get(i));
+                            admin.getFromFile();
                             System.out.println(admin.getUserName() + " " + admin.getPassword());
                         }
                         Waiter.waiter();
@@ -547,17 +560,17 @@ public class MainMenu {
                                 File numOfAccountsF = new File("numOfAccounts.txt");
                                 File administratorListF = new File("administratorList.txt");
                                 File numOfAdministratorsF = new File("numOfAdministrators.txt");
-                                Scanner accountInput = new Scanner(accountListF);
+                                Scanner accountLInput = new Scanner(accountListF);
                                 Scanner numOfAccountsInput = new Scanner(numOfAccountsF);
-                                Scanner administratorInput = new Scanner(administratorListF);
+                                Scanner administratorLInput = new Scanner(administratorListF);
                                 Scanner numOfAdministratorsInput = new Scanner(numOfAdministratorsF);
                                 ArrayList<Integer> accounts = new ArrayList<>();
                                 ArrayList<String> administrators = new ArrayList<>();
-                                while (numOfAccountsInput.hasNext()) {
-                                    accounts.add(accountInput.nextInt());
+                                while (numOfAccountsInput.hasNextInt()) {
+                                    accounts.add(accountLInput.nextInt());
                                 }
                                 while (numOfAdministratorsInput.hasNext()) {
-                                    administrators.add(administratorInput.next());
+                                    administrators.add(administratorLInput.next());
                                 }
                                 for (int i = 0; i < accounts.size(); i++) {
                                     File account = new File("Account " + accounts.get(i) + ".txt");
@@ -598,6 +611,7 @@ public class MainMenu {
                         }
                     case 7:
                         System.out.println("Thank you for using");
+                        sleep(1000);
                         return;
                 }
             }

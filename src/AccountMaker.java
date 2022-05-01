@@ -24,11 +24,11 @@ public class AccountMaker {
             accounts[i].setQuestion(question);
             accounts[i].setAnswer(answer);
             accounts[i].saveToFile();
-            pw.println(accounts[i].getUserID());
+            pw.print(accounts[i].getUserID() + " ");
         }
         pw.close();
         PrintWriter pw2 = new PrintWriter("numOfAccounts.txt");
-        pw2.println(n);
+        pw2.print(n);
         pw2.close();
         System.out.println("Accounts created successfully!");
     }

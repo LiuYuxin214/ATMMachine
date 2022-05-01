@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class MoreMenu {
 
-    public static void moreOperation() throws FileNotFoundException {
+    public static void moreOperation() throws FileNotFoundException, InterruptedException {
         while (true) {
             System.out.println("=========More Menu=========");
             System.out.println("1. Enter Administrator Menu");
@@ -21,7 +21,7 @@ public class MoreMenu {
                     String adminUserName = input.next();
                     System.out.print("Enter an Administrator Password: ");
                     String adminPassword = input.next();
-                    MainMenu.adminOperation(adminUserName, adminPassword);
+                    MainMenu.administratorOperation(adminUserName, adminPassword);
                     break;
                 case 2:
                     System.out.print("Enter root password: ");
@@ -43,7 +43,7 @@ public class MoreMenu {
                     Waiter.waiter();
                     break;
                 case 6:
-                    break;
+                    return;
             }
         }
     }

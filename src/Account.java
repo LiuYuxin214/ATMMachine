@@ -130,6 +130,15 @@ public class Account {
         }
     }
 
+    public void displayTransactions() {
+        System.out.println("                  Transactions");
+        System.out.println("Type Amount Balance Date");
+        System.out.println("------------------------------------------------");
+        for (int i = 0; i < transactions.size(); i++) {
+            System.out.println(transactions.get(i).getType() + "    " + transactions.get(i).getAmount() + "   " + transactions.get(i).getBalance() + "    " + transactions.get(i).getUpdatedDate().toString());
+        }
+    }
+
     public void saveToFile() throws FileNotFoundException {
         PrintWriter writer = new PrintWriter("Account " + userID + ".txt");
         writer.println(userID);

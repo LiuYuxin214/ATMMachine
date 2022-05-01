@@ -15,11 +15,11 @@ public class AdministratorMaker {
         for (int i = 0; i < n; i++) {
             a[i] = new Administrator(i + "", password);
             a[i].saveToFile();
-            pw.println(a[i].getUserName());
+            pw.println(a[i].getUserName() + " ");
         }
         pw.close();
         PrintWriter pw2 = new PrintWriter("numOfAdministrators.txt");
-        pw2.println(n);
+        pw2.print(n);
         pw2.close();
         System.out.println("Administrators created successfully!");
     }

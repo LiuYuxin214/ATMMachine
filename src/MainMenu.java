@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
@@ -18,15 +19,24 @@ public class MainMenu {
                 System.out.println("Welcome to our ATM, " + account.getUserID());
                 System.out.print("Announcement: ");
                 System.out.println(announcement.getAnnouncement());
-                System.out.println("=========Main Menu=========");
+                System.out.print("Date&Time: ");
+                Date CurrentDate = new Date();
+                System.out.println(CurrentDate);
+                System.out.println();
+                System.out.println("==========Main Menu==========");
+                System.out.println("-------Basic Functions-------");
                 System.out.println("1. Check balance");
                 System.out.println("2. Withdraw");
                 System.out.println("3. Deposit");
                 System.out.println("4. Transfer");
-                System.out.println("5. Display All");
+                System.out.println("---------View Details--------");
+                System.out.println("5. Display...");
+                System.out.println("-----------Security----------");
                 System.out.println("6. Change Password");
                 System.out.println("7. Change Question and Answer");
+                System.out.println("------------Exit-------------");
                 System.out.println("8. Exit");
+                System.out.println("=============================");
                 System.out.print("Enter a choice: ");
                 Scanner input = new Scanner(System.in);
                 double amount;
@@ -58,9 +68,32 @@ public class MainMenu {
                         transferAccount.saveToFile();
                         break;
                     case 5:
-                        account.displayAll();
-                        account.displayGraph();
-                        Waiter.waiter();
+                        System.out.println("1. Display All");
+                        System.out.println("2. Display Basic Information");
+                        System.out.println("3. Display Transaction");
+                        System.out.println("4. Display Proportion Chart of Deposits and Withdrawals");
+                        System.out.println("5. Back");
+                        System.out.println("Enter a choice: ");
+                        int option2 = input.nextInt();
+                        switch (option2) {
+                            case 1:
+                                account.displayAll();
+                                break;
+                            case 2:
+                                account.displayBasicInformation();
+                                break;
+                            case 3:
+                                account.displayTransactions();
+                                break;
+                            case 4:
+                                account.displayProportionChart();
+                                break;
+                            case 5:
+                                break;
+                            default:
+                                System.out.println("Invalid choice");
+                                break;
+                        }
                         break;
                     case 6:
                         System.out.print("Enter a new password: ");

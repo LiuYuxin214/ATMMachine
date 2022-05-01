@@ -119,10 +119,15 @@ public class Account {
     }
 
     public void displayAll() {
+        displayBasicInformation();
+        displayTransactions();
+        displayProportionChart();
+    }
+
+    public void displayBasicInformation() {
         System.out.println("User ID: " + userID);
         System.out.println("Balance: " + balance);
         System.out.println("Date created: " + dateCreated);
-        displayTransactions();
     }
 
     public void displayTransactions() {
@@ -134,7 +139,7 @@ public class Account {
         }
     }
 
-    public void displayGraph() {
+    public void displayProportionChart() {
         double sumOfD = 0, sumOfW = 0;
         for (int i = 0; i < transactions.size(); i++) {
 

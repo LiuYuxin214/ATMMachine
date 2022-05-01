@@ -122,12 +122,7 @@ public class Account {
         System.out.println("User ID: " + userID);
         System.out.println("Balance: " + balance);
         System.out.println("Date created: " + dateCreated);
-        System.out.println("                  Transactions");
-        System.out.println("Type Amount Balance Date");
-        System.out.println("------------------------------------------------");
-        for (int i = 0; i < transactions.size(); i++) {
-            System.out.println(transactions.get(i).getType() + "    " + transactions.get(i).getAmount() + "   " + transactions.get(i).getBalance() + "    " + transactions.get(i).getUpdatedDate().toString());
-        }
+        displayTransactions();
     }
 
     public void displayTransactions() {
@@ -135,8 +130,40 @@ public class Account {
         System.out.println("Type Amount Balance Date");
         System.out.println("------------------------------------------------");
         for (int i = 0; i < transactions.size(); i++) {
-            System.out.println(transactions.get(i).getType() + "    " + transactions.get(i).getAmount() + "   " + transactions.get(i).getBalance() + "    " + transactions.get(i).getUpdatedDate().toString());
+            System.out.printf("%-5c%-7.3f%-8.3f%s\n", transactions.get(i).getType(), transactions.get(i).getAmount(), transactions.get(i).getBalance(), transactions.get(i).getUpdatedDate().toString());
         }
+    }
+
+    public void displayGraph() {
+        double sumOfD = 0, sumOfW = 0;
+        for (int i = 0; i < transactions.size(); i++) {
+
+            if (transactions.get(i).getType() == 'D') {
+                sumOfD += transactions.get(i).getAmount();
+            } else if (transactions.get(i).getType() == 'W') {
+                sumOfW += transactions.get(i).getAmount();
+            }
+        }
+        System.out.println("Total deposits: $" + sumOfD + "              Total withdrawals: $" + sumOfW);
+        double sum = sumOfD + sumOfW;
+        System.out.printf("Proportion of deposits: %.2f%%     Proportion of withdrawal: %.2f%%\n", (sumOfD / sum) * 100, (sumOfW / sum) * 100);
+        int d = (int) ((sumOfD / sum) * 100);
+        int w = (int) ((sumOfW / sum) * 100);
+        System.out.println("Proportion chart of deposits and withdrawals: ");
+        System.out.println(" 0%       10%       20%       30%       40%       50%       60%       70%       80%       90%     100%");
+        System.out.println("(|    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |)");
+        System.out.print("D|");
+        while (d > 0) {
+            System.out.print("#");
+            d--;
+        }
+        System.out.println();
+        System.out.print("W|");
+        while (w > 0) {
+            System.out.print("#");
+            w--;
+        }
+        System.out.println();
     }
 
     public void saveToFile() throws FileNotFoundException {

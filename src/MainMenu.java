@@ -33,7 +33,7 @@ public class MainMenu {
                 int option = input.nextInt();
                 switch (option) {
                     case 1:
-                        System.out.println("The balance is " + account.getBalance());
+                        System.out.println("The balance is $" + account.getBalance());
                         Waiter.waiter();
                         break;
                     case 2:
@@ -59,6 +59,7 @@ public class MainMenu {
                         break;
                     case 5:
                         account.displayAll();
+                        account.displayGraph();
                         Waiter.waiter();
                         break;
                     case 6:

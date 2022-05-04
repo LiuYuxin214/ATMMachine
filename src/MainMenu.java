@@ -518,11 +518,17 @@ public class MainMenu {
                         System.out.println("=============Display Logs=============");
                         System.out.print("Enter the administrator's user name: ");
                         String adminUserName = input.next();
-                        Administrator adminLog = new Administrator(adminUserName);
-                        adminLog.getFromFile();
-                        adminLog.disLog();
-                        Waiter.waiter();
-                        break;
+                        if (administratorListArray.contains(adminUserName)) {
+                            Administrator adminLog = new Administrator(adminUserName);
+                            adminLog.getFromFile();
+                            adminLog.disLog();
+                            Waiter.waiter();
+                            break;
+                        } else {
+                            System.out.println("Administrator does not exist");
+                            Waiter.waiter();
+                            break;
+                        }
                     case 4:
                         System.out.println("=========Edit Administrator's Information=========");
                         System.out.print("Enter user name of the administrator you want to edit: ");

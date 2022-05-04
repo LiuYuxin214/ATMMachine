@@ -49,7 +49,7 @@ public class Administrator {
     }
 
     public void disLog() {
-        System.out.println("Logs:");
+        System.out.println("   Logs");
         System.out.println("Type Account");
         System.out.println("------------");
         for (int i = 0; i < logs.size(); i++) {

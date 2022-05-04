@@ -57,6 +57,7 @@ public class Administrator {
         }
     }
 
+
     public void saveToFile() throws FileNotFoundException {
         PrintWriter writer = new PrintWriter("Administrator " + userName + ".txt");
         writer.print(userName + " ");

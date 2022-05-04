@@ -78,15 +78,19 @@ public class MainMenu {
                         switch (option2) {
                             case 1:
                                 account.displayAll();
+                                Waiter.waiter();
                                 break;
                             case 2:
                                 account.displayBasicInformation();
+                                Waiter.waiter();
                                 break;
                             case 3:
                                 account.displayTransactions();
+                                Waiter.waiter();
                                 break;
                             case 4:
                                 account.displayProportionChart();
+                                Waiter.waiter();
                                 break;
                             case 5:
                                 break;
@@ -230,6 +234,7 @@ public class MainMenu {
                             accountListOutput.print(accountListArray.get(i) + " ");
                         }
                         accountListOutput.close();
+                        admin.addLog('C', newAccount.getUserID());
                         System.out.println("Account created successfully");
                         Waiter.waiter();
                         break;
@@ -357,6 +362,7 @@ public class MainMenu {
                                     break;
 
                             }
+                            admin.addLog('E', editAccount.getUserID());
                             break;
                         }
                     case 5:
@@ -378,6 +384,7 @@ public class MainMenu {
                                 accountListOutput2.close();
                                 File deleteFile = new File("Accounts " + deleteID + ".txt");
                                 deleteFile.delete();
+                                admin.addLog('D', deleteID);
                                 System.out.println("Account deleted successfully");
                                 Waiter.waiter();
                                 break;
@@ -433,6 +440,7 @@ public class MainMenu {
                                 break;
                         }
                     case 8:
+                        admin.saveToFile();
                         System.out.println("Thank you for using");
                         sleep(1000);
                         return;
@@ -464,11 +472,12 @@ public class MainMenu {
                 System.out.println("=========Root Menu=========");
                 System.out.println("1. Add new Administrator");
                 System.out.println("2. Display All Administrators");
-                System.out.println("3. Edit Administrators' Information");
-                System.out.println("4. Delete Administrator");
-                System.out.println("5. Change Root Password");
-                System.out.println("6. Clear all data and restore factory settings(Use with care)");
-                System.out.println("7. Exit");
+                System.out.println("3. Display Logs");
+                System.out.println("4. Edit Administrators' Information");
+                System.out.println("5. Delete Administrator");
+                System.out.println("6. Change Root Password");
+                System.out.println("7. Clear all data and restore factory settings(Use with care)");
+                System.out.println("8. Exit");
                 System.out.print("Enter a choice: ");
                 Scanner input = new Scanner(System.in);
                 int rootChoice = input.nextInt();
@@ -506,6 +515,15 @@ public class MainMenu {
                         Waiter.waiter();
                         break;
                     case 3:
+                        System.out.println("=============Display Logs=============");
+                        System.out.print("Enter the administrator's user name: ");
+                        String adminUserName = input.next();
+                        Administrator adminLog = new Administrator(adminUserName);
+                        adminLog.getFromFile();
+                        adminLog.disLog();
+                        Waiter.waiter();
+                        break;
+                    case 4:
                         System.out.println("=========Edit Administrator's Information=========");
                         System.out.print("Enter user name of the administrator you want to edit: ");
                         String userNameToEdit = input.next();
@@ -572,7 +590,7 @@ public class MainMenu {
                         } else {
                             System.out.println("Administrator does not exist");
                         }
-                    case 4:
+                    case 5:
                         System.out.println("=========Delete Administrator=========");
                         System.out.print("Enter user name: ");
                         String userNameToDelete = input.next();
@@ -605,7 +623,7 @@ public class MainMenu {
                             Waiter.waiter();
                             break;
                         }
-                    case 5:
+                    case 6:
                         System.out.println("=========Change Root Password=========");
                         System.out.print("Enter new password: ");
                         String newPassword1 = input.next();
@@ -614,7 +632,7 @@ public class MainMenu {
                         System.out.println("Root password changed successfully");
                         Waiter.waiter();
                         break;
-                    case 6:
+                    case 7:
                         System.out.println("=========Clear all data and restore factory settings=========");
                         System.out.println("Are you sure you want to clear all data and restore factory settings? (Y/N)");
                         String clearAnswer = input.next();
@@ -675,7 +693,7 @@ public class MainMenu {
                             Waiter.waiter();
                             break;
                         }
-                    case 7:
+                    case 8:
                         System.out.println("Thank you for using");
                         sleep(1000);
                         return;

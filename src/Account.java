@@ -14,7 +14,6 @@ public class Account {
     private String answer;
 
     ArrayList<Transaction> transactions = new ArrayList<>();
-    Scanner waiter = new Scanner(System.in);
 
     public Account() {
     }

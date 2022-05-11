@@ -185,19 +185,28 @@ public class Account {
     }
 
     public void getFromFile() throws FileNotFoundException {
-        File file = new File("Account " + userID + ".txt");
-        Scanner reader = new Scanner(file);
-        userID = reader.nextInt();
-        password = reader.next();
-        balance = reader.nextDouble();
-        question = reader.nextInt();
-        answer = reader.next();
-        long time = reader.nextLong();
-        dateCreated = new Date(time);
-        while (reader.hasNext()) {
-            transactions.add(new Transaction(reader.next().charAt(0), reader.nextDouble(), reader.nextDouble(), reader.nextLine()));
+        try {
+            File file = new File("Account " + userID + ".txt");
+            Scanner reader = new Scanner(file);
+            userID = reader.nextInt();
+            password = reader.next();
+            balance = reader.nextDouble();
+            question = reader.nextInt();
+            answer = reader.next();
+            long time = reader.nextLong();
+            dateCreated = new Date(time);
+            while (reader.hasNext()) {
+                transactions.add(new Transaction(reader.next().charAt(0), reader.nextDouble(), reader.nextDouble(), reader.nextLine()));
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            Account account = new Account(userID, 0, "123456");
+            account.setQuestion(1);
+            account.setAnswer("red");
+            account.saveToFile();
+            System.out.println("File not found, initial file created automatically.");
+            Waiter.waiter();
         }
-        reader.close();
     }
 
 }

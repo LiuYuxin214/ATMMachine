@@ -1,3 +1,10 @@
 LiuYuxin 123456
 E 1
 E 1
+C 4
+E 3
+E 4
+E 1
+E 1
+E 0
+E 0

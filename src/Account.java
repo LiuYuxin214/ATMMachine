@@ -13,6 +13,10 @@ public class Account {
     private int question;
     private String answer;
 
+    private boolean isFreeze = false;
+
+    private int numOfWrongPassword = 0;
+
     ArrayList<Transaction> transactions = new ArrayList<>();
 
     public Account() {
@@ -92,6 +96,26 @@ public class Account {
 
     public Date getDateCreate() {
         return dateCreated;
+    }
+
+    public boolean getIsFreeze() {
+        return isFreeze;
+    }
+
+    public void setFreeze(boolean isFreeze) {
+        this.isFreeze = isFreeze;
+    }
+
+    public int getNumOfWrongPassword() {
+        return numOfWrongPassword;
+    }
+
+    public void addNumOfWrongPassword() {
+        this.numOfWrongPassword++;
+    }
+
+    public void resetNumOfWrongPassword() {
+        this.numOfWrongPassword = 0;
     }
 
     public void withdraw(double amount) {
@@ -178,6 +202,8 @@ public class Account {
         writer.println(question);
         writer.println(answer);
         writer.println(dateCreated.getTime());
+        writer.println(isFreeze);
+        writer.println(numOfWrongPassword);
         for (int i = 0; i < transactions.size(); i++) {
             writer.println(transactions.get(i).getType() + " " + transactions.get(i).getAmount() + " " + transactions.get(i).getBalance() + " " + transactions.get(i).getUpdatedDate().toString());
         }
@@ -195,6 +221,8 @@ public class Account {
             answer = reader.next();
             long time = reader.nextLong();
             dateCreated = new Date(time);
+            isFreeze = reader.nextBoolean();
+            numOfWrongPassword = reader.nextInt();
             while (reader.hasNext()) {
                 transactions.add(new Transaction(reader.next().charAt(0), reader.nextDouble(), reader.nextDouble(), reader.nextLine()));
             }

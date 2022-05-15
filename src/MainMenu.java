@@ -14,7 +14,13 @@ public class MainMenu {
         Account account = new Account(id);
         account.getFromFile();
         Announcement announcement = new Announcement();
+        if (account.getIsFreeze() == true) {
+            System.out.println("Your account is frozen. Please contact the administrator.");
+            Waiter.waiter();
+            return;
+        }
         if (account.getPassword().equals(password)) {
+            account.resetNumOfWrongPassword();
             while (true) {
                 System.out.println("Welcome to our ATM, " + account.getUserID());
                 System.out.print("Announcement: ");
@@ -133,33 +139,43 @@ public class MainMenu {
             }
         } else {
             System.out.println("Invalid password");
-            System.out.println("If you want to reset the password, enter 1");
-            System.out.println("If you want to exit, enter 2");
-            Scanner sc = new Scanner(System.in);
-            int choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    System.out.println("Your password reset question is: ");
-                    System.out.println(account.getQuestion());
-                    System.out.print("Enter the answer to your password reset question: ");
-                    String answer = sc.next();
-                    if (answer.equals(account.getAnswer())) {
-                        System.out.print("Enter a new password: ");
-                        String newPassword = sc.next();
-                        account.setPassword(newPassword);
-                        account.saveToFile();
-                        System.out.println("Password reset successfully");
+            account.addNumOfWrongPassword();
+            account.saveToFile();
+            if (account.getNumOfWrongPassword() == 3) {
+                account.setFreeze(true);
+                account.resetNumOfWrongPassword();
+                account.saveToFile();
+                System.out.println("You have entered the wrong password 3 times. Your account has been locked.");
+                Waiter.waiter();
+            } else {
+                System.out.println("If you want to reset the password, enter 1");
+                System.out.println("If you want to exit, enter 2");
+                Scanner sc = new Scanner(System.in);
+                int choice = sc.nextInt();
+                switch (choice) {
+                    case 1:
+                        System.out.println("Your password reset question is: ");
+                        System.out.println(account.getQuestion());
+                        System.out.print("Enter the answer to your password reset question: ");
+                        String answer = sc.next();
+                        if (answer.equals(account.getAnswer())) {
+                            System.out.print("Enter a new password: ");
+                            String newPassword = sc.next();
+                            account.setPassword(newPassword);
+                            account.saveToFile();
+                            System.out.println("Password reset successfully");
+                            Waiter.waiter();
+                            return;
+                        } else {
+                            System.out.println("Incorrect answer");
+                            Waiter.waiter();
+                            return;
+                        }
+                    case 2:
+                        System.out.println("Thank you for using our ATM");
                         Waiter.waiter();
                         return;
-                    } else {
-                        System.out.println("Incorrect answer");
-                        Waiter.waiter();
-                        return;
-                    }
-                case 2:
-                    System.out.println("Thank you for using our ATM");
-                    Waiter.waiter();
-                    return;
+                }
             }
         }
     }
@@ -225,7 +241,7 @@ public class MainMenu {
                         newAccount.setDateCreate();
                         maxID++;
                         PrintWriter numOfAccountsFileOutput = new PrintWriter(numOfAccountsFile);
-                        numOfAccountsFileOutput.println(numOfAccounts + 1);
+                        numOfAccountsFileOutput.print(numOfAccounts + 1);
                         numOfAccountsFileOutput.close();
                         newAccount.saveToFile();
                         accountListArray.add(newAccount.getUserID());
@@ -274,9 +290,9 @@ public class MainMenu {
                         if (accountListArray.contains(editID)) {
                             Account editAccount = new Account(editID);
                             editAccount.getFromFile();
-                            System.out.println("ID Balance Password Creation date Question Answer");
-                            System.out.println("-------------------------------------------------");
-                            System.out.println(editAccount.getUserID() + " " + editAccount.getBalance() + " " + editAccount.getDateCreate() + " " + editAccount.getPassword() + " " + editAccount.getQuestion() + " " + editAccount.getAnswer());
+                            System.out.println("ID Balance Password Creation date Question Answer Freeze");
+                            System.out.println("--------------------------------------------------------");
+                            System.out.println(editAccount.getUserID() + " " + editAccount.getBalance() + " " + editAccount.getDateCreate() + " " + editAccount.getPassword() + " " + editAccount.getQuestion() + " " + editAccount.getAnswer() + " " + editAccount.getIsFreeze());
                             System.out.println("Edit what? ");
                             System.out.println("1. Balance");
                             System.out.println("2. Password");
@@ -284,7 +300,8 @@ public class MainMenu {
                             System.out.println("4. Answer");
                             System.out.println("5. All");
                             System.out.println("6. Reset Creation date to current date");
-                            System.out.println("7. Back");
+                            System.out.println("7. Freeze/Unfreeze account");
+                            System.out.println("8. Back");
                             System.out.print("Enter an choice: ");
                             int editChoice = input.nextInt();
                             switch (editChoice) {
@@ -355,6 +372,32 @@ public class MainMenu {
                                     Waiter.waiter();
                                     break;
                                 case 7:
+                                    System.out.println("1. Freeze this account");
+                                    System.out.println("2. Unfreeze this account");
+                                    System.out.println("3. Back");
+                                    System.out.print("Choice: ");
+                                    switch (input.nextInt()) {
+                                        case 1:
+                                            editAccount.setFreeze(true);
+                                            editAccount.saveToFile();
+                                            System.out.println("Account frozen");
+                                            Waiter.waiter();
+                                            break;
+                                        case 2:
+                                            editAccount.setFreeze(false);
+                                            editAccount.saveToFile();
+                                            System.out.println("Account unfrozen");
+                                            Waiter.waiter();
+                                            break;
+                                        case 3:
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice");
+                                            Waiter.waiter();
+                                            break;
+                                    }
+                                    break;
+                                case 8:
                                     break;
                                 default:
                                     System.out.println("Invalid choice");

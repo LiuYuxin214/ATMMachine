@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Account {
+public class Account implements AccountInterface {
     private Date dateCreated;
     private int userID = 0;
     private double balance = 0;
@@ -87,7 +87,7 @@ public class Account {
         return dateCreated;
     }
 
-    public boolean getIsFreeze() {
+    public boolean isFreeze() {
         return isFreeze;
     }
 
@@ -110,27 +110,22 @@ public class Account {
     public void withdraw(double amount) {
         if (amount <= 0) {
             System.out.println("Invalid amount");
-            Waiter.waiter();
         } else if (balance >= amount) {
             balance -= amount;
             transactions.add(new Transaction('W', amount, balance, "Withdraw"));
             System.out.println("Now, The balance is $" + getBalance());
-            Waiter.waiter();
         } else {
             System.out.println("Insufficient funds");
-            Waiter.waiter();
         }
     }
 
     public void deposit(double amount) {
         if (amount <= 0) {
             System.out.println("Invalid amount");
-            Waiter.waiter();
         } else {
             balance += amount;
             transactions.add(new Transaction('D', amount, balance, "Deposit"));
             System.out.println("Now, The balance is $" + getBalance());
-            Waiter.waiter();
         }
     }
 
@@ -138,7 +133,6 @@ public class Account {
         if (new File("Accounts/" + userID + ".txt").exists()) {
             if (amount <= 0) {
                 System.out.println("Invalid amount");
-                Waiter.waiter();
             } else if (balance >= amount) {
                 balance -= amount;
                 transactions.add(new Transaction('T', amount, balance, "To" + userID));
@@ -148,14 +142,11 @@ public class Account {
                 target.saveToFile();
                 System.out.println("Transfer successfully");
                 System.out.println("Now, The balance is $" + getBalance());
-                Waiter.waiter();
             } else {
                 System.out.println("Insufficient funds");
-                Waiter.waiter();
             }
         } else {
             System.out.println("User does not exist");
-            Waiter.waiter();
         }
     }
 

@@ -13,7 +13,7 @@ public class MainMenu {
         Account account = new Account(id);
         account.getFromFile();
         Announcement announcement = new Announcement();
-        if (account.getIsFreeze()) {
+        if (account.isFreeze()) {
             System.out.println("Your account is frozen. Please contact the administrator.");
             Waiter.waiter();
             return;
@@ -55,11 +55,13 @@ public class MainMenu {
                         System.out.print("Enter an amount to withdraw: ");
                         amount = input.nextDouble();
                         account.withdraw(amount);
+                        Waiter.waiter();
                     }
                     case 3 -> {
                         System.out.print("Enter an amount to deposit: ");
                         amount = input.nextDouble();
                         account.deposit(amount);
+                        Waiter.waiter();
                     }
                     case 4 -> {
                         System.out.print("Enter an account number to transfer to: ");
@@ -67,6 +69,7 @@ public class MainMenu {
                         System.out.print("Enter an amount to transfer: ");
                         amount = input.nextDouble();
                         account.transfer(accountNumber, amount);
+                        Waiter.waiter();
                     }
                     case 5 -> {
                         System.out.println("1. Display All");
@@ -178,7 +181,7 @@ public class MainMenu {
     public static void administratorOperation(String username, String password) throws FileNotFoundException, InterruptedException {
         Administrator admin = new Administrator(username);
         admin.getFromFile();
-        if (admin.isAdministrator(username, password)) {
+        if (admin.getPassword().equals(password)) {
             while (true) {
                 System.out.println("Welcome to the administrator menu, " + username);
                 System.out.println("=========Administrator Menu=========");
@@ -229,17 +232,18 @@ public class MainMenu {
                         Waiter.waiter();
                         break;
                     case 2:
-                        System.out.println("=========Display all accounts=========");
-                        System.out.println("ID Balance Password Creation date Question Answer");
-                        System.out.println("-------------------------------------------------");
+                        System.out.println("=======================================Display all accounts=======================================");
+                        System.out.println("ID Balance Password Creation date                 Question                           Answer Freeze");
+                        System.out.println("--------------------------------------------------------------------------------------------------");
                         File[] accountFiles = new File("Accounts").listFiles();
                         assert accountFiles != null;
                         for (File accountFile : accountFiles) {
                             int id = Integer.parseInt(accountFile.getName().substring(0, accountFile.getName().length() - 4));
                             Account account = new Account(id);
                             account.getFromFile();
-                            System.out.println(account.getUserID() + " " + account.getBalance() + " " + account.getPassword() + " " + account.getDateCreate() + " " + account.getQuestion() + " " + account.getAnswer());
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", account.getUserID(), account.getBalance(), account.getPassword(), account.getDateCreate().toString(), account.getQuestion(), account.getAnswer(), account.isFreeze());
                         }
+                        System.out.println("--------------------------------------------------------------------------------------------------");
                         Waiter.waiter();
                         break;
                     case 3:
@@ -249,9 +253,9 @@ public class MainMenu {
                         if (new File("Accounts/" + searchID + ".txt").exists()) {
                             Account searchAccount = new Account(searchID);
                             searchAccount.getFromFile();
-                            System.out.println("ID Balance Password Creation date Question Answer");
-                            System.out.println("-------------------------------------------------");
-                            System.out.println(searchAccount.getUserID() + " " + searchAccount.getBalance() + " " + searchAccount.getDateCreate() + " " + searchAccount.getPassword() + " " + searchAccount.getQuestion() + " " + searchAccount.getAnswer());
+                            System.out.println("ID Balance Password Creation date                 Question                           Answer Freeze");
+                            System.out.println("--------------------------------------------------------------------------------------------------");
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", searchAccount.getUserID(), searchAccount.getBalance(), searchAccount.getPassword(), searchAccount.getDateCreate().toString(), searchAccount.getQuestion(), searchAccount.getAnswer(), searchAccount.isFreeze());
                             searchAccount.displayTransactions();
                         } else {
                             System.out.println("Account does not exist");
@@ -265,9 +269,9 @@ public class MainMenu {
                         if (new File("Accounts/" + editID + ".txt").exists()) {
                             Account editAccount = new Account(editID);
                             editAccount.getFromFile();
-                            System.out.println("ID Balance Password Creation date Question Answer Freeze");
-                            System.out.println("--------------------------------------------------------");
-                            System.out.println(editAccount.getUserID() + " " + editAccount.getBalance() + " " + editAccount.getDateCreate() + " " + editAccount.getPassword() + " " + editAccount.getQuestion() + " " + editAccount.getAnswer() + " " + editAccount.getIsFreeze());
+                            System.out.println("ID Balance Password Creation date                 Question                           Answer Freeze");
+                            System.out.println("--------------------------------------------------------------------------------------------------");
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", editAccount.getUserID(), editAccount.getBalance(), editAccount.getPassword(), editAccount.getDateCreate().toString(), editAccount.getQuestion(), editAccount.getAnswer(), editAccount.isFreeze());
                             System.out.println("Edit what? ");
                             System.out.println("1. Balance");
                             System.out.println("2. Password");
@@ -493,15 +497,16 @@ public class MainMenu {
                         break;
                     case 2:
                         System.out.println("=========Display all accounts=========");
-                        System.out.println("User Name Password");
-                        System.out.println("------------------");
+                        System.out.println("User Name            Password");
+                        System.out.println("--------------------------------------");
                         File[] adminFiles = new File("Administrators").listFiles();
                         assert adminFiles != null;
                         for (File adminFile : adminFiles) {
                             Administrator admin = new Administrator(adminFile.getName().substring(0, adminFile.getName().length() - 4));
                             admin.getFromFile();
-                            System.out.println(admin.getUserName() + " " + admin.getPassword());
+                            System.out.printf("%-21s%s\n", admin.getUserName(), admin.getPassword());
                         }
+                        System.out.println("--------------------------------------");
                         Waiter.waiter();
                         break;
                     case 3:

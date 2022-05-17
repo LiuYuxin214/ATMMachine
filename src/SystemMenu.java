@@ -2,11 +2,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class MoreMenu {
+public class SystemMenu {
 
     public static void moreOperation() throws FileNotFoundException, InterruptedException {
         while (true) {
-            System.out.println("=========More Menu=========");
+            System.out.println("=========System Menu=========");
             System.out.println("1. Enter Administrator Menu");
             System.out.println("2. Enter root Menu");
             System.out.println("3. System Shutdown");

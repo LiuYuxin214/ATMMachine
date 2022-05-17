@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         while (true) {
-            System.out.print("Enter an ID (Type \"more\" to see more options): ");
+            System.out.print("Enter an ID (Type \"s\" to system menu): ");
             Scanner input = new Scanner(System.in);
             String enter = input.nextLine();
             if (enter.matches("\\d+")) {
@@ -19,8 +19,8 @@ public class Main {
                     System.out.println("User not found");
                     Waiter.waiter();
                 }
-            } else if (enter.equals("more")) {
-                MoreMenu.moreOperation();
+            } else if (enter.equals("s")) {
+                SystemMenu.moreOperation();
             } else {
                 System.out.println("User not found");
                 Waiter.waiter();

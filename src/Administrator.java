@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Administrator {
+public class Administrator implements AdministratorInterface {
 
     private String userName;
     private String password;
@@ -40,10 +40,6 @@ public class Administrator {
         this.password = password;
     }
 
-    public boolean isAdministrator(String userName, String password) {
-        return this.userName.equals(userName) && this.password.equals(password);
-    }
-
     public void addLog(char type, int account) {
         logs.add(new Log(type, account));
     }
@@ -55,6 +51,8 @@ public class Administrator {
         for (Log log : logs) {
             System.out.printf("%-5c%d\n", log.getType(), log.getAccount());
         }
+        System.out.println("------------");
+        System.out.println("(C = Create, E = Edit, D = Delete)");
     }
 
 

@@ -113,7 +113,9 @@ public class Account {
             Waiter.waiter();
         } else if (balance >= amount) {
             balance -= amount;
-            transactions.add(new Transaction('W', amount, balance, ""));
+            transactions.add(new Transaction('W', amount, balance, "Withdraw"));
+            System.out.println("Now, The balance is $" + getBalance());
+            Waiter.waiter();
         } else {
             System.out.println("Insufficient funds");
             Waiter.waiter();
@@ -126,8 +128,40 @@ public class Account {
             Waiter.waiter();
         } else {
             balance += amount;
-            transactions.add(new Transaction('D', amount, balance, ""));
+            transactions.add(new Transaction('D', amount, balance, "Deposit"));
+            System.out.println("Now, The balance is $" + getBalance());
+            Waiter.waiter();
         }
+    }
+
+    public void transfer(int userID, double amount) throws FileNotFoundException {
+        if (new File("Accounts/" + userID + ".txt").exists()) {
+            if (amount <= 0) {
+                System.out.println("Invalid amount");
+                Waiter.waiter();
+            } else if (balance >= amount) {
+                balance -= amount;
+                transactions.add(new Transaction('T', amount, balance, "To" + userID));
+                Account target = new Account(userID);
+                target.getFromFile();
+                target.receiveTransfer(getUserID(), amount);
+                target.saveToFile();
+                System.out.println("Transfer successfully");
+                System.out.println("Now, The balance is $" + getBalance());
+                Waiter.waiter();
+            } else {
+                System.out.println("Insufficient funds");
+                Waiter.waiter();
+            }
+        } else {
+            System.out.println("User does not exist");
+            Waiter.waiter();
+        }
+    }
+
+    public void receiveTransfer(int userID, double amount) {
+        balance += amount;
+        transactions.add(new Transaction('T', amount, balance, "From" + userID));
     }
 
     public void displayAll() {
@@ -143,12 +177,14 @@ public class Account {
     }
 
     public void displayTransactions() {
-        System.out.println("                  Transactions");
-        System.out.println("Type Amount Balance Date");
-        System.out.println("------------------------------------------------");
+        System.out.println("                        Transactions");
+        System.out.println("Type Amount Balance Date                         Description");
+        System.out.println("------------------------------------------------------------");
         for (Transaction transaction : transactions) {
-            System.out.printf("%-5c%-7.3f%-8.3f%s\n", transaction.getType(), transaction.getAmount(), transaction.getBalance(), transaction.getUpdatedDate().toString());
+            System.out.printf("%-5c%-7.2f%-8.2f%s %s\n", transaction.getType(), transaction.getAmount(), transaction.getBalance(), transaction.getUpdatedDate().toString(), transaction.getDescription());
         }
+        System.out.println("------------------------------------------------------------");
+        System.out.println("(D = Deposit, W = Withdraw, T = Transfer)");
     }
 
     public void displayProportionChart() {
@@ -194,7 +230,7 @@ public class Account {
         writer.println(isFreeze);
         writer.println(numOfWrongPassword);
         for (Transaction transaction : transactions) {
-            writer.println(transaction.getType() + " " + transaction.getAmount() + " " + transaction.getBalance() + " " + transaction.getUpdatedDate().toString());
+            writer.println(transaction.getType() + " " + transaction.getAmount() + " " + transaction.getBalance() + " " + transaction.getUpdatedDate().getTime() + " " + transaction.getDescription());
         }
         writer.close();
     }
@@ -213,7 +249,7 @@ public class Account {
             isFreeze = reader.nextBoolean();
             numOfWrongPassword = reader.nextInt();
             while (reader.hasNext()) {
-                transactions.add(new Transaction(reader.next().charAt(0), reader.nextDouble(), reader.nextDouble(), reader.nextLine()));
+                transactions.add(new Transaction(reader.next().charAt(0), reader.nextDouble(), reader.nextDouble(), new Date(reader.nextLong()), reader.next()));
             }
             reader.close();
         } catch (FileNotFoundException e) {

@@ -34,9 +34,27 @@ public class MoreMenu {
                     MainMenu.rootOperation(rootPassword);
                     break;
                 case 3:
-                    System.out.println("System is shutting down...");
-                    System.exit(0);
-                    break;
+                    File file = new File("Root.txt");
+                    Scanner scanner = new Scanner(file);
+                    String rootPassword1 = scanner.next();
+                    System.out.print("Enter root password: ");
+                    String enter = input.next();
+                    if (enter.equals(rootPassword1)) {
+                        System.out.println("Are you sure to shutdown the system? (Y/N)");
+                        String answer = input.next();
+                        if (answer.equals("Y")) {
+                            System.out.println("System is shutting down...");
+                            System.exit(0);
+                        } else {
+                            System.out.println("Stop the process of shutting down the system");
+                            Waiter.waiter();
+                            break;
+                        }
+                    } else {
+                        System.out.println("Invalid Password");
+                        Waiter.waiter();
+                        break;
+                    }
                 case 4:
                     System.out.println("=========Developer List=========");
                     System.out.println("1. Liu Yuxin");
@@ -44,7 +62,8 @@ public class MoreMenu {
                     Waiter.waiter();
                     break;
                 case 5:
-                    System.out.println("Version: 1.0");
+                    System.out.println("CPS 2231 Final Project");
+                    System.out.println("ATM Machine Version 1.0");
                     Waiter.waiter();
                     break;
                 case 6:

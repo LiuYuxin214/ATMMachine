@@ -66,11 +66,7 @@ public class MainMenu {
                         int accountNumber = input.nextInt();
                         System.out.print("Enter an amount to transfer: ");
                         amount = input.nextDouble();
-                        Account transferAccount = new Account(accountNumber);
-                        transferAccount.getFromFile();
-                        transferAccount.deposit(amount);
-                        account.withdraw(amount);
-                        transferAccount.saveToFile();
+                        account.transfer(accountNumber, amount);
                     }
                     case 5 -> {
                         System.out.println("1. Display All");

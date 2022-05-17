@@ -15,6 +15,14 @@ public class Transaction {
         this.description = description;
     }
 
+    public Transaction(char type, double amount, double balance, Date dateUpdated, String description) {
+        this.type = type;
+        this.amount = amount;
+        this.balance = balance;
+        this.dateUpdated = dateUpdated;
+        this.description = description;
+    }
+
     public char getType() {
         return type;
     }

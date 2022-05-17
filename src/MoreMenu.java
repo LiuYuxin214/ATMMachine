@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MoreMenu {
@@ -21,18 +20,12 @@ public class MoreMenu {
                 case 1:
                     System.out.print("Enter an Administrator User Name: ");
                     String adminUserName = input.next();
-                    File administratorListFile = new File("AdministratorList.txt");
-                    Scanner administratorListFileScanner = new Scanner(administratorListFile);
-                    ArrayList<String> administratorList = new ArrayList<>();
-                    while (administratorListFileScanner.hasNextLine()) {
-                        administratorList.add(administratorListFileScanner.nextLine());
-                    }
-                    if (!administratorList.contains(adminUserName)) {
+                    System.out.print("Enter an Administrator Password: ");
+                    String adminPassword = input.next();
+                    if (new File("Administrator/" + adminUserName + ".txt").exists()) {
                         System.out.println("Invalid User Name");
                         break;
                     }
-                    System.out.print("Enter an Administrator Password: ");
-                    String adminPassword = input.next();
                     MainMenu.administratorOperation(adminUserName, adminPassword);
                     break;
                 case 2:

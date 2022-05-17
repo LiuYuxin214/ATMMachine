@@ -195,7 +195,7 @@ public class Account {
     }
 
     public void saveToFile() throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter("Account " + userID + ".txt");
+        PrintWriter writer = new PrintWriter("Account/" + userID + ".txt");
         writer.println(userID);
         writer.println(password);
         writer.println(balance);
@@ -212,7 +212,7 @@ public class Account {
 
     public void getFromFile() throws FileNotFoundException {
         try {
-            File file = new File("Account " + userID + ".txt");
+            File file = new File("Account/" + userID + ".txt");
             Scanner reader = new Scanner(file);
             userID = reader.nextInt();
             password = reader.next();

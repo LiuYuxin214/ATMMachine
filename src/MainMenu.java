@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -185,16 +184,6 @@ public class MainMenu {
         admin.getFromFile();
         if (admin.isAdministrator(username, password)) {
             while (true) {
-                File numOfAccountsFile = new File("numOfAccounts.txt");
-                Scanner numOfAccountsFileInput = new Scanner(numOfAccountsFile);
-                int numOfAccounts = numOfAccountsFileInput.nextInt();
-                int maxID = numOfAccounts - 1;
-                File accountList = new File("AccountList.txt");
-                Scanner accountListInput = new Scanner(accountList);
-                ArrayList<Integer> accountListArray = new ArrayList<Integer>();
-                while (accountListInput.hasNextInt()) {
-                    accountListArray.add(accountListInput.nextInt());
-                }
                 System.out.println("Welcome to the administrator menu, " + username);
                 System.out.println("=========Administrator Menu=========");
                 System.out.println("1. Create New Account");
@@ -211,12 +200,11 @@ public class MainMenu {
                 switch (option) {
                     case 1:
                         System.out.println("=========Create new account=========");
-                        System.out.println("Recommended ID: " + (maxID + 1));
                         int newID = 0;
                         while (true) {
                             System.out.print("Enter a new ID: ");
                             newID = input.nextInt();
-                            if (accountListArray.contains(newID)) {
+                            if (new File("Accounts/" + newID + ".txt").exists()) {
                                 System.out.println("ID already exists");
                             } else {
                                 break;
@@ -239,17 +227,7 @@ public class MainMenu {
                         newAccount.setQuestion(newQuestion);
                         newAccount.setAnswer(newAnswer);
                         newAccount.setDateCreate();
-                        maxID++;
-                        PrintWriter numOfAccountsFileOutput = new PrintWriter(numOfAccountsFile);
-                        numOfAccountsFileOutput.print(numOfAccounts + 1);
-                        numOfAccountsFileOutput.close();
                         newAccount.saveToFile();
-                        accountListArray.add(newAccount.getUserID());
-                        PrintWriter accountListOutput = new PrintWriter(accountList);
-                        for (int i = 0; i < accountListArray.size(); i++) {
-                            accountListOutput.print(accountListArray.get(i) + " ");
-                        }
-                        accountListOutput.close();
                         admin.addLog('C', newAccount.getUserID());
                         System.out.println("Account created successfully");
                         Waiter.waiter();
@@ -258,8 +236,9 @@ public class MainMenu {
                         System.out.println("=========Display all accounts=========");
                         System.out.println("ID Balance Password Creation date Question Answer");
                         System.out.println("-------------------------------------------------");
-                        for (int i = 0; i < accountListArray.size(); i++) {
-                            Account account = new Account(accountListArray.get(i));
+                        File[] accountFiles = new File("Accounts").listFiles();
+                        for (int i = 0; i < accountFiles.length; i++) {
+                            Account account = new Account(Integer.parseInt(accountFiles[i].getName().substring(0, accountFiles[i].getName().length() - 5)));
                             account.getFromFile();
                             System.out.println(account.getUserID() + " " + account.getBalance() + " " + account.getPassword() + " " + account.getDateCreate() + " " + account.getQuestion() + " " + account.getAnswer());
                         }
@@ -269,7 +248,7 @@ public class MainMenu {
                         System.out.println("=========Search account=========");
                         System.out.print("Enter an ID: ");
                         int searchID = input.nextInt();
-                        if (accountListArray.contains(searchID)) {
+                        if (new File("Accounts/" + searchID + ".txt").exists()) {
                             Account searchAccount = new Account(searchID);
                             searchAccount.getFromFile();
                             System.out.println("ID Balance Password Creation date Question Answer");
@@ -287,7 +266,7 @@ public class MainMenu {
                         System.out.println("=========Edit account=========");
                         System.out.print("Enter an ID: ");
                         int editID = input.nextInt();
-                        if (accountListArray.contains(editID)) {
+                        if (new File("Accounts/" + editID + ".txt").exists()) {
                             Account editAccount = new Account(editID);
                             editAccount.getFromFile();
                             System.out.println("ID Balance Password Creation date Question Answer Freeze");
@@ -412,25 +391,21 @@ public class MainMenu {
                         System.out.println("=========Delete an account=========");
                         System.out.print("Enter an ID: ");
                         int deleteID = input.nextInt();
-                        if (accountListArray.contains(deleteID)) {
+                        if (new File("Accounts/" + deleteID + ".txt").exists()) {
                             System.out.println("Are you sure you want to delete this account? (Y/N)");
                             String deleteAnswer = input.next();
                             if (deleteAnswer.equals("Y")) {
-                                PrintWriter numOfAccountsFileOutput2 = new PrintWriter(numOfAccountsFile);
-                                numOfAccountsFileOutput2.println(numOfAccounts - 1);
-                                numOfAccountsFileOutput2.close();
-                                accountListArray.remove(deleteID);
-                                PrintWriter accountListOutput2 = new PrintWriter(accountList);
-                                for (int i = 0; i < accountListArray.size(); i++) {
-                                    accountListOutput2.print(accountListArray.get(i) + " ");
+                                File deleteFile = new File("Accounts/" + deleteID + ".txt");
+                                if (deleteFile.delete()) {
+                                    admin.addLog('D', deleteID);
+                                    System.out.println("Account deleted successfully");
+                                    Waiter.waiter();
+                                    break;
+                                } else {
+                                    System.out.println("Account deletion failed");
+                                    Waiter.waiter();
+                                    break;
                                 }
-                                accountListOutput2.close();
-                                File deleteFile = new File("Accounts " + deleteID + ".txt");
-                                deleteFile.delete();
-                                admin.addLog('D', deleteID);
-                                System.out.println("Account deleted successfully");
-                                Waiter.waiter();
-                                break;
                             } else {
                                 System.out.println("Account not deleted");
                                 Waiter.waiter();
@@ -492,7 +467,6 @@ public class MainMenu {
         } else {
             System.out.println("Wrong Password");
             Waiter.waiter();
-            return;
         }
     }
 
@@ -501,15 +475,6 @@ public class MainMenu {
         root.getFromFile();
         if (root.getPassword().equals(password)) {
             while (true) {
-                File numOfAdministratorFile = new File("numOfAdministrators.txt");
-                Scanner numOfAdministratorFileInput = new Scanner(numOfAdministratorFile);
-                int numOfAdministrators = numOfAdministratorFileInput.nextInt();
-                File administratorList = new File("AdministratorList.txt");
-                Scanner administratorListInput = new Scanner(administratorList);
-                ArrayList<String> administratorListArray = new ArrayList<>();
-                while (administratorListInput.hasNext()) {
-                    administratorListArray.add(administratorListInput.next());
-                }
                 System.out.println("Welcome to the root menu");
                 System.out.println("These operations may lead to destructive errors in the system. Please pay attention!");
                 System.out.println("=========Root Menu=========");
@@ -533,16 +498,6 @@ public class MainMenu {
                         String newPassword = input.next();
                         Administrator newAdmin = new Administrator(newUserName, newPassword);
                         newAdmin.saveToFile();
-                        numOfAdministrators++;
-                        PrintWriter numOfAdministratorFileOutput = new PrintWriter(numOfAdministratorFile);
-                        numOfAdministratorFileOutput.print(numOfAdministrators++);
-                        numOfAdministratorFileOutput.close();
-                        administratorListArray.add(newUserName);
-                        PrintWriter administratorListOutput = new PrintWriter(administratorList);
-                        for (int i = 0; i < administratorListArray.size(); i++) {
-                            administratorListOutput.print(administratorListArray.get(i) + " ");
-                        }
-                        administratorListOutput.close();
                         System.out.println("New Administrator added successfully");
                         Waiter.waiter();
                         break;
@@ -550,8 +505,9 @@ public class MainMenu {
                         System.out.println("=========Display all accounts=========");
                         System.out.println("User Name Password");
                         System.out.println("------------------");
-                        for (int i = 0; i < numOfAdministrators; i++) {
-                            Administrator admin = new Administrator(administratorListArray.get(i));
+                        File[] adminFiles = new File("Administrators").listFiles();
+                        for (int i = 0; i < adminFiles.length; i++) {
+                            Administrator admin = new Administrator(adminFiles[i].getName().substring(0, adminFiles[i].getName().length() - 5));
                             admin.getFromFile();
                             System.out.println(admin.getUserName() + " " + admin.getPassword());
                         }
@@ -561,7 +517,7 @@ public class MainMenu {
                         System.out.println("=============Display Logs=============");
                         System.out.print("Enter the administrator's user name: ");
                         String adminUserName = input.next();
-                        if (administratorListArray.contains(adminUserName)) {
+                        if (new File("Administrators/" + adminUserName + ".txt").exists()) {
                             Administrator adminLog = new Administrator(adminUserName);
                             adminLog.getFromFile();
                             adminLog.disLog();
@@ -576,7 +532,7 @@ public class MainMenu {
                         System.out.println("=========Edit Administrator's Information=========");
                         System.out.print("Enter user name of the administrator you want to edit: ");
                         String userNameToEdit = input.next();
-                        if (administratorListArray.contains(userNameToEdit)) {
+                        if (new File("Administrators/" + userNameToEdit + ".txt").exists()) {
                             Administrator adminToEdit = new Administrator(userNameToEdit);
                             adminToEdit.getFromFile();
                             System.out.println("Edit What?");
@@ -592,13 +548,6 @@ public class MainMenu {
                                     String newUserNameToEdit = input.next();
                                     adminToEdit.setUserName(newUserNameToEdit);
                                     adminToEdit.saveToFile();
-                                    administratorListArray.remove(userNameToEdit);
-                                    administratorListArray.add(newUserNameToEdit);
-                                    PrintWriter administratorListOutput2 = new PrintWriter(administratorList);
-                                    for (int i = 0; i < administratorListArray.size(); i++) {
-                                        administratorListOutput2.print(administratorListArray.get(i) + " ");
-                                    }
-                                    administratorListOutput2.close();
                                     System.out.println("User name changed successfully");
                                     Waiter.waiter();
                                     break;
@@ -618,13 +567,6 @@ public class MainMenu {
                                     adminToEdit.setUserName(newUserNameToEdit1);
                                     adminToEdit.setPassword(newPasswordToEdit1);
                                     adminToEdit.saveToFile();
-                                    administratorListArray.remove(userNameToEdit);
-                                    administratorListArray.add(newUserNameToEdit1);
-                                    PrintWriter administratorListOutput3 = new PrintWriter(administratorList);
-                                    for (int i = 0; i < administratorListArray.size(); i++) {
-                                        administratorListOutput3.print(administratorListArray.get(i) + " ");
-                                    }
-                                    administratorListOutput3.close();
                                     System.out.println("Administrator's information edited successfully");
                                     Waiter.waiter();
                                     break;
@@ -643,25 +585,20 @@ public class MainMenu {
                         System.out.println("=========Delete Administrator=========");
                         System.out.print("Enter user name: ");
                         String userNameToDelete = input.next();
-                        if (administratorListArray.contains(userNameToDelete)) {
+                        if (new File("Administrators/" + userNameToDelete + ".txt").exists()) {
                             System.out.println("Are you sure you want to delete this administrator? (Y/N)");
                             String deleteAnswer = input.next();
                             if (deleteAnswer.equals("Y")) {
-                                administratorListArray.remove(userNameToDelete);
-                                PrintWriter numOfAdministratorsFileOutput2 = new PrintWriter(numOfAdministratorFile);
-                                numOfAdministratorsFileOutput2.println(numOfAdministrators - 1);
-                                numOfAdministratorsFileOutput2.close();
-                                administratorListArray.remove(userNameToDelete);
-                                PrintWriter accountListOutput2 = new PrintWriter(administratorList);
-                                for (int i = 0; i < administratorListArray.size(); i++) {
-                                    accountListOutput2.println(administratorListArray.get(i));
+                                File deleteFile = new File("Administrators/" + userNameToDelete + ".txt");
+                                if (deleteFile.delete()) {
+                                    System.out.println("Administrator deleted successfully");
+                                    Waiter.waiter();
+                                    break;
+                                } else {
+                                    System.out.println("Administrator could not be deleted");
+                                    Waiter.waiter();
+                                    break;
                                 }
-                                accountListOutput2.close();
-                                File deleteFile = new File("Administrator " + userNameToDelete + ".txt");
-                                deleteFile.delete();
-                                System.out.println("Administrator deleted successfully");
-                                Waiter.waiter();
-                                break;
                             } else {
                                 System.out.println("Administrator not deleted");
                                 Waiter.waiter();
@@ -689,40 +626,14 @@ public class MainMenu {
                             System.out.println("All accounts and administrators will be cleared, and the root password will return to 123456. To continue, please enter \"Yes\"");
                             String clearAnswer2 = input.next();
                             if (clearAnswer2.equals("Yes")) {
-                                File accountListF = new File("accountList.txt");
-                                File numOfAccountsF = new File("numOfAccounts.txt");
-                                File administratorListF = new File("administratorList.txt");
-                                File numOfAdministratorsF = new File("numOfAdministrators.txt");
-                                Scanner accountLInput = new Scanner(accountListF);
-                                Scanner numOfAccountsInput = new Scanner(numOfAccountsF);
-                                Scanner administratorLInput = new Scanner(administratorListF);
-                                Scanner numOfAdministratorsInput = new Scanner(numOfAdministratorsF);
-                                ArrayList<Integer> accounts = new ArrayList<>();
-                                ArrayList<String> administrators = new ArrayList<>();
-                                while (numOfAccountsInput.hasNextInt()) {
-                                    accounts.add(accountLInput.nextInt());
+                                File[] files = new File("Administrators").listFiles();
+                                for (File file : files) {
+                                    file.delete();
                                 }
-                                while (numOfAdministratorsInput.hasNext()) {
-                                    administrators.add(administratorLInput.next());
+                                File[] files2 = new File("Accounts").listFiles();
+                                for (File file : files2) {
+                                    file.delete();
                                 }
-                                for (int i = 0; i < accounts.size(); i++) {
-                                    File account = new File("Account " + accounts.get(i) + ".txt");
-                                    account.delete();
-                                }
-                                for (int i = 0; i < administrators.size(); i++) {
-                                    File administrator = new File("Administrator " + administrators.get(i) + ".txt");
-                                    administrator.delete();
-                                }
-                                PrintWriter accountWriter = new PrintWriter(accountListF);
-                                PrintWriter numOfAccountsWriter = new PrintWriter(numOfAccountsF);
-                                PrintWriter administratorWriter = new PrintWriter(administratorListF);
-                                PrintWriter numOfAdministratorsWriter = new PrintWriter(numOfAdministratorsF);
-                                accountWriter.close();
-                                numOfAccountsWriter.println("0");
-                                numOfAccountsWriter.close();
-                                administratorWriter.close();
-                                numOfAdministratorsWriter.println("0");
-                                numOfAdministratorsWriter.close();
                                 File rootF = new File("root.txt");
                                 PrintWriter rootWriter = new PrintWriter(rootF);
                                 rootWriter.println("123456");

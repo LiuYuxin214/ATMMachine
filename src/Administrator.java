@@ -59,7 +59,7 @@ public class Administrator {
 
 
     public void saveToFile() throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter("Administrator " + userName + ".txt");
+        PrintWriter writer = new PrintWriter("Administrator/" + userName + ".txt");
         writer.print(userName + " ");
         writer.println(password);
         for (int i = 0; i < logs.size(); i++) {
@@ -69,7 +69,7 @@ public class Administrator {
     }
 
     public void getFromFile() throws FileNotFoundException {
-        File file = new File("Administrator " + userName + ".txt");
+        File file = new File("Administrator/" + userName + ".txt");
         Scanner reader = new Scanner(file);
         userName = reader.next();
         password = reader.next();

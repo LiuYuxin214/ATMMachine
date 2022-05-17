@@ -78,7 +78,7 @@ public class MainMenu {
                         System.out.println("3. Display Transaction");
                         System.out.println("4. Display Proportion Chart of Deposits and Withdrawals");
                         System.out.println("5. Back");
-                        System.out.println("Enter a choice: ");
+                        System.out.print("Enter a choice: ");
                         int option2 = input.nextInt();
                         switch (option2) {
                             case 1:

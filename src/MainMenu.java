@@ -13,7 +13,7 @@ public class MainMenu {
         Account account = new Account(id);
         account.getFromFile();
         Announcement announcement = new Announcement();
-        if (account.getIsFreeze() == true) {
+        if (account.getIsFreeze()) {
             System.out.println("Your account is frozen. Please contact the administrator.");
             Waiter.waiter();
             return;
@@ -47,21 +47,21 @@ public class MainMenu {
                 double amount;
                 int option = input.nextInt();
                 switch (option) {
-                    case 1:
+                    case 1 -> {
                         System.out.println("The balance is $" + account.getBalance());
                         Waiter.waiter();
-                        break;
-                    case 2:
+                    }
+                    case 2 -> {
                         System.out.print("Enter an amount to withdraw: ");
                         amount = input.nextDouble();
                         account.withdraw(amount);
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         System.out.print("Enter an amount to deposit: ");
                         amount = input.nextDouble();
                         account.deposit(amount);
-                        break;
-                    case 4:
+                    }
+                    case 4 -> {
                         System.out.print("Enter an account number to transfer to: ");
                         int accountNumber = input.nextInt();
                         System.out.print("Enter an amount to transfer: ");
@@ -71,8 +71,8 @@ public class MainMenu {
                         transferAccount.deposit(amount);
                         account.withdraw(amount);
                         transferAccount.saveToFile();
-                        break;
-                    case 5:
+                    }
+                    case 5 -> {
                         System.out.println("1. Display All");
                         System.out.println("2. Display Basic Information");
                         System.out.println("3. Display Transaction");
@@ -103,15 +103,15 @@ public class MainMenu {
                                 System.out.println("Invalid choice");
                                 break;
                         }
-                        break;
-                    case 6:
+                    }
+                    case 6 -> {
                         System.out.print("Enter a new password: ");
                         String newPassword = input.next();
                         account.setPassword(newPassword);
                         System.out.println("Password changed");
                         Waiter.waiter();
-                        break;
-                    case 7:
+                    }
+                    case 7 -> {
                         System.out.println("1. What is your favorite color?");
                         System.out.println("2. What is your favorite animal?");
                         System.out.println("3. What is your favorite food?");
@@ -125,15 +125,17 @@ public class MainMenu {
                         account.setAnswer(newAnswer);
                         System.out.println("Question and answer changed");
                         Waiter.waiter();
-                        break;
-                    case 8:
+                    }
+                    case 8 -> {
                         account.saveToFile();
                         System.out.println("Thank you for using our ATM");
                         sleep(1000);
                         return;
-                    default:
+                    }
+                    default -> {
                         System.out.println("Invalid choice");
                         Waiter.waiter();
+                    }
                 }
             }
         } else {
@@ -152,7 +154,7 @@ public class MainMenu {
                 Scanner sc = new Scanner(System.in);
                 int choice = sc.nextInt();
                 switch (choice) {
-                    case 1:
+                    case 1 -> {
                         System.out.println("Your password reset question is: ");
                         System.out.println(account.getQuestion());
                         System.out.print("Enter the answer to your password reset question: ");
@@ -163,17 +165,15 @@ public class MainMenu {
                             account.setPassword(newPassword);
                             account.saveToFile();
                             System.out.println("Password reset successfully");
-                            Waiter.waiter();
-                            return;
                         } else {
                             System.out.println("Incorrect answer");
-                            Waiter.waiter();
-                            return;
                         }
-                    case 2:
+                        Waiter.waiter();
+                    }
+                    case 2 -> {
                         System.out.println("Thank you for using our ATM");
                         Waiter.waiter();
-                        return;
+                    }
                 }
             }
         }
@@ -200,7 +200,7 @@ public class MainMenu {
                 switch (option) {
                     case 1:
                         System.out.println("=========Create new account=========");
-                        int newID = 0;
+                        int newID;
                         while (true) {
                             System.out.print("Enter a new ID: ");
                             newID = input.nextInt();
@@ -237,8 +237,10 @@ public class MainMenu {
                         System.out.println("ID Balance Password Creation date Question Answer");
                         System.out.println("-------------------------------------------------");
                         File[] accountFiles = new File("Accounts").listFiles();
-                        for (int i = 0; i < accountFiles.length; i++) {
-                            Account account = new Account(Integer.parseInt(accountFiles[i].getName().substring(0, accountFiles[i].getName().length() - 5)));
+                        assert accountFiles != null;
+                        for (File accountFile : accountFiles) {
+                            int id = Integer.parseInt(accountFile.getName().substring(0, accountFile.getName().length() - 4));
+                            Account account = new Account(id);
                             account.getFromFile();
                             System.out.println(account.getUserID() + " " + account.getBalance() + " " + account.getPassword() + " " + account.getDateCreate() + " " + account.getQuestion() + " " + account.getAnswer());
                         }
@@ -255,13 +257,11 @@ public class MainMenu {
                             System.out.println("-------------------------------------------------");
                             System.out.println(searchAccount.getUserID() + " " + searchAccount.getBalance() + " " + searchAccount.getDateCreate() + " " + searchAccount.getPassword() + " " + searchAccount.getQuestion() + " " + searchAccount.getAnswer());
                             searchAccount.displayTransactions();
-                            Waiter.waiter();
-                            break;
                         } else {
                             System.out.println("Account does not exist");
-                            Waiter.waiter();
-                            break;
                         }
+                        Waiter.waiter();
+                        break;
                     case 4:
                         System.out.println("=========Edit account=========");
                         System.out.print("Enter an ID: ");
@@ -286,8 +286,8 @@ public class MainMenu {
                             switch (editChoice) {
                                 case 1:
                                     System.out.print("Enter new balance: ");
-                                    int eidtBalance = input.nextInt();
-                                    editAccount.setBalance(eidtBalance);
+                                    int editBalance = input.nextInt();
+                                    editAccount.setBalance(editBalance);
                                     editAccount.saveToFile();
                                     System.out.println("Balance updated");
                                     Waiter.waiter();
@@ -323,8 +323,8 @@ public class MainMenu {
                                     break;
                                 case 5:
                                     System.out.print("Enter new balance: ");
-                                    int eidtBalance1 = input.nextInt();
-                                    editAccount.setBalance(eidtBalance1);
+                                    int editBalance1 = input.nextInt();
+                                    editAccount.setBalance(editBalance1);
                                     System.out.print("Enter new password: ");
                                     String editPassword1 = input.next();
                                     editAccount.setPassword(editPassword1);
@@ -399,23 +399,17 @@ public class MainMenu {
                                 if (deleteFile.delete()) {
                                     admin.addLog('D', deleteID);
                                     System.out.println("Account deleted successfully");
-                                    Waiter.waiter();
-                                    break;
                                 } else {
                                     System.out.println("Account deletion failed");
-                                    Waiter.waiter();
-                                    break;
                                 }
                             } else {
                                 System.out.println("Account not deleted");
-                                Waiter.waiter();
-                                break;
                             }
                         } else {
                             System.out.println("Account does not exist");
-                            Waiter.waiter();
-                            break;
                         }
+                        Waiter.waiter();
+                        break;
                     case 6:
                         Announcement announcement = new Announcement();
                         System.out.println("=========Change Announcement=========");
@@ -506,8 +500,9 @@ public class MainMenu {
                         System.out.println("User Name Password");
                         System.out.println("------------------");
                         File[] adminFiles = new File("Administrators").listFiles();
-                        for (int i = 0; i < adminFiles.length; i++) {
-                            Administrator admin = new Administrator(adminFiles[i].getName().substring(0, adminFiles[i].getName().length() - 5));
+                        assert adminFiles != null;
+                        for (File adminFile : adminFiles) {
+                            Administrator admin = new Administrator(adminFile.getName().substring(0, adminFile.getName().length() - 4));
                             admin.getFromFile();
                             System.out.println(admin.getUserName() + " " + admin.getPassword());
                         }
@@ -521,13 +516,11 @@ public class MainMenu {
                             Administrator adminLog = new Administrator(adminUserName);
                             adminLog.getFromFile();
                             adminLog.disLog();
-                            Waiter.waiter();
-                            break;
                         } else {
                             System.out.println("Administrator does not exist");
-                            Waiter.waiter();
-                            break;
                         }
+                        Waiter.waiter();
+                        break;
                     case 4:
                         System.out.println("=========Edit Administrator's Information=========");
                         System.out.print("Enter user name of the administrator you want to edit: ");
@@ -592,23 +585,17 @@ public class MainMenu {
                                 File deleteFile = new File("Administrators/" + userNameToDelete + ".txt");
                                 if (deleteFile.delete()) {
                                     System.out.println("Administrator deleted successfully");
-                                    Waiter.waiter();
-                                    break;
                                 } else {
                                     System.out.println("Administrator could not be deleted");
-                                    Waiter.waiter();
-                                    break;
                                 }
                             } else {
                                 System.out.println("Administrator not deleted");
-                                Waiter.waiter();
-                                break;
                             }
                         } else {
                             System.out.println("Administrator does not exist");
-                            Waiter.waiter();
-                            break;
                         }
+                        Waiter.waiter();
+                        break;
                     case 6:
                         System.out.println("=========Change Root Password=========");
                         System.out.print("Enter new password: ");
@@ -627,12 +614,16 @@ public class MainMenu {
                             String clearAnswer2 = input.next();
                             if (clearAnswer2.equals("Yes")) {
                                 File[] files = new File("Administrators").listFiles();
+                                assert files != null;
                                 for (File file : files) {
-                                    file.delete();
+                                    if (!file.delete())
+                                        System.out.println("Could not delete file: " + file.getName());
                                 }
                                 File[] files2 = new File("Accounts").listFiles();
+                                assert files2 != null;
                                 for (File file : files2) {
-                                    file.delete();
+                                    if (file.delete())
+                                        System.out.println("Deleted file: " + file.getName());
                                 }
                                 File rootF = new File("root.txt");
                                 PrintWriter rootWriter = new PrintWriter(rootF);
@@ -663,7 +654,6 @@ public class MainMenu {
         } else {
             System.out.println("Wrong Root Password");
             Waiter.waiter();
-            return;
         }
     }
 }

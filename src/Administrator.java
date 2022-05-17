@@ -52,24 +52,24 @@ public class Administrator {
         System.out.println("   Logs");
         System.out.println("Type Account");
         System.out.println("------------");
-        for (int i = 0; i < logs.size(); i++) {
-            System.out.printf("%-5c%d\n", logs.get(i).getType(), logs.get(i).getAccount());
+        for (Log log : logs) {
+            System.out.printf("%-5c%d\n", log.getType(), log.getAccount());
         }
     }
 
 
     public void saveToFile() throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter("Administrator/" + userName + ".txt");
+        PrintWriter writer = new PrintWriter("Administrators/" + userName + ".txt");
         writer.print(userName + " ");
         writer.println(password);
-        for (int i = 0; i < logs.size(); i++) {
-            writer.println(logs.get(i).getType() + " " + logs.get(i).getAccount());
+        for (Log log : logs) {
+            writer.println(log.getType() + " " + log.getAccount());
         }
         writer.close();
     }
 
     public void getFromFile() throws FileNotFoundException {
-        File file = new File("Administrator/" + userName + ".txt");
+        File file = new File("Administrators/" + userName + ".txt");
         Scanner reader = new Scanner(file);
         userName = reader.next();
         password = reader.next();

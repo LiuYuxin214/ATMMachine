@@ -49,25 +49,14 @@ public class Account {
     }
 
     public String getQuestion() {
-        String questionString = "";
-        switch (question) {
-            case 1:
-                questionString = "What is your favorite color?";
-                break;
-            case 2:
-                questionString = "What is your favorite animal?";
-                break;
-            case 3:
-                questionString = "What is your favorite food?";
-                break;
-            case 4:
-                questionString = "What is your favorite movie?";
-                break;
-            case 5:
-                questionString = "What is your favorite sport?";
-                break;
-        }
-        return questionString;
+        return switch (question) {
+            case 1 -> "What is your favorite color?";
+            case 2 -> "What is your favorite animal?";
+            case 3 -> "What is your favorite food?";
+            case 4 -> "What is your favorite movie?";
+            case 5 -> "What is your favorite sport?";
+            default -> "";
+        };
     }
 
     public String getAnswer() {
@@ -157,19 +146,19 @@ public class Account {
         System.out.println("                  Transactions");
         System.out.println("Type Amount Balance Date");
         System.out.println("------------------------------------------------");
-        for (int i = 0; i < transactions.size(); i++) {
-            System.out.printf("%-5c%-7.3f%-8.3f%s\n", transactions.get(i).getType(), transactions.get(i).getAmount(), transactions.get(i).getBalance(), transactions.get(i).getUpdatedDate().toString());
+        for (Transaction transaction : transactions) {
+            System.out.printf("%-5c%-7.3f%-8.3f%s\n", transaction.getType(), transaction.getAmount(), transaction.getBalance(), transaction.getUpdatedDate().toString());
         }
     }
 
     public void displayProportionChart() {
         double sumOfD = 0, sumOfW = 0;
-        for (int i = 0; i < transactions.size(); i++) {
+        for (Transaction transaction : transactions) {
 
-            if (transactions.get(i).getType() == 'D') {
-                sumOfD += transactions.get(i).getAmount();
-            } else if (transactions.get(i).getType() == 'W') {
-                sumOfW += transactions.get(i).getAmount();
+            if (transaction.getType() == 'D') {
+                sumOfD += transaction.getAmount();
+            } else if (transaction.getType() == 'W') {
+                sumOfW += transaction.getAmount();
             }
         }
         System.out.println("Total deposits: $" + sumOfD + "              Total withdrawals: $" + sumOfW);
@@ -195,7 +184,7 @@ public class Account {
     }
 
     public void saveToFile() throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter("Account/" + userID + ".txt");
+        PrintWriter writer = new PrintWriter("Accounts/" + userID + ".txt");
         writer.println(userID);
         writer.println(password);
         writer.println(balance);
@@ -204,15 +193,15 @@ public class Account {
         writer.println(dateCreated.getTime());
         writer.println(isFreeze);
         writer.println(numOfWrongPassword);
-        for (int i = 0; i < transactions.size(); i++) {
-            writer.println(transactions.get(i).getType() + " " + transactions.get(i).getAmount() + " " + transactions.get(i).getBalance() + " " + transactions.get(i).getUpdatedDate().toString());
+        for (Transaction transaction : transactions) {
+            writer.println(transaction.getType() + " " + transaction.getAmount() + " " + transaction.getBalance() + " " + transaction.getUpdatedDate().toString());
         }
         writer.close();
     }
 
     public void getFromFile() throws FileNotFoundException {
         try {
-            File file = new File("Account/" + userID + ".txt");
+            File file = new File("Accounts/" + userID + ".txt");
             Scanner reader = new Scanner(file);
             userID = reader.nextInt();
             password = reader.next();

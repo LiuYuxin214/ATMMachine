@@ -59,7 +59,7 @@ public class Client {
                     int option = setting.nextInt();
                     switch (option) {
                         case 1:
-                            System.out.print("Please enter the server's IP address:");
+                            System.out.print("Please enter the server's IP address: ");
                             ip = setting.next();
                             pw = new PrintWriter("ClientSetting.txt");
                             pw.println(ip);
@@ -69,7 +69,7 @@ public class Client {
                             System.out.println("IP address changed!");
                             break;
                         case 2:
-                            System.out.print("Please enter the server's port:");
+                            System.out.print("Please enter the server's port: ");
                             port = setting.nextInt();
                             pw = new PrintWriter("ClientSetting.txt");
                             pw.println(ip);
@@ -79,7 +79,7 @@ public class Client {
                             System.out.println("Port changed!");
                             break;
                         case 3:
-                            System.out.print("Please enter the client's ID:");
+                            System.out.print("Please enter the client's ID: ");
                             clientID = setting.nextInt();
                             pw = new PrintWriter("ClientSetting.txt");
                             pw.println(ip);
@@ -107,13 +107,18 @@ public class Client {
                 in = new DataInputStream(socket.getInputStream());
                 out = new DataOutputStream(socket.getOutputStream());
                 out.writeInt(clientID);
+                String announcement = in.readUTF();
                 System.out.println("Connected to server");
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Welcome to ATM!");
+                System.out.println("Announcement: " + announcement);
                 System.out.println("If you forget your password, type \"f\".");
                 System.out.println("If you want to disconnect from server, type \"d\".");
                 System.out.print("Enter an ID: ");
                 String enter = scanner.next();
+                int id = 0;
+                String password = "";
+                boolean reset = false;
                 if (enter.equals("d")) {
                     System.out.print("Disconnecting");
                     for (int i = 0; i < 3; i++) {
@@ -128,19 +133,51 @@ public class Client {
                     continue;
                 }
                 if (enter.equals("f")) {
-                    System.out.println("Enter your ID: ");
+                    out.writeInt(-2);
+                    Scanner resetPasswordSc = new Scanner(System.in);
+                    System.out.print("Enter the ID that you forget password: ");
+                    int resetID = resetPasswordSc.nextInt();
+                    out.writeInt(resetID);
+                    System.out.print("Your password reset question is: ");
+                    System.out.println(in.readUTF());
+                    System.out.print("Enter the answer to your password reset question: ");
+                    String answer = resetPasswordSc.next();
+                    out.writeUTF(answer);
+                    if (in.readBoolean()) {
+                        System.out.print("Enter a new password: ");
+                        String newPassword = resetPasswordSc.next();
+                        out.writeUTF(newPassword);
+                        System.out.print("Password reset successfully, auto login in 3 seconds");
+                        for (int i = 0; i < 3; i++) {
+                            sleep(1000);
+                            System.out.print(".");
+                        }
+                        System.out.println();
+                        id = resetID;
+                        reset = true;
+                        password = newPassword;
+                        out.writeUTF(password);
+                    } else {
+                        System.out.println("Incorrect answer");
+                        sleep(1000);
+                        in.close();
+                        out.close();
+                        socket.close();
+                        continue;
+                    }
                 }
-                int id = Integer.parseInt(enter);
-                System.out.print("Enter your password: ");
-                String password = scanner.next();
-                out.writeInt(id);
-                out.writeUTF(password);
-                System.out.println("Sending ID and password to server...");
-                sleep(1000);
+                if (!reset) {
+                    id = Integer.parseInt(enter);
+                    out.writeInt(id);
+                    System.out.print("Enter your password: ");
+                    password = scanner.next();
+                    out.writeUTF(password);
+                    System.out.println("Sending ID and password to server...");
+                    sleep(1000);
+                }
                 String result = in.readUTF();
                 if (result.equals("Password Correct")) {
                     System.out.println("Password Correct");
-                    String announcement = in.readUTF();
                     while (true) {
                         System.out.println("Welcome to our ATM, " + id);
                         System.out.print("Announcement: ");
@@ -288,6 +325,9 @@ public class Client {
                     sleep(1000);
                 } else if (result.equals("User not found")) {
                     System.out.println("User not found");
+                    sleep(1000);
+                } else if (result.equals("User is frozen")) {
+                    System.out.println("User is frozen");
                     sleep(1000);
                 }
                 in.close();

@@ -26,8 +26,8 @@ public class Main {
             } else if (enter.equals("s")) {
                 SystemMenu.moreOperation();
             } else if (enter.equals("f")) {
-                System.out.print("Enter your ID: ");
-                int id = Integer.parseInt(input.nextLine());
+                System.out.print("Enter the ID that you forget password: ");
+                int id = input.nextInt();
                 Account account = new Account(id);
                 account.getFromFile();
                 System.out.println("Your password reset question is: ");

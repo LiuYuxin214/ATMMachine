@@ -13,7 +13,7 @@ public class MainMenu {
         Account account = new Account(id);
         account.getFromFile();
         Announcement announcement = new Announcement();
-        if (account.isFreeze()) {
+        if (account.isFrozen()) {
             System.out.println("Your account is frozen. Please contact the administrator.");
             Waiter.waiter();
             return;
@@ -143,7 +143,7 @@ public class MainMenu {
             account.addNumOfWrongPassword();
             account.saveToFile();
             if (account.getNumOfWrongPassword() == 3) {
-                account.setFreeze(true);
+                account.setFrozen(true);
                 account.resetNumOfWrongPassword();
                 account.saveToFile();
                 System.out.println("You have entered the wrong password 3 times. Your account has been locked.");
@@ -242,7 +242,7 @@ public class MainMenu {
                             int id = Integer.parseInt(accountFile.getName().substring(0, accountFile.getName().length() - 4));
                             Account account = new Account(id);
                             account.getFromFile();
-                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", account.getUserID(), account.getBalance(), account.getPassword(), account.getDateCreate().toString(), account.getQuestion(), account.getAnswer(), account.isFreeze());
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", account.getUserID(), account.getBalance(), account.getPassword(), account.getDateCreate().toString(), account.getQuestion(), account.getAnswer(), account.isFrozen());
                         }
                         System.out.println("--------------------------------------------------------------------------------------------------");
                         Waiter.waiter();
@@ -256,7 +256,7 @@ public class MainMenu {
                             searchAccount.getFromFile();
                             System.out.println("ID Balance Password Creation date                 Question                           Answer Freeze");
                             System.out.println("--------------------------------------------------------------------------------------------------");
-                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", searchAccount.getUserID(), searchAccount.getBalance(), searchAccount.getPassword(), searchAccount.getDateCreate().toString(), searchAccount.getQuestion(), searchAccount.getAnswer(), searchAccount.isFreeze());
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", searchAccount.getUserID(), searchAccount.getBalance(), searchAccount.getPassword(), searchAccount.getDateCreate().toString(), searchAccount.getQuestion(), searchAccount.getAnswer(), searchAccount.isFrozen());
                             searchAccount.displayTransactions();
                         } else {
                             System.out.println("Account does not exist");
@@ -272,7 +272,7 @@ public class MainMenu {
                             editAccount.getFromFile();
                             System.out.println("ID Balance Password Creation date                 Question                           Answer Freeze");
                             System.out.println("--------------------------------------------------------------------------------------------------");
-                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", editAccount.getUserID(), editAccount.getBalance(), editAccount.getPassword(), editAccount.getDateCreate().toString(), editAccount.getQuestion(), editAccount.getAnswer(), editAccount.isFreeze());
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", editAccount.getUserID(), editAccount.getBalance(), editAccount.getPassword(), editAccount.getDateCreate().toString(), editAccount.getQuestion(), editAccount.getAnswer(), editAccount.isFrozen());
                             System.out.println("Edit what? ");
                             System.out.println("1. Balance");
                             System.out.println("2. Password");
@@ -358,13 +358,13 @@ public class MainMenu {
                                     System.out.print("Choice: ");
                                     switch (input.nextInt()) {
                                         case 1:
-                                            editAccount.setFreeze(true);
+                                            editAccount.setFrozen(true);
                                             editAccount.saveToFile();
                                             System.out.println("Account frozen");
                                             sleep(1000);
                                             break;
                                         case 2:
-                                            editAccount.setFreeze(false);
+                                            editAccount.setFrozen(false);
                                             editAccount.saveToFile();
                                             System.out.println("Account unfrozen");
                                             sleep(1000);

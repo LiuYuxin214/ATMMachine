@@ -84,11 +84,11 @@ public class Account implements AccountInterface {
         return dateCreated;
     }
 
-    public boolean isFreeze() {
+    public boolean isFrozen() {
         return isFreeze;
     }
 
-    public void setFreeze(boolean isFreeze) {
+    public void setFrozen(boolean isFreeze) {
         this.isFreeze = isFreeze;
     }
 

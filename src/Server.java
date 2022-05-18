@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
+import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
@@ -26,8 +27,15 @@ public class Server {
                 System.out.println("Client Connected");
                 DataInputStream in = new DataInputStream(socket.getInputStream());
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                int clientID = in.readInt();
                 System.out.print("[" + new Date() + "]");
-                System.out.println("Client ID: " + in.readInt());
+                System.out.println("Client ID: " + clientID);
+                Announcement announcement = new Announcement();
+                out.writeUTF(announcement.getAnnouncement());
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Announcement: " + announcement.getAnnouncement());
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Announcement sent to client");
                 int id = in.readInt();
                 if (id == -1) {
                     System.out.print("[" + new Date() + "]");
@@ -37,6 +45,42 @@ public class Server {
                     socket.close();
                     server.close();
                     continue;
+                } else if (id == -2) {
+                    Scanner resetPasswordSc = new Scanner(System.in);
+                    System.out.print("[" + new Date() + "]");
+                    System.out.println("Reset Password");
+                    int resetID = in.readInt();
+                    Account account = new Account(resetID);
+                    account.getFromFile();
+                    System.out.print("[" + new Date() + "]");
+                    System.out.print("Password reset question is: ");
+                    System.out.println(account.getQuestion());
+                    out.writeUTF(account.getQuestion());
+                    String answer = in.readUTF();
+                    System.out.print("[" + new Date() + "]");
+                    System.out.println("User answer: " + answer);
+                    System.out.print("[" + new Date() + "]");
+                    System.out.println("Right answer is: " + account.getAnswer());
+                    if (answer.equals(account.getAnswer())) {
+                        out.writeBoolean(true);
+                        String newPassword = in.readUTF();
+                        System.out.print("[" + new Date() + "]");
+                        System.out.print("New password: " + newPassword);
+                        account.setPassword(newPassword);
+                        account.saveToFile();
+                        System.out.print("[" + new Date() + "]");
+                        System.out.println("Password reset successfully");
+                        id = resetID;
+                    } else {
+                        out.writeBoolean(false);
+                        System.out.print("[" + new Date() + "]");
+                        System.out.println("Incorrect answer");
+                        in.close();
+                        out.close();
+                        socket.close();
+                        server.close();
+                        continue;
+                    }
                 }
                 System.out.print("[" + new Date() + "]");
                 System.out.println("User ID: " + id);
@@ -50,14 +94,16 @@ public class Server {
                     account.getFromFile();
                     System.out.print("[" + new Date() + "]");
                     System.out.println("User exists");
-                    if (account.getPassword().equals(password)) {
+                    if (account.isFrozen()) {
+                        System.out.print("[" + new Date() + "]");
+                        System.out.println("User is frozen");
+                        out.writeUTF("User is frozen");
+                    } else if (account.getPassword().equals(password)) {
                         System.out.print("[" + new Date() + "]");
                         System.out.println("Password Correct");
                         out.writeUTF("Password Correct");
                         account.resetNumOfWrongPassword();
                         account.saveToFile();
-                        Announcement announcement = new Announcement();
-                        out.writeUTF(announcement.getAnnouncement());
                         while (true) {
                             int option = in.readInt();
                             double amount;
@@ -159,6 +205,17 @@ public class Server {
                         System.out.print("[" + new Date() + "]");
                         System.out.println("Wrong Password");
                         out.writeUTF("Wrong Password");
+                        account.addNumOfWrongPassword();
+                        System.out.print("[" + new Date() + "]");
+                        System.out.println("Number of wrong password: " + account.getNumOfWrongPassword());
+                        account.saveToFile();
+                        if (account.getNumOfWrongPassword() == 3) {
+                            System.out.print("[" + new Date() + "]");
+                            System.out.println("ID: " + id + " will be frozen");
+                            account.resetNumOfWrongPassword();
+                            account.setFrozen(true);
+                            account.saveToFile();
+                        }
                     }
                 } else {
                     System.out.print("[" + new Date() + "]");

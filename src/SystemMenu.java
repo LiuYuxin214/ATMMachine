@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 public class SystemMenu {
 
-    public static void moreOperation() throws FileNotFoundException, InterruptedException {
+    public static void main(String[] args) throws FileNotFoundException, InterruptedException {
+        systemOperation();
+    }
+
+    public static void systemOperation() throws FileNotFoundException, InterruptedException {
         while (true) {
             System.out.println("=========System Menu=========");
             System.out.println("1. Enter Administrator Menu");

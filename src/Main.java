@@ -24,7 +24,7 @@ public class Main {
                     sleep(1000);
                 }
             } else if (enter.equals("s")) {
-                SystemMenu.moreOperation();
+                SystemMenu.systemOperation();
             } else if (enter.equals("f")) {
                 System.out.print("Enter the ID that you forget password: ");
                 int id = input.nextInt();

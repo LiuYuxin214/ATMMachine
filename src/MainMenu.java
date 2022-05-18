@@ -100,6 +100,7 @@ public class MainMenu {
                                 break;
                             default:
                                 System.out.println("Invalid choice");
+                                sleep(1000);
                                 break;
                         }
                     }
@@ -108,7 +109,7 @@ public class MainMenu {
                         String newPassword = input.next();
                         account.setPassword(newPassword);
                         System.out.println("Password changed");
-                        Waiter.waiter();
+                        sleep(1000);
                     }
                     case 7 -> {
                         System.out.println("1. What is your favorite color?");
@@ -123,7 +124,7 @@ public class MainMenu {
                         account.setQuestion(newQuestion);
                         account.setAnswer(newAnswer);
                         System.out.println("Question and answer changed");
-                        Waiter.waiter();
+                        sleep(1000);
                     }
                     case 8 -> {
                         account.saveToFile();
@@ -133,7 +134,7 @@ public class MainMenu {
                     }
                     default -> {
                         System.out.println("Invalid choice");
-                        Waiter.waiter();
+                        sleep(1000);
                     }
                 }
             }
@@ -146,7 +147,7 @@ public class MainMenu {
                 account.resetNumOfWrongPassword();
                 account.saveToFile();
                 System.out.println("You have entered the wrong password 3 times. Your account has been locked.");
-                Waiter.waiter();
+                sleep(3000);
             } else {
                 System.out.println("If you want to reset the password, enter 1");
                 System.out.println("If you want to exit, enter 2");
@@ -163,15 +164,15 @@ public class MainMenu {
                             String newPassword = sc.next();
                             account.setPassword(newPassword);
                             account.saveToFile();
-                            System.out.println("Password reset successfully");
+                            System.out.println("Password reset successfully, please login again.");
                         } else {
                             System.out.println("Incorrect answer");
                         }
-                        Waiter.waiter();
+                        sleep(3000);
                     }
                     case 2 -> {
                         System.out.println("Thank you for using our ATM");
-                        Waiter.waiter();
+                        sleep(1000);
                     }
                 }
             }
@@ -229,7 +230,7 @@ public class MainMenu {
                         newAccount.saveToFile();
                         admin.addLog('C', newAccount.getUserID());
                         System.out.println("Account created successfully");
-                        Waiter.waiter();
+                        sleep(1000);
                         break;
                     case 2:
                         System.out.println("=======================================Display all accounts=======================================");
@@ -290,7 +291,7 @@ public class MainMenu {
                                     editAccount.setBalance(editBalance);
                                     editAccount.saveToFile();
                                     System.out.println("Balance updated");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 2:
                                     System.out.print("Enter new password: ");
@@ -298,7 +299,7 @@ public class MainMenu {
                                     editAccount.setPassword(editPassword);
                                     editAccount.saveToFile();
                                     System.out.println("Password updated");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 3:
                                     System.out.println("1. What is your favorite color?");
@@ -311,7 +312,7 @@ public class MainMenu {
                                     editAccount.setQuestion(editQuestion);
                                     editAccount.saveToFile();
                                     System.out.println("Question updated");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 4:
                                     System.out.print("Enter new answer: ");
@@ -319,7 +320,7 @@ public class MainMenu {
                                     editAccount.setAnswer(editAnswer);
                                     editAccount.saveToFile();
                                     System.out.println("Answer updated");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 5:
                                     System.out.print("Enter new balance: ");
@@ -341,14 +342,14 @@ public class MainMenu {
                                     editAccount.setAnswer(editAnswer1);
                                     editAccount.saveToFile();
                                     System.out.println("All updated");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 6:
                                     editAccount.setDateCreate();
                                     editAccount.setDateCreate();
                                     editAccount.saveToFile();
                                     System.out.println("Creation date updated");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 7:
                                     System.out.println("1. Freeze this account");
@@ -360,19 +361,19 @@ public class MainMenu {
                                             editAccount.setFreeze(true);
                                             editAccount.saveToFile();
                                             System.out.println("Account frozen");
-                                            Waiter.waiter();
+                                            sleep(1000);
                                             break;
                                         case 2:
                                             editAccount.setFreeze(false);
                                             editAccount.saveToFile();
                                             System.out.println("Account unfrozen");
-                                            Waiter.waiter();
+                                            sleep(1000);
                                             break;
                                         case 3:
                                             break;
                                         default:
                                             System.out.println("Invalid choice");
-                                            Waiter.waiter();
+                                            sleep(1000);
                                             break;
                                     }
                                     break;
@@ -380,7 +381,7 @@ public class MainMenu {
                                     break;
                                 default:
                                     System.out.println("Invalid choice");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
 
                             }
@@ -408,7 +409,7 @@ public class MainMenu {
                         } else {
                             System.out.println("Account does not exist");
                         }
-                        Waiter.waiter();
+                        sleep(1000);
                         break;
                     case 6:
                         Announcement announcement = new Announcement();
@@ -420,7 +421,7 @@ public class MainMenu {
                         String newAnnouncement = announcementInput.nextLine();
                         announcement.setAnnouncement(newAnnouncement);
                         System.out.println("Announcement changed successfully");
-                        Waiter.waiter();
+                        sleep(1000);
                         break;
                     case 7:
                         System.out.println("=========Change Administrator User Name or Password=========");
@@ -437,7 +438,7 @@ public class MainMenu {
                                 admin.setUserName(newUserName);
                                 admin.saveToFile();
                                 System.out.println("Administrator user name changed successfully");
-                                Waiter.waiter();
+                                sleep(1000);
                                 break;
                             case 2:
                                 System.out.println("=========Change Administrator Password=========");
@@ -446,7 +447,7 @@ public class MainMenu {
                                 admin.setPassword(newPassword1);
                                 admin.saveToFile();
                                 System.out.println("Administrator password changed successfully");
-                                Waiter.waiter();
+                                sleep(1000);
                                 break;
                             case 3:
                                 break;
@@ -460,7 +461,7 @@ public class MainMenu {
             }
         } else {
             System.out.println("Wrong Password");
-            Waiter.waiter();
+            sleep(1000);
         }
     }
 
@@ -493,7 +494,7 @@ public class MainMenu {
                         Administrator newAdmin = new Administrator(newUserName, newPassword);
                         newAdmin.saveToFile();
                         System.out.println("New Administrator added successfully");
-                        Waiter.waiter();
+                        sleep(1000);
                         break;
                     case 2:
                         System.out.println("=========Display all accounts=========");
@@ -517,10 +518,12 @@ public class MainMenu {
                             Administrator adminLog = new Administrator(adminUserName);
                             adminLog.getFromFile();
                             adminLog.disLog();
+                            Waiter.waiter();
                         } else {
                             System.out.println("Administrator does not exist");
+                            sleep(1000);
                         }
-                        Waiter.waiter();
+
                         break;
                     case 4:
                         System.out.println("=========Edit Administrator's Information=========");
@@ -543,7 +546,7 @@ public class MainMenu {
                                     adminToEdit.setUserName(newUserNameToEdit);
                                     adminToEdit.saveToFile();
                                     System.out.println("User name changed successfully");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 2:
                                     System.out.print("Enter new password: ");
@@ -551,7 +554,7 @@ public class MainMenu {
                                     adminToEdit.setPassword(newPasswordToEdit);
                                     adminToEdit.saveToFile();
                                     System.out.println("Password changed successfully");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 3:
                                     System.out.print("Enter new user name: ");
@@ -562,18 +565,19 @@ public class MainMenu {
                                     adminToEdit.setPassword(newPasswordToEdit1);
                                     adminToEdit.saveToFile();
                                     System.out.println("Administrator's information edited successfully");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                                 case 4:
                                     break;
                                 default:
                                     System.out.println("Invalid choice");
-                                    Waiter.waiter();
+                                    sleep(1000);
                                     break;
                             }
 
                         } else {
                             System.out.println("Administrator does not exist");
+                            sleep(1000);
                         }
                     case 5:
                         System.out.println("=========Delete Administrator=========");
@@ -586,14 +590,18 @@ public class MainMenu {
                                 File deleteFile = new File("Administrators/" + userNameToDelete + ".txt");
                                 if (deleteFile.delete()) {
                                     System.out.println("Administrator deleted successfully");
+                                    sleep(1000);
                                 } else {
-                                    System.out.println("Administrator could not be deleted");
+                                    System.out.println("Administrator cannot be deleted");
+                                    sleep(3000);
                                 }
                             } else {
                                 System.out.println("Administrator not deleted");
+                                sleep(1000);
                             }
                         } else {
                             System.out.println("Administrator does not exist");
+                            sleep(1000);
                         }
                         Waiter.waiter();
                         break;
@@ -604,7 +612,7 @@ public class MainMenu {
                         root.setPassword(newPassword1);
                         root.saveToFile();
                         System.out.println("Root password changed successfully");
-                        Waiter.waiter();
+                        sleep(1000);
                         break;
                     case 7:
                         System.out.println("=========Clear all data and restore factory settings=========");
@@ -654,7 +662,7 @@ public class MainMenu {
 
         } else {
             System.out.println("Wrong Root Password");
-            Waiter.waiter();
+            sleep(1000);
         }
     }
 }

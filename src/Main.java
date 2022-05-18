@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import static java.lang.Thread.sleep;
+
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
@@ -19,7 +21,7 @@ public class Main {
                     MainMenu.userOperation(id, password);
                 } else {
                     System.out.println("User not found");
-                    Waiter.waiter();
+                    sleep(1000);
                 }
             } else if (enter.equals("s")) {
                 SystemMenu.moreOperation();
@@ -37,14 +39,14 @@ public class Main {
                     String newPassword = input.next();
                     account.setPassword(newPassword);
                     account.saveToFile();
-                    System.out.println("Password reset successfully");
+                    System.out.println("Password reset successfully, please login again.");
                 } else {
                     System.out.println("Incorrect answer");
                 }
-                Waiter.waiter();
+                sleep(3000);
             } else {
                 System.out.println("User not found");
-                Waiter.waiter();
+                sleep(1000);
             }
         }
     }

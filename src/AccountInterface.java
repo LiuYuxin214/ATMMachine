@@ -1,7 +1,7 @@
 public interface AccountInterface {
-    void deposit(double amount);
+    boolean deposit(double amount);
 
-    void withdraw(double amount);
+    boolean withdraw(double amount);
 
     double getBalance();
 }

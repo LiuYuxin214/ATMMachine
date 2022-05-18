@@ -6,18 +6,15 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Account implements AccountInterface {
+    ArrayList<Transaction> transactions = new ArrayList<>();
     private Date dateCreated;
     private int userID = 0;
     private double balance = 0;
     private String password;
     private int question;
     private String answer;
-
     private boolean isFreeze = false;
-
     private int numOfWrongPassword = 0;
-
-    ArrayList<Transaction> transactions = new ArrayList<>();
 
     public Account() {
     }
@@ -59,12 +56,12 @@ public class Account implements AccountInterface {
         };
     }
 
-    public String getAnswer() {
-        return answer;
-    }
-
     public void setQuestion(int question) {
         this.question = question;
+    }
+
+    public String getAnswer() {
+        return answer;
     }
 
     public void setAnswer(String answer) {
@@ -107,32 +104,38 @@ public class Account implements AccountInterface {
         this.numOfWrongPassword = 0;
     }
 
-    public void withdraw(double amount) {
+    public boolean withdraw(double amount) {
         if (amount <= 0) {
             System.out.println("Invalid amount");
+            return false;
         } else if (balance >= amount) {
             balance -= amount;
             transactions.add(new Transaction('W', amount, balance, "Withdraw"));
             System.out.println("Now, The balance is $" + getBalance());
+            return true;
         } else {
             System.out.println("Insufficient funds");
+            return false;
         }
     }
 
-    public void deposit(double amount) {
+    public boolean deposit(double amount) {
         if (amount <= 0) {
             System.out.println("Invalid amount");
+            return false;
         } else {
             balance += amount;
             transactions.add(new Transaction('D', amount, balance, "Deposit"));
             System.out.println("Now, The balance is $" + getBalance());
+            return true;
         }
     }
 
-    public void transfer(int userID, double amount) throws FileNotFoundException {
+    public boolean transfer(int userID, double amount) throws FileNotFoundException {
         if (new File("Accounts/" + userID + ".txt").exists()) {
             if (amount <= 0) {
                 System.out.println("Invalid amount");
+                return false;
             } else if (balance >= amount) {
                 balance -= amount;
                 transactions.add(new Transaction('T', amount, balance, "To" + userID));
@@ -142,11 +145,14 @@ public class Account implements AccountInterface {
                 target.saveToFile();
                 System.out.println("Transfer successfully");
                 System.out.println("Now, The balance is $" + getBalance());
+                return true;
             } else {
                 System.out.println("Insufficient funds");
+                return false;
             }
         } else {
             System.out.println("User does not exist");
+            return false;
         }
     }
 

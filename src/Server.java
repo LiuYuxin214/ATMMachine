@@ -1,22 +1,178 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
+
+import static java.lang.Thread.sleep;
 
 public class Server {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        System.out.print("[" + new Date() + "]");
+        System.out.println("Server booting up...");
+        sleep(1000);
+        System.out.print("[" + new Date() + "]");
+        System.out.println("Server started at " + new Date());
         while (true) {
-            ServerSocket server = new ServerSocket(20000);
-            Socket socket = server.accept();
-            System.out.println("Client Connected");
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            int id = in.readInt();
-            System.out.println("Client ID: " + id);
-
-
+            try {
+                ServerSocket server = new ServerSocket(20000);
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Waiting for client...");
+                Socket socket = server.accept();
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Client Connected");
+                DataInputStream in = new DataInputStream(socket.getInputStream());
+                DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Client ID: " + in.readInt());
+                int id = in.readInt();
+                if (id == -1) {
+                    System.out.print("[" + new Date() + "]");
+                    System.out.println("Client disconnected");
+                    in.close();
+                    out.close();
+                    socket.close();
+                    server.close();
+                    continue;
+                }
+                System.out.print("[" + new Date() + "]");
+                System.out.println("User ID: " + id);
+                String password = in.readUTF();
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Password: " + password);
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Checking User ID and Password...");
+                Account account = new Account(id);
+                if (new File("Accounts/" + id + ".txt").exists()) {
+                    account.getFromFile();
+                    System.out.print("[" + new Date() + "]");
+                    System.out.println("User exists");
+                    if (account.getPassword().equals(password)) {
+                        System.out.print("[" + new Date() + "]");
+                        System.out.println("Password Correct");
+                        out.writeUTF("Password Correct");
+                        account.resetNumOfWrongPassword();
+                        account.saveToFile();
+                        Announcement announcement = new Announcement();
+                        out.writeUTF(announcement.getAnnouncement());
+                        while (true) {
+                            int option = in.readInt();
+                            double amount;
+                            switch (option) {
+                                case 1 -> {
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Client wants to check balance");
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Balance: " + account.getBalance());
+                                    out.writeDouble(account.getBalance());
+                                }
+                                case 2 -> {
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Client wants to withdraw");
+                                    amount = in.readDouble();
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Amount: " + amount);
+                                    out.writeBoolean(account.withdraw(amount));
+                                    account.saveToFile();
+                                }
+                                case 3 -> {
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Client wants to deposit");
+                                    amount = in.readDouble();
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Amount: " + amount);
+                                    out.writeBoolean(account.deposit(amount));
+                                    account.saveToFile();
+                                }
+                                case 4 -> {
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Client wants to transfer");
+                                    int receiveID = in.readInt();
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Receive ID: " + receiveID);
+                                    amount = in.readDouble();
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Amount: " + amount);
+                                    out.writeBoolean(account.transfer(receiveID, amount));
+                                    account.saveToFile();
+                                }
+                                case 5 -> {
+                                    int option2 = in.readInt();
+                                    switch (option2) {
+                                        case 2:
+                                            System.out.print("[" + new Date() + "]");
+                                            System.out.println("Client wants to display basic information");
+                                            out.writeInt(account.getUserID());
+                                            out.writeDouble(account.getBalance());
+                                            out.writeUTF(account.getDateCreate().toString());
+                                            break;
+                                        case 3:
+                                            System.out.print("[" + new Date() + "]");
+                                            System.out.println("Client wants to display transaction history");
+                                            out.writeInt(account.transactions.size());
+                                            for (int i = 0; i < account.transactions.size(); i++) {
+                                                String line = String.format("%-5c%-7.2f%-8.2f%s %s", account.transactions.get(i).getType(), account.transactions.get(i).getAmount(), account.transactions.get(i).getBalance(), account.transactions.get(i).getUpdatedDate().toString(), account.transactions.get(i).getDescription());
+                                                out.writeUTF(line);
+                                            }
+                                            break;
+                                        case 4:
+                                            System.out.print("[" + new Date() + "]");
+                                            System.out.println("Client wants to display proportion chart");
+                                            out.writeInt(account.transactions.size());
+                                            for (int i = 0; i < account.transactions.size(); i++) {
+                                                out.writeChar(account.transactions.get(i).getType());
+                                                out.writeDouble(account.transactions.get(i).getAmount());
+                                            }
+                                            break;
+                                    }
+                                }
+                                case 6 -> {
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Client wants to change password");
+                                    String newPassword = in.readUTF();
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("New password: " + newPassword);
+                                    account.setPassword(newPassword);
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Password changed");
+                                }
+                                case 7 -> {
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Client wants to change question and answer");
+                                    account.setQuestion(in.readInt());
+                                    account.setAnswer(in.readUTF());
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Question and answer changed");
+                                }
+                                case 8 -> {
+                                    account.saveToFile();
+                                    System.out.print("[" + new Date() + "]");
+                                    System.out.println("Client Log out");
+                                }
+                            }
+                            if (option == 8) break;
+                        }
+                    } else {
+                        System.out.print("[" + new Date() + "]");
+                        System.out.println("Wrong Password");
+                        out.writeUTF("Wrong Password");
+                    }
+                } else {
+                    System.out.print("[" + new Date() + "]");
+                    System.out.println("User not found");
+                    out.writeUTF("User not found");
+                }
+                in.close();
+                out.close();
+                socket.close();
+                server.close();
+            } catch (IOException e) {
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Error: " + e.getMessage());
+            }
         }
     }
 }

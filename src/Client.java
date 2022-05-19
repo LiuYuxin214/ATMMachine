@@ -184,8 +184,8 @@ public class Client {
                     }
                 }
                 if (!reset) {
-                    if (!enter.matches("[0-9]")) {
-                        System.out.println("Invalid ID, ID must be a number.");
+                    if (!enter.matches("[0-9]*")) {
+                        System.out.println("Invalid ID, ID must be number.");
                         sleep(1000);
                         out.writeInt(-1);
                         in.close();

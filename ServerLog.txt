@@ -1,5 +1,12 @@
-[Thu May 19 17:03:18 CST 2022] Server booting up...
-[Thu May 19 17:03:20 CST 2022] Server started at Thu May 19 17:03:20 CST 2022
-[Thu May 19 17:03:20 CST 2022] Server IP is 192.168.1.5
-[Thu May 19 17:03:20 CST 2022] Server is listening on port 20000
-[Thu May 19 17:03:20 CST 2022] Waiting for client...
+[Thu May 19 17:46:12 CST 2022] Server booting up...
+[Thu May 19 17:46:12 CST 2022] Server started at Thu May 19 17:46:12 CST 2022
+[Thu May 19 17:46:12 CST 2022] Server IP is 10.33.141.253
+[Thu May 19 17:46:12 CST 2022] Server is listening on port 20000
+[Thu May 19 17:46:12 CST 2022] Waiting for client...
+[Thu May 19 17:46:40 CST 2022] Client Connected
+[Thu May 19 17:46:40 CST 2022] Client ID: 0
+[Thu May 19 17:46:40 CST 2022] Date&Time sent to client
+[Thu May 19 17:46:40 CST 2022] Announcement: CPS2231 Final Project
+[Thu May 19 17:46:40 CST 2022] Announcement sent to client
+[Thu May 19 17:46:48 CST 2022] Error: Connection reset
+[Thu May 19 17:46:48 CST 2022] Waiting for client...

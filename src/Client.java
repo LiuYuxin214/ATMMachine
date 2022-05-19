@@ -56,6 +56,7 @@ public class Client {
                     System.out.println("4.Show the current setting");
                     System.out.println("5.Back");
                     System.out.println("==========================================");
+                    System.out.print("Enter a choice: ");
                     Scanner setting = new Scanner(System.in);
                     int option = setting.nextInt();
                     switch (option) {

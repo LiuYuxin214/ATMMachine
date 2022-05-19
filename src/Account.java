@@ -68,6 +68,10 @@ public class Account implements AccountInterface {
         this.answer = answer;
     }
 
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
     public void setDateCreate() {
         dateCreated = new Date();
     }
@@ -80,9 +84,6 @@ public class Account implements AccountInterface {
         this.balance = balance;
     }
 
-    public Date getDateCreate() {
-        return dateCreated;
-    }
 
     public boolean isFrozen() {
         return isFreeze;

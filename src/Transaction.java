@@ -1,11 +1,11 @@
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements TransactionInterface {
     private final char type;
     private final double amount;
     private final double balance;
-    private Date dateUpdated;
     private final String description;
+    private Date dateUpdated;
 
     public Transaction(char type, double amount, double balance, String description) {
         this.type = type;

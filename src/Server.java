@@ -159,7 +159,7 @@ public class Server {
                                             System.out.println("Client wants to display basic information");
                                             out.writeInt(account.getUserID());
                                             out.writeDouble(account.getBalance());
-                                            out.writeUTF(account.getDateCreate().toString());
+                                            out.writeUTF(account.getDateCreated().toString());
                                         }
                                         case 3 -> {
                                             System.out.print("[" + new Date() + "]");

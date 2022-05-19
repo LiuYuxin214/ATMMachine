@@ -1,7 +1,22 @@
+import java.util.Date;
+
 public interface AccountInterface {
-    boolean deposit(double amount);
+
+    int getUserID();
+
+    void setUserID(int userID);
+
+    double getBalance();
+
+    void setBalance(double balance);
+
+    Date getDateCreated();
 
     boolean withdraw(double amount);
 
-    double getBalance();
+    boolean deposit(double amount);
+
+    void displayAll();
+
+
 }

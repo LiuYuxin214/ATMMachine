@@ -242,7 +242,7 @@ public class MainMenu {
                             int id = Integer.parseInt(accountFile.getName().substring(0, accountFile.getName().length() - 4));
                             Account account = new Account(id);
                             account.getFromFile();
-                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", account.getUserID(), account.getBalance(), account.getPassword(), account.getDateCreate().toString(), account.getQuestion(), account.getAnswer(), account.isFrozen());
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", account.getUserID(), account.getBalance(), account.getPassword(), account.getDateCreated().toString(), account.getQuestion(), account.getAnswer(), account.isFrozen());
                         }
                         System.out.println("--------------------------------------------------------------------------------------------------");
                         Waiter.waiter();
@@ -256,7 +256,7 @@ public class MainMenu {
                             searchAccount.getFromFile();
                             System.out.println("ID Balance Password Creation date                 Question                           Answer Freeze");
                             System.out.println("--------------------------------------------------------------------------------------------------");
-                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", searchAccount.getUserID(), searchAccount.getBalance(), searchAccount.getPassword(), searchAccount.getDateCreate().toString(), searchAccount.getQuestion(), searchAccount.getAnswer(), searchAccount.isFrozen());
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", searchAccount.getUserID(), searchAccount.getBalance(), searchAccount.getPassword(), searchAccount.getDateCreated().toString(), searchAccount.getQuestion(), searchAccount.getAnswer(), searchAccount.isFrozen());
                             searchAccount.displayTransactions();
                         } else {
                             System.out.println("Account does not exist");
@@ -272,7 +272,7 @@ public class MainMenu {
                             editAccount.getFromFile();
                             System.out.println("ID Balance Password Creation date                 Question                           Answer Freeze");
                             System.out.println("--------------------------------------------------------------------------------------------------");
-                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", editAccount.getUserID(), editAccount.getBalance(), editAccount.getPassword(), editAccount.getDateCreate().toString(), editAccount.getQuestion(), editAccount.getAnswer(), editAccount.isFrozen());
+                            System.out.printf("%-3d%-8.2f%-9s%-28s  %s       %-7s%-6b\n", editAccount.getUserID(), editAccount.getBalance(), editAccount.getPassword(), editAccount.getDateCreated().toString(), editAccount.getQuestion(), editAccount.getAnswer(), editAccount.isFrozen());
                             System.out.println("Edit what? ");
                             System.out.println("1. Balance");
                             System.out.println("2. Password");

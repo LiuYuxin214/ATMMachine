@@ -5,11 +5,13 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Date;
 
-public class ProcessOneClient extends Thread {
+public class ProcessOneClient implements Runnable {
     ServerLog serverLog;
     private Socket socket;
     private DataInputStream in;
     private DataOutputStream out;
+
+    private int clientID;
 
     public ProcessOneClient(Socket socket, ServerLog Log) throws IOException {
         try {
@@ -17,11 +19,16 @@ public class ProcessOneClient extends Thread {
             this.serverLog = Log;
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-            start();
-            serverLog.add("Client Connected");
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            int clientID = in.readInt();
+
+        } catch (IOException e) {
+            serverLog.add("The connection to the client failed");
+            serverLog.add("Error: " + e.getMessage());
+        }
+    }
+
+    public void run() {
+        try {
+            clientID = in.readInt();
             serverLog.add("Client ID: " + clientID);
             out.writeUTF(new Date().toString());
             serverLog.add("Date&Time sent to client");
@@ -31,10 +38,11 @@ public class ProcessOneClient extends Thread {
             serverLog.add("Announcement sent to client");
             int id = in.readInt();
             if (id == -1) {
-                serverLog.add("Client disconnected");
+                serverLog.add("Client actively disconnects");
                 in.close();
                 out.close();
                 socket.close();
+                Server.numOfUsers--;
                 return;
             } else if (id == -2) {
                 serverLog.add("Reset Password");
@@ -154,7 +162,7 @@ public class ProcessOneClient extends Thread {
                             }
                             case 8 -> {
                                 account.saveToFile();
-                                serverLog.add("Client Log out");
+                                serverLog.add("Client logs out");
                             }
                         }
                         if (option == 8) break;
@@ -179,8 +187,21 @@ public class ProcessOneClient extends Thread {
             in.close();
             out.close();
             socket.close();
+            Server.numOfUsers--;
+            serverLog.add("The client is disconnected normally");
         } catch (IOException e) {
-            serverLog.add("Error: " + e.getMessage());
+            try {
+                in.close();
+                out.close();
+                socket.close();
+                Server.numOfUsers--;
+                serverLog.add("The client was disconnected unexpectedly");
+                serverLog.add("Error: " + e.getMessage());
+            } catch (IOException e1) {
+                Server.numOfUsers--;
+                serverLog.add("Failed to close socket");
+                serverLog.add("Error: " + e1.getMessage());
+            }
         }
     }
 }

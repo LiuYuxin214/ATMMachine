@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ATM Machine.iml" filepath="$PROJECT_DIR$/ATM Machine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClientWithCompatibility/ClientWithCompatibility.iml" filepath="$PROJECT_DIR$/ClientWithCompatibility/ClientWithCompatibility.iml" />
     </modules>
   </component>
 </project>

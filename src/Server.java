@@ -2,10 +2,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Date;
-import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
@@ -17,9 +17,12 @@ public class Server {
         sleep(1000);
         System.out.print("[" + new Date() + "]");
         System.out.println("Server started at " + new Date());
+        System.out.print("[" + new Date() + "]");
+        System.out.println("Server IP is " + InetAddress.getLocalHost().getHostAddress());
+        System.out.print("[" + new Date() + "]");
+        System.out.println("Server is listening on port " + args[0]);
         while (true) {
-            try {
-                ServerSocket server = new ServerSocket(20000);
+            try (ServerSocket server = new ServerSocket(Integer.parseInt(args[0]))) {
                 System.out.print("[" + new Date() + "]");
                 System.out.println("Waiting for client...");
                 Socket socket = server.accept();
@@ -30,6 +33,9 @@ public class Server {
                 int clientID = in.readInt();
                 System.out.print("[" + new Date() + "]");
                 System.out.println("Client ID: " + clientID);
+                out.writeUTF(new Date().toString());
+                System.out.print("[" + new Date() + "]");
+                System.out.println("Date&Time sent to client");
                 Announcement announcement = new Announcement();
                 out.writeUTF(announcement.getAnnouncement());
                 System.out.print("[" + new Date() + "]");
@@ -46,7 +52,6 @@ public class Server {
                     server.close();
                     continue;
                 } else if (id == -2) {
-                    Scanner resetPasswordSc = new Scanner(System.in);
                     System.out.print("[" + new Date() + "]");
                     System.out.println("Reset Password");
                     int resetID = in.readInt();
@@ -104,6 +109,7 @@ public class Server {
                         out.writeUTF("Password Correct");
                         account.resetNumOfWrongPassword();
                         account.saveToFile();
+                        out.writeUTF(new Date().toString());
                         while (true) {
                             int option = in.readInt();
                             double amount;
@@ -146,16 +152,16 @@ public class Server {
                                     account.saveToFile();
                                 }
                                 case 5 -> {
-                                    int option2 = in.readInt();
-                                    switch (option2) {
-                                        case 2:
+                                    int displayOption = in.readInt();
+                                    switch (displayOption) {
+                                        case 2 -> {
                                             System.out.print("[" + new Date() + "]");
                                             System.out.println("Client wants to display basic information");
                                             out.writeInt(account.getUserID());
                                             out.writeDouble(account.getBalance());
                                             out.writeUTF(account.getDateCreate().toString());
-                                            break;
-                                        case 3:
+                                        }
+                                        case 3 -> {
                                             System.out.print("[" + new Date() + "]");
                                             System.out.println("Client wants to display transaction history");
                                             out.writeInt(account.transactions.size());
@@ -163,8 +169,8 @@ public class Server {
                                                 String line = String.format("%-5c%-7.2f%-8.2f%s %s", account.transactions.get(i).getType(), account.transactions.get(i).getAmount(), account.transactions.get(i).getBalance(), account.transactions.get(i).getUpdatedDate().toString(), account.transactions.get(i).getDescription());
                                                 out.writeUTF(line);
                                             }
-                                            break;
-                                        case 4:
+                                        }
+                                        case 4 -> {
                                             System.out.print("[" + new Date() + "]");
                                             System.out.println("Client wants to display proportion chart");
                                             out.writeInt(account.transactions.size());
@@ -172,7 +178,7 @@ public class Server {
                                                 out.writeChar(account.transactions.get(i).getType());
                                                 out.writeDouble(account.transactions.get(i).getAmount());
                                             }
-                                            break;
+                                        }
                                     }
                                 }
                                 case 6 -> {
@@ -225,7 +231,6 @@ public class Server {
                 in.close();
                 out.close();
                 socket.close();
-                server.close();
             } catch (IOException e) {
                 System.out.print("[" + new Date() + "]");
                 System.out.println("Error: " + e.getMessage());

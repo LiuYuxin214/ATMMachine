@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.Socket;
-import java.util.Date;
 import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
@@ -14,7 +13,7 @@ public class Client {
         String ip = "localhost";
         int port = 20000;
         int clientID = 0;
-        PrintWriter pw;
+        PrintWriter settingPrintWriter;
         try {
             File file = new File("ClientSetting.txt");
             Scanner scanner = new Scanner(file);
@@ -24,10 +23,10 @@ public class Client {
         } catch (FileNotFoundException e) {
             System.out.println("Client Setting lost!");
             System.out.println("Restored to default settings");
-            try (PrintWriter pwout = new PrintWriter("ClientSetting.txt")) {
-                pwout.println("localhost");
-                pwout.println("20000");
-                pwout.print("0");
+            try (PrintWriter resetPrintWriter = new PrintWriter("ClientSetting.txt")) {
+                resetPrintWriter.println("localhost");
+                resetPrintWriter.println("20000");
+                resetPrintWriter.print("0");
             } catch (FileNotFoundException e1) {
                 System.out.println("Cannot create ClientSetting.txt");
                 System.out.println("Please check the file permission or wait a few seconds and try again.");
@@ -37,6 +36,7 @@ public class Client {
             }
         }
         while (true) {
+            System.out.println("===================Not connected===================");
             System.out.println("Welcome to ATM Machine!");
             System.out.println("Press enter to Connect");
             System.out.println("Type \"e\" then press enter to exit.");
@@ -50,10 +50,11 @@ public class Client {
             if (function.equals("s")) {
                 while (true) {
                     System.out.println("=================Setting=================");
-                    System.out.println("1.Change the server's IP address.");
-                    System.out.println("2.Change the server's port.");
-                    System.out.println("3.Change the client's ID.");
-                    System.out.println("4.Back");
+                    System.out.println("1.Change the server's IP address");
+                    System.out.println("2.Change the server's port");
+                    System.out.println("3.Change the client's ID");
+                    System.out.println("4.Show the current setting");
+                    System.out.println("5.Back");
                     System.out.println("==========================================");
                     Scanner setting = new Scanner(System.in);
                     int option = setting.nextInt();
@@ -61,37 +62,48 @@ public class Client {
                         case 1:
                             System.out.print("Please enter the server's IP address: ");
                             ip = setting.next();
-                            pw = new PrintWriter("ClientSetting.txt");
-                            pw.println(ip);
-                            pw.println(port);
-                            pw.print(clientID);
-                            pw.close();
+                            settingPrintWriter = new PrintWriter("ClientSetting.txt");
+                            settingPrintWriter.println(ip);
+                            settingPrintWriter.println(port);
+                            settingPrintWriter.print(clientID);
+                            settingPrintWriter.close();
                             System.out.println("IP address changed!");
+                            sleep(1000);
                             break;
                         case 2:
                             System.out.print("Please enter the server's port: ");
                             port = setting.nextInt();
-                            pw = new PrintWriter("ClientSetting.txt");
-                            pw.println(ip);
-                            pw.println(port);
-                            pw.print(clientID);
-                            pw.close();
+                            settingPrintWriter = new PrintWriter("ClientSetting.txt");
+                            settingPrintWriter.println(ip);
+                            settingPrintWriter.println(port);
+                            settingPrintWriter.print(clientID);
+                            settingPrintWriter.close();
                             System.out.println("Port changed!");
+                            sleep(1000);
                             break;
                         case 3:
                             System.out.print("Please enter the client's ID: ");
                             clientID = setting.nextInt();
-                            pw = new PrintWriter("ClientSetting.txt");
-                            pw.println(ip);
-                            pw.println(port);
-                            pw.print(clientID);
-                            pw.close();
+                            settingPrintWriter = new PrintWriter("ClientSetting.txt");
+                            settingPrintWriter.println(ip);
+                            settingPrintWriter.println(port);
+                            settingPrintWriter.print(clientID);
+                            settingPrintWriter.close();
                             System.out.println("Client ID changed!");
+                            sleep(1000);
                             break;
                         case 4:
+                            System.out.println("=================Current Setting=================");
+                            System.out.println("Server's IP address: " + ip);
+                            System.out.println("Server's port: " + port);
+                            System.out.println("Client's ID: " + clientID);
+                            System.out.println("=================================================");
+                            Waiter.waiter();
+                            break;
+                        case 5:
                             break;
                     }
-                    if (option == 4) {
+                    if (option == 5) {
                         break;
                     }
                 }
@@ -107,17 +119,20 @@ public class Client {
                 in = new DataInputStream(socket.getInputStream());
                 out = new DataOutputStream(socket.getOutputStream());
                 out.writeInt(clientID);
+                String dateTime = in.readUTF();
                 String announcement = in.readUTF();
                 System.out.println("Connected to server");
                 Scanner scanner = new Scanner(System.in);
+                System.out.println("===================Not logged in===================");
                 System.out.println("Welcome to ATM!");
+                System.out.println("Server Time&Date: " + dateTime);
                 System.out.println("Announcement: " + announcement);
                 System.out.println("If you forget your password, type \"f\".");
                 System.out.println("If you want to disconnect from server, type \"d\".");
                 System.out.print("Enter an ID: ");
                 String enter = scanner.next();
                 int id = 0;
-                String password = "";
+                String password;
                 boolean reset = false;
                 if (enter.equals("d")) {
                     System.out.print("Disconnecting");
@@ -125,14 +140,15 @@ public class Client {
                         sleep(500);
                         System.out.print(".");
                     }
+                    System.out.println();
                     out.writeInt(-1);
                     in.close();
                     out.close();
                     socket.close();
                     System.out.println("Disconnected from server.");
+                    sleep(1000);
                     continue;
-                }
-                if (enter.equals("f")) {
+                } else if (enter.equals("f")) {
                     out.writeInt(-2);
                     Scanner resetPasswordSc = new Scanner(System.in);
                     System.out.print("Enter the ID that you forget password: ");
@@ -167,168 +183,191 @@ public class Client {
                     }
                 }
                 if (!reset) {
+                    if (!enter.matches("[0-9]")) {
+                        System.out.println("Invalid ID, ID must be a number.");
+                        sleep(1000);
+                        out.writeInt(-1);
+                        in.close();
+                        out.close();
+                        socket.close();
+                        continue;
+                    }
                     id = Integer.parseInt(enter);
-                    out.writeInt(id);
                     System.out.print("Enter your password: ");
                     password = scanner.next();
-                    out.writeUTF(password);
                     System.out.println("Sending ID and password to server...");
+                    if (id < 0) {
+                        out.writeInt(-1);
+                        in.close();
+                        out.close();
+                        socket.close();
+                        System.out.println("User not found");
+                        sleep(1000);
+                        continue;
+                    }
+                    out.writeInt(id);
+                    out.writeUTF(password);
                     sleep(1000);
                 }
                 String result = in.readUTF();
-                if (result.equals("Password Correct")) {
-                    System.out.println("Password Correct");
-                    while (true) {
-                        System.out.println("Welcome to our ATM, " + id);
-                        System.out.print("Announcement: ");
-                        System.out.println(announcement);
-                        System.out.print("Date&Time: ");
-                        Date CurrentDate = new Date();
-                        System.out.println(CurrentDate);
-                        System.out.println();
-                        System.out.println("==========Main Menu==========");
-                        System.out.println("-------Basic Functions-------");
-                        System.out.println("1. Check balance");
-                        System.out.println("2. Withdraw");
-                        System.out.println("3. Deposit");
-                        System.out.println("4. Transfer");
-                        System.out.println("---------View Details--------");
-                        System.out.println("5. Display...");
-                        System.out.println("-----------Security----------");
-                        System.out.println("6. Change Password");
-                        System.out.println("7. Change Question and Answer");
-                        System.out.println("------------Exit-------------");
-                        System.out.println("8. Exit");
-                        System.out.println("=============================");
-                        System.out.print("Enter a choice: ");
-                        Scanner input = new Scanner(System.in);
-                        double amount;
-                        int option = input.nextInt();
-                        switch (option) {
-                            case 1 -> {
-                                out.writeInt(1);
-                                double balance = in.readDouble();
-                                System.out.println("The balance is $" + balance);
-                                Waiter.waiter();
-                            }
-                            case 2 -> {
-                                out.writeInt(2);
-                                System.out.print("Enter an amount to withdraw: ");
-                                amount = input.nextDouble();
-                                out.writeDouble(amount);
-                                if (in.readBoolean()) {
-                                    System.out.println("Withdrawal successful");
-                                } else {
-                                    System.out.println("Withdrawal failed");
+                switch (result) {
+                    case "Password Correct" -> {
+                        System.out.println("Password Correct");
+                        dateTime = in.readUTF();
+                        while (true) {
+                            System.out.println("=====================Logged in=====================");
+                            System.out.println("Welcome to our ATM, " + id);
+                            System.out.print("Announcement: ");
+                            System.out.println(announcement);
+                            System.out.print("Login Date&Time: ");
+                            System.out.println(dateTime);
+                            System.out.println("==========Main Menu==========");
+                            System.out.println("-------Basic Functions-------");
+                            System.out.println("1. Check balance");
+                            System.out.println("2. Withdraw");
+                            System.out.println("3. Deposit");
+                            System.out.println("4. Transfer");
+                            System.out.println("---------View Details--------");
+                            System.out.println("5. Display...");
+                            System.out.println("-----------Security----------");
+                            System.out.println("6. Change Password");
+                            System.out.println("7. Change Question and Answer");
+                            System.out.println("------------Exit-------------");
+                            System.out.println("8. Exit");
+                            System.out.println("=============================");
+                            System.out.print("Enter a choice: ");
+                            Scanner input = new Scanner(System.in);
+                            double amount;
+                            int option = input.nextInt();
+                            switch (option) {
+                                case 1 -> {
+                                    out.writeInt(1);
+                                    double balance = in.readDouble();
+                                    System.out.println("The balance is $" + balance);
+                                    Waiter.waiter();
                                 }
-                                sleep(1000);
-                            }
-                            case 3 -> {
-                                out.writeInt(3);
-                                System.out.print("Enter an amount to deposit: ");
-                                amount = input.nextDouble();
-                                out.writeDouble(amount);
-                                if (in.readBoolean()) {
-                                    System.out.println("Deposit successful");
-                                } else {
-                                    System.out.println("Deposit failed");
+                                case 2 -> {
+                                    out.writeInt(2);
+                                    System.out.print("Enter an amount to withdraw: ");
+                                    amount = input.nextDouble();
+                                    out.writeDouble(amount);
+                                    if (in.readBoolean()) {
+                                        System.out.println("Withdrawal successful");
+                                    } else {
+                                        System.out.println("Withdrawal failed");
+                                    }
+                                    sleep(1000);
                                 }
-                                sleep(1000);
-                            }
-                            case 4 -> {
-                                out.writeInt(4);
-                                System.out.print("Enter an account number to transfer to: ");
-                                int receiveID = input.nextInt();
-                                System.out.print("Enter an amount to transfer: ");
-                                amount = input.nextDouble();
-                                out.writeInt(receiveID);
-                                out.writeDouble(amount);
-                                if (in.readBoolean()) {
-                                    System.out.println("Transfer successful");
-                                } else {
-                                    System.out.println("Transfer failed");
+                                case 3 -> {
+                                    out.writeInt(3);
+                                    System.out.print("Enter an amount to deposit: ");
+                                    amount = input.nextDouble();
+                                    out.writeDouble(amount);
+                                    if (in.readBoolean()) {
+                                        System.out.println("Deposit successful");
+                                    } else {
+                                        System.out.println("Deposit failed");
+                                    }
+                                    sleep(1000);
                                 }
-                                sleep(1000);
-                            }
-                            case 5 -> {
-                                System.out.println("1. Display All");
-                                System.out.println("2. Display Basic Information");
-                                System.out.println("3. Display Transaction");
-                                System.out.println("4. Display Proportion Chart of Deposits and Withdrawals");
-                                System.out.println("5. Back");
-                                System.out.print("Enter a choice: ");
-                                int option2 = input.nextInt();
-                                switch (option2) {
-                                    case 1:
-                                        display2();
-                                        display3();
-                                        display4();
-                                        Waiter.waiter();
-                                        break;
-                                    case 2:
-                                        display2();
-                                        Waiter.waiter();
-                                        break;
-                                    case 3:
-                                        display3();
-                                        Waiter.waiter();
-                                        break;
-                                    case 4:
-                                        display4();
-                                        Waiter.waiter();
-                                        break;
-                                    case 5:
-                                        break;
-                                    default:
-                                        System.out.println("Invalid choice");
-                                        sleep(1000);
-                                        break;
+                                case 4 -> {
+                                    out.writeInt(4);
+                                    System.out.print("Enter an account number to transfer to: ");
+                                    int receiveID = input.nextInt();
+                                    System.out.print("Enter an amount to transfer: ");
+                                    amount = input.nextDouble();
+                                    out.writeInt(receiveID);
+                                    out.writeDouble(amount);
+                                    if (in.readBoolean()) {
+                                        System.out.println("Transfer successful");
+                                    } else {
+                                        System.out.println("Transfer failed");
+                                    }
+                                    sleep(1000);
+                                }
+                                case 5 -> {
+                                    System.out.println("1. Display All");
+                                    System.out.println("2. Display Basic Information");
+                                    System.out.println("3. Display Transaction");
+                                    System.out.println("4. Display Proportion Chart of Deposits and Withdrawals");
+                                    System.out.println("5. Back");
+                                    System.out.print("Enter a choice: ");
+                                    int option2 = input.nextInt();
+                                    switch (option2) {
+                                        case 1:
+                                            display2();
+                                            display3();
+                                            display4();
+                                            Waiter.waiter();
+                                            break;
+                                        case 2:
+                                            display2();
+                                            Waiter.waiter();
+                                            break;
+                                        case 3:
+                                            display3();
+                                            Waiter.waiter();
+                                            break;
+                                        case 4:
+                                            display4();
+                                            Waiter.waiter();
+                                            break;
+                                        case 5:
+                                            break;
+                                        default:
+                                            System.out.println("Invalid choice");
+                                            sleep(1000);
+                                            break;
+                                    }
+                                }
+                                case 6 -> {
+                                    out.writeInt(6);
+                                    System.out.print("Enter a new password: ");
+                                    out.writeUTF(input.next());
+                                    System.out.println("Password changed");
+                                    sleep(1000);
+                                }
+                                case 7 -> {
+                                    out.writeInt(7);
+                                    System.out.println("1. What is your favorite color?");
+                                    System.out.println("2. What is your favorite animal?");
+                                    System.out.println("3. What is your favorite food?");
+                                    System.out.println("4. What is your favorite movie?");
+                                    System.out.println("5. What is your favorite sport?");
+                                    System.out.print("Enter a new question: ");
+                                    int newQuestion = input.nextInt();
+                                    System.out.print("Enter a new answer: ");
+                                    String newAnswer = input.next();
+                                    out.writeInt(newQuestion);
+                                    out.writeUTF(newAnswer);
+                                    System.out.println("Question and answer changed");
+                                    sleep(1000);
+                                }
+                                case 8 -> {
+                                    out.writeInt(8);
+                                    System.out.println("Thank you for using our ATM");
+                                    sleep(1000);
+                                }
+                                default -> {
+                                    System.out.println("Invalid choice");
+                                    sleep(1000);
                                 }
                             }
-                            case 6 -> {
-                                out.writeInt(6);
-                                System.out.print("Enter a new password: ");
-                                out.writeUTF(input.next());
-                                System.out.println("Password changed");
-                                sleep(1000);
-                            }
-                            case 7 -> {
-                                out.writeInt(7);
-                                System.out.println("1. What is your favorite color?");
-                                System.out.println("2. What is your favorite animal?");
-                                System.out.println("3. What is your favorite food?");
-                                System.out.println("4. What is your favorite movie?");
-                                System.out.println("5. What is your favorite sport?");
-                                System.out.print("Enter a new question: ");
-                                int newQuestion = input.nextInt();
-                                System.out.print("Enter a new answer: ");
-                                String newAnswer = input.next();
-                                out.writeInt(newQuestion);
-                                out.writeUTF(newAnswer);
-                                System.out.println("Question and answer changed");
-                                sleep(1000);
-                            }
-                            case 8 -> {
-                                out.writeInt(8);
-                                System.out.println("Thank you for using our ATM");
-                                sleep(1000);
-                            }
-                            default -> {
-                                System.out.println("Invalid choice");
-                                sleep(1000);
-                            }
+                            if (option == 8) break;
                         }
-                        if (option == 8) break;
                     }
-                } else if (result.equals("Wrong Password")) {
-                    System.out.println("Wrong Password");
-                    sleep(1000);
-                } else if (result.equals("User not found")) {
-                    System.out.println("User not found");
-                    sleep(1000);
-                } else if (result.equals("User is frozen")) {
-                    System.out.println("User is frozen");
-                    sleep(1000);
+                    case "Wrong Password" -> {
+                        System.out.println("Wrong Password");
+                        sleep(1000);
+                    }
+                    case "User not found" -> {
+                        System.out.println("User not found");
+                        sleep(1000);
+                    }
+                    case "User is frozen" -> {
+                        System.out.println("User is frozen");
+                        sleep(1000);
+                    }
                 }
                 in.close();
                 out.close();

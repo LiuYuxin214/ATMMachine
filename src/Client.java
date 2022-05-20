@@ -49,13 +49,13 @@ public class Client {
             }
             if (function.equals("s")) {
                 while (true) {
-                    System.out.println("\033[34m=================Setting=================\033[0m");
+                    System.out.println("\033[1m=================Setting=================\033[0m");
                     System.out.println("1.Change the server's IP address");
                     System.out.println("2.Change the server's port");
                     System.out.println("3.Change the client's ID");
                     System.out.println("4.Show the current setting");
                     System.out.println("5.Back");
-                    System.out.println("\033[34m==========================================\033[0m");
+                    System.out.println("\033[1m==========================================\033[0m");
                     System.out.print("\033[1mEnter a choice: \033[0m");
                     Scanner setting = new Scanner(System.in);
                     int option = setting.nextInt();
@@ -94,11 +94,11 @@ public class Client {
                             sleep(1000);
                             break;
                         case 4:
-                            System.out.println("\033[34m=================Current Setting=================\033[0m");
+                            System.out.println("\033[1m=================Current Setting=================\033[0m");
                             System.out.println("Server's IP address: " + ip);
                             System.out.println("Server's port: " + port);
                             System.out.println("Client's ID: " + clientID);
-                            System.out.println("\033[34m=================================================\033[0m");
+                            System.out.println("\033[1m=================================================\033[0m");
                             Waiter.waiter();
                             break;
                         case 5:
@@ -221,20 +221,20 @@ public class Client {
                             System.out.println("              \033[1mWelcome to our ATM, " + id + "\033[0m");
                             System.out.println("\033[1mAnnouncement: \033[35m" + announcement + "\033[0m");
                             System.out.println("\033[1mLogin Date&Time: \033[36m" + dateTime + "\033[0m");
-                            System.out.println("\033[34m==========Main Menu==========\033[0m");
+                            System.out.println("\033[1m==========Main Menu==========\033[0m");
                             System.out.println("\033[33m-------Basic Functions-------\033[0m");
                             System.out.println("1. Check balance");
                             System.out.println("2. Withdraw");
                             System.out.println("3. Deposit");
                             System.out.println("4. Transfer");
-                            System.out.println("\033[36m---------View Details--------\033[0m");
+                            System.out.println("\033[34m---------View Details--------\033[0m");
                             System.out.println("5. Display...");
                             System.out.println("\033[32m-----------Security----------\033[0m");
                             System.out.println("6. Change Password");
                             System.out.println("7. Change Question and Answer");
                             System.out.println("\033[31m------------Exit-------------\033[0m");
                             System.out.println("8. Exit");
-                            System.out.println("\033[34m=============================\033[0m");
+                            System.out.println("\033[1m=============================\033[0m");
                             System.out.print("\033[1mEnter a choice: \033[0m");
                             Scanner input = new Scanner(System.in);
                             double amount;
@@ -286,13 +286,13 @@ public class Client {
                                     sleep(1000);
                                 }
                                 case 5 -> {
-                                    System.out.println("\033[36m+++++++++++Display+++++++++++\033[0m");
+                                    System.out.println("\033[34m+++++++++++Display+++++++++++\033[0m");
                                     System.out.println("1. Display All");
                                     System.out.println("2. Display Basic Information");
                                     System.out.println("3. Display Transaction");
                                     System.out.println("4. Display Revenue and expenditure analysis");
                                     System.out.println("5. Back");
-                                    System.out.println("\033[36m+++++++++++++++++++++++++++++\033[0m");
+                                    System.out.println("\033[34m+++++++++++++++++++++++++++++\033[0m");
                                     System.out.print("\033[1mEnter a choice: \033[0m");
                                     int option2 = input.nextInt();
                                     switch (option2) {
@@ -385,11 +385,11 @@ public class Client {
         try {
             out.writeInt(5);
             out.writeInt(2);
-            System.out.println("\033[36m+++++++++++Basic Information+++++++++++\033[0m");
+            System.out.println("\033[34m+++++++++++Basic Information+++++++++++\033[0m");
             System.out.println("User ID: " + in.readInt());
             System.out.println("Balance: $" + in.readDouble());
             System.out.println("Date created: " + in.readUTF());
-            System.out.println("\033[36m+++++++++++++++++++++++++++++++++++++++\033[0m");
+            System.out.println("\033[34m+++++++++++++++++++++++++++++++++++++++\033[0m");
         } catch (IOException e) {
             System.out.println("\033[31mCannot connect to server!");
             System.out.println("\033[36mPlease check the Internet connection or wait a few seconds and try again.\033[0m");

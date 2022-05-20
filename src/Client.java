@@ -375,7 +375,7 @@ public class Client {
                 out.close();
             } catch (IOException e) {
                 System.out.println("\033[31mCannot connect to server!\033[0m");
-                System.out.println("\033[36mPlease check the Internet connection or wait a few seconds and try again.\033[0m");
+                System.out.println("Please check the Internet connection or wait a few seconds and try again.");
                 Waiter.waiter();
             }
         }
@@ -392,7 +392,7 @@ public class Client {
             System.out.println("\033[34m+++++++++++++++++++++++++++++++++++++++\033[0m");
         } catch (IOException e) {
             System.out.println("\033[31mCannot connect to server!");
-            System.out.println("\033[36mPlease check the Internet connection or wait a few seconds and try again.\033[0m");
+            System.out.println("Please check the Internet connection or wait a few seconds and try again.");
             Waiter.waiter();
         }
     }
@@ -412,7 +412,7 @@ public class Client {
             System.out.println("(\033[32mD\033[0m = Deposit, \033[31mW\033[0m = Withdraw, \033[33mT\033[0m = Transfer)");
         } catch (IOException e) {
             System.out.println("\033[31mCannot connect to server!");
-            System.out.println("\033[36mPlease check the Internet connection or wait a few seconds and try again.\033[0m");
+            System.out.println("Please check the Internet connection or wait a few seconds and try again.");
             Waiter.waiter();
         }
     }
@@ -453,7 +453,7 @@ public class Client {
             System.out.println();
         } catch (IOException e) {
             System.out.println("\033[31mCannot connect to server!");
-            System.out.println("\033[36mPlease check the Internet connection or wait a few seconds and try again.\033[0m");
+            System.out.println("Please check the Internet connection or wait a few seconds and try again.");
             Waiter.waiter();
         }
     }

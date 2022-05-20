@@ -2,5 +2,7 @@
 <component jdk="JavaSE-17" jdk_type="JavaSDK">
 	<contentEntry url="file://$MODULE_DIR$">
 		<excludeFolder url="file://$MODULE_DIR$/bin"/>
+		<excludeFolder url="file://$MODULE_DIR$/.idea/dataSources"/>
+		<excludeFolder url="file://$MODULE_DIR$/.idea/ZeppelinRemoteNotebooks"/>
 	</contentEntry>
 </component>

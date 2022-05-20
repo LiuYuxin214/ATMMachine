@@ -133,8 +133,16 @@ public class ProcessOneClient implements Runnable {
                                         serverLog.add("Client wants to display transaction history");
                                         out.writeInt(account.transactions.size());
                                         for (int i = 0; i < account.transactions.size(); i++) {
-                                            String line = String.format("%-5c%-7.2f%-8.2f%s %s", account.transactions.get(i).getType(), account.transactions.get(i).getAmount(), account.transactions.get(i).getBalance(), account.transactions.get(i).getUpdatedDate().toString(), account.transactions.get(i).getDescription());
-                                            out.writeUTF(line);
+                                            if (account.transactions.get(i).getType() == 'D') {
+                                                String line = String.format("\033[32m%-5c%-7.2f%-8.2f%s %s\033[0m", account.transactions.get(i).getType(), account.transactions.get(i).getAmount(), account.transactions.get(i).getBalance(), account.transactions.get(i).getUpdatedDate().toString(), account.transactions.get(i).getDescription());
+                                                out.writeUTF(line);
+                                            } else if (account.transactions.get(i).getType() == 'W') {
+                                                String line = String.format("\033[31m%-5c%-7.2f%-8.2f%s %s\033[0m", account.transactions.get(i).getType(), account.transactions.get(i).getAmount(), account.transactions.get(i).getBalance(), account.transactions.get(i).getUpdatedDate().toString(), account.transactions.get(i).getDescription());
+                                                out.writeUTF(line);
+                                            } else if (account.transactions.get(i).getType() == 'T') {
+                                                String line = String.format("\033[33m%-5c%-7.2f%-8.2f%s %s\033[0m", account.transactions.get(i).getType(), account.transactions.get(i).getAmount(), account.transactions.get(i).getBalance(), account.transactions.get(i).getUpdatedDate().toString(), account.transactions.get(i).getDescription());
+                                                out.writeUTF(line);
+                                            }
                                         }
                                     }
                                     case 4 -> {

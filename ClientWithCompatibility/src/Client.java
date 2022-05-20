@@ -36,7 +36,7 @@ public class Client {
             }
         }
         while (true) {
-            System.out.println("===================Not connected===================");
+            System.out.println("\033[31m===================Not connected===================\033[0m");
             System.out.println("Welcome to ATM Machine!");
             System.out.println("Press enter to Connect");
             System.out.println("Type \"e\" then press enter to exit.");
@@ -124,7 +124,7 @@ public class Client {
                 String announcement = in.readUTF();
                 System.out.println("Connected to server");
                 Scanner scanner = new Scanner(System.in);
-                System.out.println("===================Not logged in===================");
+                System.out.println("\033[33m===================Not logged in===================\033[0m");
                 System.out.println("Welcome to ATM!");
                 System.out.println("Server Time&Date: " + dateTime);
                 System.out.println("Announcement: " + announcement);
@@ -216,7 +216,7 @@ public class Client {
                         System.out.println("Password Correct");
                         dateTime = in.readUTF();
                         while (true) {
-                            System.out.println("=====================Logged in=====================");
+                            System.out.println("\033[32m=====================Logged in=====================\033[0m");
                             System.out.println("Welcome to our ATM, " + id);
                             System.out.print("Announcement: ");
                             System.out.println(announcement);
@@ -425,7 +425,7 @@ public class Client {
                 double a = in.readDouble();
                 if (c == 'D') {
                     sumOfD += a;
-                } else if (c == 'W') {
+                } else if (c == 'W' || c == 'T') {
                     sumOfW += a;
                 }
             }

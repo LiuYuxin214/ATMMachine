@@ -1,3 +1,3 @@
 # ATMMachine
-CPS2231 Final Project
-By Liu Yuxin
+
+CPS2231 Final Project By Liu Yuxin

@@ -231,7 +231,7 @@ public class Client {
                             System.out.println("5. Display...");
                             System.out.println("\033[32m-----------Security----------\033[0m");
                             System.out.println("6. Change Password");
-                            System.out.println("7. Change Question and Answer");
+                            System.out.println("7. Change Reset Question and Answer");
                             System.out.println("\033[31m------------Exit-------------\033[0m");
                             System.out.println("8. Exit");
                             System.out.println("\033[1m=============================\033[0m");

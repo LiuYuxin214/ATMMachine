@@ -4,7 +4,7 @@ public class Waiter {
 
     public static void waiter() {
         Scanner waiter = new Scanner(System.in);
-        System.out.println("\033[5mPress enter to continue\033[0m");
+        System.out.println("\033[5;36mPress enter to continue\033[0m");
         waiter.nextLine();
     }
 

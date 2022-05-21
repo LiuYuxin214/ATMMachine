@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.Date;
@@ -6,7 +7,12 @@ public class ServerLog {
     PrintStream out;
 
     ServerLog() throws FileNotFoundException {
-        out = new PrintStream("ServerLog.txt");
+        if (!new File("ServerLogs").exists() || !new File("ServerLogs").isDirectory()) {
+            new File("ServerLogs").mkdir();
+        }
+        String dateTime = new Date().toString().replaceAll(" ", "_").replaceAll(":", "-");
+        System.out.println(dateTime);
+        out = new PrintStream("ServerLogs/ServerLog_" + dateTime + ".txt");
     }
 
     public void add(String message) {

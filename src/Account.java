@@ -108,12 +108,12 @@ public class Account implements AccountInterface {
     public State withdraw(double amount) {
         if (amount <= 0) {
             return new State(false, "Invalid amount");
-        } else if (balance >= amount) {
+        } else if (amount >= balance) {
+            return new State(false, "Insufficient funds");
+        } else {
             balance -= amount;
             transactions.add(new Transaction('W', amount, balance, "Withdraw"));
             return new State(true, "Now, The balance is \033[32m$" + getBalance() + "\033[0m");
-        } else {
-            return new State(false, "Insufficient funds");
         }
     }
 
@@ -129,9 +129,13 @@ public class Account implements AccountInterface {
 
     public State transfer(int userID, double amount) throws FileNotFoundException {
         if (new File("Accounts/" + userID + ".txt").exists()) {
-            if (amount <= 0) {
+            if (userID == getUserID()) {
+                return new State(false, "You can't transfer to yourself");
+            } else if (amount <= 0) {
                 return new State(false, "Invalid amount");
-            } else if (balance >= amount) {
+            } else if (amount >= balance) {
+                return new State(false, "Insufficient funds");
+            } else {
                 balance -= amount;
                 transactions.add(new Transaction('T', amount, balance, "To" + userID));
                 Account target = new Account(userID);
@@ -139,10 +143,6 @@ public class Account implements AccountInterface {
                 target.receiveTransfer(getUserID(), amount);
                 target.saveToFile();
                 return new State(true, "Now, The balance is \033[32m$" + getBalance() + "\033[0m");
-            } else if (userID == getUserID()) {
-                return new State(false, "You can't transfer to yourself");
-            } else {
-                return new State(false, "Insufficient funds");
             }
         } else {
             return new State(false, "User does not exist");

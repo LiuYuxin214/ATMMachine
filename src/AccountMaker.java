@@ -9,15 +9,22 @@ public class AccountMaker {
             new File("Accounts").mkdir();
         }
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter the number of the file: ");
+        System.out.print("Enter the number of the Accounts: ");
         int n = input.nextInt();
-        System.out.print("Enter the balance of the file: ");
+        System.out.print("Enter the balance of the Accounts: ");
         double balance = input.nextDouble();
-        System.out.print("Enter the password of the file: ");
+        System.out.print("Enter the password of the Accounts: ");
         String password = input.next();
-        System.out.print("Enter the question of the file: ");
+        System.out.println("*==================Question List==================*");
+        System.out.println("|--> 1. What is your favorite color?              |");
+        System.out.println("|--> 2. What is your favorite animal?             |");
+        System.out.println("|--> 3. What is your favorite food?               |");
+        System.out.println("|--> 4. What is your favorite movie?              |");
+        System.out.println("|--> 5. What is your favorite sport?              |");
+        System.out.println("*=================================================*");
+        System.out.print("Choice a question of the Accounts: ");
         int question = input.nextInt();
-        System.out.print("Enter the answer of the file: ");
+        System.out.print("Enter the answer of the Accounts: ");
         String answer = input.next();
         Account[] accounts = new Account[n];
         for (int i = 0; i < n; i++) {

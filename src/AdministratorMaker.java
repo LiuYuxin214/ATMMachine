@@ -9,11 +9,11 @@ public class AdministratorMaker {
             new File("Administrators").mkdir();
         }
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter the number of the file: ");
+        System.out.print("Enter the number of the Administrators: ");
         int n = input.nextInt();
-        System.out.print("Enter the user name of the file: ");
+        System.out.print("Enter the user name of the Administrators: ");
         String userName = input.next();
-        System.out.print("Enter the password of the file: ");
+        System.out.print("Enter the password of the Administrators: ");
         String password = input.next();
         Administrator[] a = new Administrator[n];
         for (int i = 0; i < n; i++) {

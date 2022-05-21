@@ -111,7 +111,7 @@ public class Account implements AccountInterface {
         } else if (balance >= amount) {
             balance -= amount;
             transactions.add(new Transaction('W', amount, balance, "Withdraw"));
-            return new State(true, "Now, The balance is \033[32m$" + getBalance() + "");
+            return new State(true, "Now, The balance is \033[32m$" + getBalance() + "\033[0m");
         } else {
             return new State(false, "Insufficient funds");
         }
@@ -123,7 +123,7 @@ public class Account implements AccountInterface {
         } else {
             balance += amount;
             transactions.add(new Transaction('D', amount, balance, "Deposit"));
-            return new State(true, "Now, The balance is \033[32m$" + getBalance() + "");
+            return new State(true, "Now, The balance is \033[32m$" + getBalance() + "\033[0m");
         }
     }
 
@@ -138,7 +138,7 @@ public class Account implements AccountInterface {
                 target.getFromFile();
                 target.receiveTransfer(getUserID(), amount);
                 target.saveToFile();
-                return new State(true, "Now, The balance is \033[32m$" + getBalance() + "");
+                return new State(true, "Now, The balance is \033[32m$" + getBalance() + "\033[0m");
             } else if (userID == getUserID()) {
                 return new State(false, "You can't transfer to yourself");
             } else {

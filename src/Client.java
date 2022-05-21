@@ -212,7 +212,7 @@ public class Client {
                     }
                     out.writeInt(id);
                     out.writeUTF(password);
-                    sleep(300);
+                    sleep(500);
                 }
                 String result = in.readUTF();
                 switch (result) {

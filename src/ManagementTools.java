@@ -2,21 +2,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class SystemMenu {
+import static java.lang.Thread.sleep;
+
+public class ManagementTools {
 
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
-        systemOperation();
+        management();
     }
 
-    public static void systemOperation() throws FileNotFoundException, InterruptedException {
+    public static void management() throws FileNotFoundException, InterruptedException {
         while (true) {
-            System.out.println("=========System Menu=========");
+            System.out.println("=========Management Tools Menu=========");
             System.out.println("1. Enter Administrator Menu");
             System.out.println("2. Enter root Menu");
             System.out.println("3. System Shutdown");
             System.out.println("4. Developer List");
             System.out.println("5. Version");
-            System.out.println("6. Back");
+            System.out.println("6. Exit");
             System.out.print("Enter a choice: ");
             Scanner input = new Scanner(System.in);
             int options = input.nextInt();
@@ -26,16 +28,17 @@ public class SystemMenu {
                     String adminUserName = input.next();
                     System.out.print("Enter an Administrator Password: ");
                     String adminPassword = input.next();
-                    if (new File("Administrator/" + adminUserName + ".txt").exists()) {
+                    if (!new File("Administrators/" + adminUserName + ".txt").exists()) {
                         System.out.println("Invalid User Name");
+                        sleep(1000);
                         break;
                     }
-                    MainMenu.administratorOperation(adminUserName, adminPassword);
+                    Menu.administratorOperation(adminUserName, adminPassword);
                     break;
                 case 2:
                     System.out.print("Enter root password: ");
                     String rootPassword = input.next();
-                    MainMenu.rootOperation(rootPassword);
+                    Menu.rootOperation(rootPassword);
                     break;
                 case 3:
                     File file = new File("Root.txt");
@@ -44,7 +47,7 @@ public class SystemMenu {
                     System.out.print("Enter root password: ");
                     String enter = input.next();
                     if (enter.equals(rootPassword1)) {
-                        System.out.println("Are you sure to shutdown the system? (Y/N)");
+                        System.out.println("\033[31mAre you sure to shutdown the system? (Y/N)\033[0m");
                         String answer = input.next();
                         if (answer.equals("Y")) {
                             System.out.println("System is shutting down...");

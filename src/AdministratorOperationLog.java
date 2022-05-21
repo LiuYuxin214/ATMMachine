@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Log {
+public class AdministratorOperationLog {
 
     private final char type;
 
@@ -8,7 +8,7 @@ public class Log {
 
     private final Date date;
 
-    public Log(char type, int account) {
+    public AdministratorOperationLog(char type, int account) {
         this.type = type;
         this.account = account;
         this.date = new Date();

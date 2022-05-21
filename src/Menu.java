@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import static java.lang.Thread.sleep;
 
-public class MainMenu {
+public class Menu {
 
     public static void userOperation(int id, String password) throws FileNotFoundException, InterruptedException {
 
@@ -185,7 +185,7 @@ public class MainMenu {
         if (admin.getPassword().equals(password)) {
             while (true) {
                 System.out.println("Welcome to the administrator menu, " + username);
-                System.out.println("=========Administrator Menu=========");
+                System.out.println("\033[36m=========Administrator Menu=========\033[0m");
                 System.out.println("1. Create New Account");
                 System.out.println("2. Display All Accounts");
                 System.out.println("3. Search An Account");
@@ -194,7 +194,7 @@ public class MainMenu {
                 System.out.println("6. Change Announcement");
                 System.out.println("7. Change Administrator User Name or Password");
                 System.out.println("8. Exit");
-                System.out.print("Enter a choice: ");
+                System.out.print("\033[36mEnter a choice: \033[0m");
                 Scanner input = new Scanner(System.in);
                 int option = input.nextInt();
                 switch (option) {
@@ -471,17 +471,17 @@ public class MainMenu {
         if (root.getPassword().equals(password)) {
             while (true) {
                 System.out.println("Welcome to the root menu");
-                System.out.println("These operations may lead to destructive errors in the system. Please pay attention!");
-                System.out.println("=========Root Menu=========");
+                System.out.println("\033[31mThese operations may lead to destructive errors in the system. Please pay attention!\033[0m");
+                System.out.println("\033[31m=========Root Menu=========\033[0m");
                 System.out.println("1. Add new Administrator");
                 System.out.println("2. Display All Administrators");
                 System.out.println("3. Display Logs");
                 System.out.println("4. Edit Administrators' Information");
                 System.out.println("5. Delete Administrator");
                 System.out.println("6. Change Root Password");
-                System.out.println("7. Clear all data and restore factory settings(Use with care)");
+                System.out.println("\033[31m7. Clear all data and restore factory settings (Use with care)\033[0m");
                 System.out.println("8. Exit");
-                System.out.print("Enter a choice: ");
+                System.out.print("\033[31mEnter a choice: \033[0m");
                 Scanner input = new Scanner(System.in);
                 int rootChoice = input.nextInt();
                 switch (rootChoice) {
@@ -619,7 +619,7 @@ public class MainMenu {
                         System.out.println("Are you sure you want to clear all data and restore factory settings? (Y/N)");
                         String clearAnswer = input.next();
                         if (clearAnswer.equals("Y")) {
-                            System.out.println("All accounts and administrators will be cleared, and the root password will return to 123456. To continue, please enter \"Yes\"");
+                            System.out.println("\033[31mAll accounts and administrators will be cleared, and the root password will return to 123456. To continue, please type \"Yes\"\033[31m");
                             String clearAnswer2 = input.next();
                             if (clearAnswer2.equals("Yes")) {
                                 File[] files = new File("Administrators").listFiles();

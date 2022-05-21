@@ -6,10 +6,9 @@ import java.util.Scanner;
 
 public class Administrator implements AdministratorInterface {
 
+    private final ArrayList<AdministratorOperationLog> administratorOperationLogs = new ArrayList<>();
     private String userName;
     private String password;
-
-    private final ArrayList<Log> logs = new ArrayList<>();
 
     public Administrator() {
 
@@ -28,12 +27,12 @@ public class Administrator implements AdministratorInterface {
         return userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
@@ -41,15 +40,15 @@ public class Administrator implements AdministratorInterface {
     }
 
     public void addLog(char type, int account) {
-        logs.add(new Log(type, account));
+        administratorOperationLogs.add(new AdministratorOperationLog(type, account));
     }
 
     public void disLog() {
         System.out.println("   Logs");
         System.out.println("Type Account");
         System.out.println("------------");
-        for (Log log : logs) {
-            System.out.printf("%-5c%d\n", log.getType(), log.getAccount());
+        for (AdministratorOperationLog administratorOperationLog : administratorOperationLogs) {
+            System.out.printf("%-5c%d\n", administratorOperationLog.getType(), administratorOperationLog.getAccount());
         }
         System.out.println("------------");
         System.out.println("(C = Create, E = Edit, D = Delete)");
@@ -58,10 +57,10 @@ public class Administrator implements AdministratorInterface {
 
     public void saveToFile() throws FileNotFoundException {
         PrintWriter writer = new PrintWriter("Administrators/" + userName + ".txt");
-        writer.print(userName + " ");
+        writer.println(userName + " ");
         writer.println(password);
-        for (Log log : logs) {
-            writer.println(log.getType() + " " + log.getAccount());
+        for (AdministratorOperationLog administratorOperationLog : administratorOperationLogs) {
+            writer.println(administratorOperationLog.getType() + " " + administratorOperationLog.getAccount());
         }
         writer.close();
     }
@@ -72,7 +71,7 @@ public class Administrator implements AdministratorInterface {
         userName = reader.next();
         password = reader.next();
         while (reader.hasNext()) {
-            logs.add(new Log(reader.next().charAt(0), reader.nextInt()));
+            administratorOperationLogs.add(new AdministratorOperationLog(reader.next().charAt(0), reader.nextInt()));
         }
         reader.close();
     }

@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         while (true) {
             System.out.println("Welcome to ATM!");
-            System.out.println("Type \"s\" to system menu. If you forget your password, type \"f\".");
+            System.out.println("Type \"m\" to management tools menu. If you forget your password, type \"f\".");
             System.out.print("Enter an ID : ");
             Scanner input = new Scanner(System.in);
             String enter = input.nextLine();
@@ -18,13 +18,13 @@ public class Main {
                 if (new File("Accounts/" + id + ".txt").exists()) {
                     System.out.print("Enter your password: ");
                     String password = input.nextLine();
-                    MainMenu.userOperation(id, password);
+                    Menu.userOperation(id, password);
                 } else {
                     System.out.println("User not found");
                     sleep(1000);
                 }
-            } else if (enter.equals("s")) {
-                SystemMenu.systemOperation();
+            } else if (enter.equals("m")) {
+                ManagementTools.management();
             } else if (enter.equals("f")) {
                 System.out.print("Enter the ID that you forget password: ");
                 int id = input.nextInt();

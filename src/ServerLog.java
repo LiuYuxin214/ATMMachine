@@ -11,12 +11,23 @@ public class ServerLog {
             new File("ServerLogs").mkdir();
         }
         String dateTime = new Date().toString().replaceAll(" ", "_").replaceAll(":", "-");
-        System.out.println(dateTime);
         out = new PrintStream("ServerLogs/ServerLog_" + dateTime + ".txt");
     }
 
     public void add(String message) {
         String line = "[" + new Date() + "] " + message;
+        System.out.println(line);
+        out.println(line);
+    }
+
+    public void addClient(int clientID, String message) {
+        String line = "[" + new Date() + "] " + "Client " + clientID + ": " + message;
+        System.out.println(line);
+        out.println(line);
+    }
+
+    public void addClientUser(int clientID, int id, String message) {
+        String line = "[" + new Date() + "] " + "Client " + clientID + " User " + id + ": " + message;
         System.out.println(line);
         out.println(line);
     }

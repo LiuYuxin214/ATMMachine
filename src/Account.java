@@ -105,38 +105,32 @@ public class Account implements AccountInterface {
         this.numOfWrongPassword = 0;
     }
 
-    public boolean withdraw(double amount) {
+    public State withdraw(double amount) {
         if (amount <= 0) {
-            System.out.println("Invalid amount");
-            return false;
+            return new State(false, "Invalid amount");
         } else if (balance >= amount) {
             balance -= amount;
             transactions.add(new Transaction('W', amount, balance, "Withdraw"));
-            System.out.println("Now, The balance is $" + getBalance());
-            return true;
+            return new State(true, "Now, The balance is \033[32m$" + getBalance() + "");
         } else {
-            System.out.println("Insufficient funds");
-            return false;
+            return new State(false, "Insufficient funds");
         }
     }
 
-    public boolean deposit(double amount) {
+    public State deposit(double amount) {
         if (amount <= 0) {
-            System.out.println("Invalid amount");
-            return false;
+            return new State(false, "Invalid amount");
         } else {
             balance += amount;
             transactions.add(new Transaction('D', amount, balance, "Deposit"));
-            System.out.println("Now, The balance is $" + getBalance());
-            return true;
+            return new State(true, "Now, The balance is \033[32m$" + getBalance() + "");
         }
     }
 
-    public boolean transfer(int userID, double amount) throws FileNotFoundException {
+    public State transfer(int userID, double amount) throws FileNotFoundException {
         if (new File("Accounts/" + userID + ".txt").exists()) {
             if (amount <= 0) {
-                System.out.println("Invalid amount");
-                return false;
+                return new State(false, "Invalid amount");
             } else if (balance >= amount) {
                 balance -= amount;
                 transactions.add(new Transaction('T', amount, balance, "To" + userID));
@@ -144,80 +138,20 @@ public class Account implements AccountInterface {
                 target.getFromFile();
                 target.receiveTransfer(getUserID(), amount);
                 target.saveToFile();
-                System.out.println("Transfer successfully");
-                System.out.println("Now, The balance is $" + getBalance());
-                return true;
+                return new State(true, "Now, The balance is \033[32m$" + getBalance() + "");
             } else if (userID == getUserID()) {
-                System.out.println("You can't transfer to yourself");
-                return false;
+                return new State(false, "You can't transfer to yourself");
             } else {
-                System.out.println("Insufficient funds");
-                return false;
+                return new State(false, "Insufficient funds");
             }
         } else {
-            System.out.println("User does not exist");
-            return false;
+            return new State(false, "User does not exist");
         }
     }
 
     public void receiveTransfer(int userID, double amount) {
         balance += amount;
         transactions.add(new Transaction('T', amount, balance, "From" + userID));
-    }
-
-    public void displayAll() {
-        displayBasicInformation();
-        displayTransactions();
-        displayProportionChart();
-    }
-
-    public void displayBasicInformation() {
-        System.out.println("User ID: " + userID);
-        System.out.println("Balance: " + balance);
-        System.out.println("Date created: " + dateCreated);
-    }
-
-    public void displayTransactions() {
-        System.out.println("                        Transactions");
-        System.out.println("Type Amount Balance Date                         Description");
-        System.out.println("------------------------------------------------------------");
-        for (Transaction transaction : transactions) {
-            System.out.printf("%-5c%-7.2f%-8.2f%s %s\n", transaction.getType(), transaction.getAmount(), transaction.getBalance(), transaction.getUpdatedDate().toString(), transaction.getDescription());
-        }
-        System.out.println("------------------------------------------------------------");
-        System.out.println("(D = Deposit, W = Withdraw, T = Transfer)");
-    }
-
-    public void displayProportionChart() {
-        double sumOfD = 0, sumOfW = 0;
-        for (Transaction transaction : transactions) {
-
-            if (transaction.getType() == 'D') {
-                sumOfD += transaction.getAmount();
-            } else if (transaction.getType() == 'W') {
-                sumOfW += transaction.getAmount();
-            }
-        }
-        System.out.println("Total deposits: $" + sumOfD + "              Total withdrawals: $" + sumOfW);
-        double sum = sumOfD + sumOfW;
-        System.out.printf("Proportion of deposits: %.2f%%     Proportion of withdrawal: %.2f%%\n", (sumOfD / sum) * 100, (sumOfW / sum) * 100);
-        int d = (int) ((sumOfD / sum) * 100);
-        int w = (int) ((sumOfW / sum) * 100);
-        System.out.println("Proportion chart of deposits and withdrawals: ");
-        System.out.println(" 0%       10%       20%       30%       40%       50%       60%       70%       80%       90%     100%");
-        System.out.println("(|    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |)");
-        System.out.print("D|");
-        while (d > 0) {
-            System.out.print("#");
-            d--;
-        }
-        System.out.println();
-        System.out.print("W|");
-        while (w > 0) {
-            System.out.print("#");
-            w--;
-        }
-        System.out.println();
     }
 
     public void saveToFile() throws FileNotFoundException {
@@ -254,12 +188,7 @@ public class Account implements AccountInterface {
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            Account account = new Account(userID, 0, "123456");
-            account.setQuestion(1);
-            account.setAnswer("red");
-            account.saveToFile();
-            System.out.println("File not found, initial file created automatically.");
-            Waiter.waiter();
+            System.out.println("File not accessible");
         }
     }
 

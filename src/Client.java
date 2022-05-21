@@ -99,7 +99,7 @@ public class Client {
                             System.out.println("Server's port: " + port);
                             System.out.println("Client's ID: " + clientID);
                             System.out.println("\033[1m=================================================\033[0m");
-                            Waiter.waiter();
+                            waiter();
                             break;
                         case 5:
                             break;
@@ -244,7 +244,7 @@ public class Client {
                                     out.writeInt(1);
                                     double balance = in.readDouble();
                                     System.out.println("\033[1mThe balance is \033[32m$" + balance + "\033[0m");
-                                    Waiter.waiter();
+                                    waiter();
                                 }
                                 case 2 -> {
                                     out.writeInt(2);
@@ -253,8 +253,10 @@ public class Client {
                                     out.writeDouble(amount);
                                     if (in.readBoolean()) {
                                         System.out.println("\033[32mWithdrawal successful\033[0m");
+                                        System.out.println(in.readUTF());
                                     } else {
                                         System.out.println("\033[31mWithdrawal failed\033[0m");
+                                        System.out.println(in.readUTF());
                                     }
                                     sleep(1000);
                                 }
@@ -265,8 +267,10 @@ public class Client {
                                     out.writeDouble(amount);
                                     if (in.readBoolean()) {
                                         System.out.println("\033[32mDeposit successful\033[0m");
+                                        System.out.println(in.readUTF());
                                     } else {
                                         System.out.println("\033[31mDeposit failed\033[0m");
+                                        System.out.println(in.readUTF());
                                     }
                                     sleep(1000);
                                 }
@@ -280,8 +284,10 @@ public class Client {
                                     out.writeDouble(amount);
                                     if (in.readBoolean()) {
                                         System.out.println("\033[32mTransfer successful\033[0m");
+                                        System.out.println(in.readUTF());
                                     } else {
                                         System.out.println("\033[31mTransfer failed\033[0m");
+                                        System.out.println(in.readUTF());
                                     }
                                     sleep(1000);
                                 }
@@ -297,22 +303,22 @@ public class Client {
                                     int option2 = input.nextInt();
                                     switch (option2) {
                                         case 1:
-                                            display2();
-                                            display3();
-                                            display4();
-                                            Waiter.waiter();
+                                            displayBasicInformation();
+                                            displayTransaction();
+                                            displayRevenueAndExpenditureAnalysis();
+                                            waiter();
                                             break;
                                         case 2:
-                                            display2();
-                                            Waiter.waiter();
+                                            displayBasicInformation();
+                                            waiter();
                                             break;
                                         case 3:
-                                            display3();
-                                            Waiter.waiter();
+                                            displayTransaction();
+                                            waiter();
                                             break;
                                         case 4:
-                                            display4();
-                                            Waiter.waiter();
+                                            displayRevenueAndExpenditureAnalysis();
+                                            waiter();
                                             break;
                                         case 5:
                                             break;
@@ -376,12 +382,12 @@ public class Client {
             } catch (IOException e) {
                 System.out.println("\033[31mCannot connect to server!\033[0m");
                 System.out.println("Please check the Internet connection or wait a few seconds and try again.");
-                Waiter.waiter();
+                waiter();
             }
         }
     }
 
-    public static void display2() {
+    public static void displayBasicInformation() {
         try {
             out.writeInt(5);
             out.writeInt(2);
@@ -393,11 +399,11 @@ public class Client {
         } catch (IOException e) {
             System.out.println("\033[31mCannot connect to server!");
             System.out.println("Please check the Internet connection or wait a few seconds and try again.");
-            Waiter.waiter();
+            waiter();
         }
     }
 
-    public static void display3() {
+    public static void displayTransaction() {
         try {
             out.writeInt(5);
             out.writeInt(3);
@@ -413,11 +419,11 @@ public class Client {
         } catch (IOException e) {
             System.out.println("\033[31mCannot connect to server!");
             System.out.println("Please check the Internet connection or wait a few seconds and try again.");
-            Waiter.waiter();
+            waiter();
         }
     }
 
-    public static void display4() {
+    public static void displayRevenueAndExpenditureAnalysis() {
         try {
             out.writeInt(5);
             out.writeInt(4);
@@ -454,7 +460,13 @@ public class Client {
         } catch (IOException e) {
             System.out.println("\033[31mCannot connect to server!");
             System.out.println("Please check the Internet connection or wait a few seconds and try again.");
-            Waiter.waiter();
+            waiter();
         }
+    }
+
+    public static void waiter() {
+        Scanner waiter = new Scanner(System.in);
+        System.out.println("\033[5mPress enter to continue\033[0m");
+        waiter.nextLine();
     }
 }

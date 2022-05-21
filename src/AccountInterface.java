@@ -12,11 +12,8 @@ public interface AccountInterface {
 
     Date getDateCreated();
 
-    boolean withdraw(double amount);
+    State withdraw(double amount);
 
-    boolean deposit(double amount);
-
-    void displayAll();
-
+    State deposit(double amount);
 
 }

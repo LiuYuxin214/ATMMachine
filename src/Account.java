@@ -151,7 +151,7 @@ public class Account implements AccountInterface {
 
     public void receiveTransfer(int userID, double amount) {
         balance += amount;
-        transactions.add(new Transaction('T', amount, balance, "From" + userID));
+        transactions.add(new Transaction('R', amount, balance, "From" + userID));
     }
 
     public void saveToFile() throws FileNotFoundException {

@@ -164,6 +164,9 @@ public class ProcessOneClient implements Runnable {
                                             } else if (account.transactions.get(i).getType() == 'T') {
                                                 String line = String.format("\033[33m%-5c%-7.2f%-8.2f%s %s\033[0m", account.transactions.get(i).getType(), account.transactions.get(i).getAmount(), account.transactions.get(i).getBalance(), account.transactions.get(i).getUpdatedDate().toString(), account.transactions.get(i).getDescription());
                                                 out.writeUTF(line);
+                                            } else if (account.transactions.get(i).getType() == 'R') {
+                                                String line = String.format("\033[36m%-5c%-7.2f%-8.2f%s %s\033[0m", account.transactions.get(i).getType(), account.transactions.get(i).getAmount(), account.transactions.get(i).getBalance(), account.transactions.get(i).getUpdatedDate().toString(), account.transactions.get(i).getDescription());
+                                                out.writeUTF(line);
                                             }
                                         }
                                     }

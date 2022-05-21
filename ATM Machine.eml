@@ -5,5 +5,7 @@
 		<excludeFolder url="file://$MODULE_DIR$/.idea/ZeppelinRemoteNotebooks"/>
 		<excludeFolder url="file://$MODULE_DIR$/.idea/dataSources"/>
 		<excludeFolder url="file://$MODULE_DIR$/ServerLogs"/>
+		<excludeFolder url="file://$MODULE_DIR$/Accounts"/>
+		<excludeFolder url="file://$MODULE_DIR$/Administrators"/>
 	</contentEntry>
 </component>

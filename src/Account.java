@@ -147,6 +147,9 @@ public class Account implements AccountInterface {
                 System.out.println("Transfer successfully");
                 System.out.println("Now, The balance is $" + getBalance());
                 return true;
+            } else if (userID == getUserID()) {
+                System.out.println("You can't transfer to yourself");
+                return false;
             } else {
                 System.out.println("Insufficient funds");
                 return false;

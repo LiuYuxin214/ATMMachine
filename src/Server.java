@@ -7,9 +7,10 @@ import java.util.Date;
 public class Server {
     public static int numOfUsers = 0;
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         //Prepare server
         ServerLog serverLog = new ServerLog();
+        serverLog.add("ATM Machine Server Version 2.0");
         serverLog.add("Server booting up...");
         ServerSocket server = new ServerSocket(Integer.parseInt(args[0]));
         serverLog.add("Server started at " + new Date());

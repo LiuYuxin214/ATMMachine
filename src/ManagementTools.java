@@ -13,12 +13,12 @@ public class ManagementTools {
 
     public static void managementToolsMenu() throws FileNotFoundException, InterruptedException {
         while (true) {
+            System.out.println("Welcome to ATM Machine Management Tools Version 2.0");
             System.out.println("=========Management Tools Menu=========");
             System.out.println("1. Enter Administrator Menu");
             System.out.println("2. Enter root Menu");
             System.out.println("3. Developer List");
-            System.out.println("4. Version");
-            System.out.println("5. Exit");
+            System.out.println("4. Exit");
             System.out.print("Enter a choice: ");
             Scanner input = new Scanner(System.in);
             int options = input.nextInt();
@@ -43,15 +43,10 @@ public class ManagementTools {
                 case 3:
                     System.out.println("=========Developer List=========");
                     System.out.println("1. Liu Yuxin");
-                    System.out.println("--------------------------------");
+                    System.out.println("================================");
                     waiter();
                     break;
                 case 4:
-                    System.out.println("CPS 2231 Final Project");
-                    System.out.println("ATM Machine Version 1.0");
-                    waiter();
-                    break;
-                case 5:
                     return;
             }
         }

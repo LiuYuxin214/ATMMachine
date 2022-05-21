@@ -1,9 +1,13 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class AdministratorMaker {
 
     public static void main(String[] args) throws FileNotFoundException {
+        if (!new File("Administrators").exists() || !new File("Administrators").isDirectory()) {
+            new File("Administrators").mkdir();
+        }
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the number of the file: ");
         int n = input.nextInt();

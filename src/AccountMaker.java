@@ -1,9 +1,13 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class AccountMaker {
 
     public static void main(String[] args) throws FileNotFoundException {
+        if (!new File("Accounts").exists() || !new File("Accounts").isDirectory()) {
+            new File("Accounts").mkdir();
+        }
         Scanner input = new Scanner(System.in);
         System.out.print("Enter the number of the file: ");
         int n = input.nextInt();

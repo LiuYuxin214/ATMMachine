@@ -180,7 +180,7 @@ public class Client {
                         out.writeUTF(password);
                     } else {
                         System.out.println("\033[31mIncorrect answer\033[0m");
-                        sleep(1000);
+                        sleep(2000);
                         in.close();
                         out.close();
                         socket.close();
@@ -190,7 +190,7 @@ public class Client {
                 if (!reset) {
                     if (!enter.matches("[0-9]*")) {
                         System.out.println("\033[31mInvalid ID, ID must be number.\033[0m");
-                        sleep(1000);
+                        sleep(2000);
                         out.writeInt(-1);
                         in.close();
                         out.close();
@@ -207,17 +207,18 @@ public class Client {
                         out.close();
                         socket.close();
                         System.out.println("\033[31mUser not found\033[0m");
-                        sleep(1000);
+                        sleep(2000);
                         continue;
                     }
                     out.writeInt(id);
                     out.writeUTF(password);
-                    sleep(1000);
+                    sleep(300);
                 }
                 String result = in.readUTF();
                 switch (result) {
                     case "Password Correct" -> {
                         System.out.println("\033[32mPassword Correct\033[0m");
+                        sleep(1000);
                         dateTime = in.readUTF();
                         while (true) {
                             System.out.println("\033[32m=====================Logged in=====================\033[0m");
@@ -264,7 +265,7 @@ public class Client {
                                         System.out.println("\033[31mWithdrawal failed\033[0m");
                                         System.out.println(in.readUTF());
                                     }
-                                    sleep(1000);
+                                    waiter();
                                 }
                                 case 3 -> {
                                     out.writeInt(3);
@@ -278,7 +279,7 @@ public class Client {
                                         System.out.println("\033[31mDeposit failed\033[0m");
                                         System.out.println(in.readUTF());
                                     }
-                                    sleep(1000);
+                                    waiter();
                                 }
                                 case 4 -> {
                                     out.writeInt(4);
@@ -295,7 +296,7 @@ public class Client {
                                         System.out.println("\033[31mTransfer failed\033[0m");
                                         System.out.println(in.readUTF());
                                     }
-                                    sleep(1000);
+                                    waiter();
                                 }
                                 case 5 -> {
                                     displayBasicInformation();
@@ -345,11 +346,11 @@ public class Client {
                                 case 11 -> {
                                     out.writeInt(8);
                                     System.out.println("\033[5mThank you for using our ATM\033[0m");
-                                    sleep(3000);
+                                    sleep(2000);
                                 }
                                 default -> {
                                     System.out.println("\033[31mInvalid choice\033[0m");
-                                    sleep(1000);
+                                    sleep(2000);
                                 }
                             }
                             if (option == 11) break;
@@ -357,15 +358,15 @@ public class Client {
                     }
                     case "Wrong Password" -> {
                         System.out.println("\033[31mWrong Password\033[0m");
-                        sleep(1000);
+                        sleep(2000);
                     }
                     case "User not found" -> {
                         System.out.println("\033[31mUser not found\033[0m");
-                        sleep(1000);
+                        sleep(2000);
                     }
                     case "User is frozen" -> {
                         System.out.println("\033[31mUser is frozen, please contact the staff\033[0m");
-                        sleep(1000);
+                        sleep(2000);
                     }
                 }
                 in.close();

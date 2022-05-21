@@ -46,7 +46,8 @@ public class Client {
             Scanner waiter = new Scanner(System.in);
             String function = waiter.nextLine();
             if (function.equals("e")) {
-                System.out.println("\033[31mClosing...\033[0m");
+                System.out.println("\033[31mExiting...\033[0m");
+                sleep(1000);
                 System.exit(0);
             }
             if (function.equals("s")) {
@@ -351,7 +352,7 @@ public class Client {
                                     sleep(1000);
                                 }
                             }
-                            if (option == 8) break;
+                            if (option == 11) break;
                         }
                     }
                     case "Wrong Password" -> {
@@ -430,7 +431,11 @@ public class Client {
             }
             System.out.println("Total Revenue: \033[32m$" + sumOfD + "\033[0m" + "              Total Expenditure: \033[31m$" + sumOfW + "\033[0m");
             double sum = sumOfD + sumOfW;
-            System.out.printf("Proportion of Revenue: \033[32m%.2f%%\033[0m     Proportion of Expenditure: \033[31m%.2f%%\033[0m\n", (sumOfD / sum) * 100, (sumOfW / sum) * 100);
+            if (sum == 0) {
+                System.out.printf("Proportion of Revenue: \033[32m%.2f%%\033[0m     Proportion of Expenditure: \033[31m%.2f%%\033[0m\n", 0.0, 0.0);
+            } else {
+                System.out.printf("Proportion of Revenue: \033[32m%.2f%%\033[0m     Proportion of Expenditure: \033[31m%.2f%%\033[0m\n", (sumOfD / sum) * 100, (sumOfW / sum) * 100);
+            }
             int numOfRevenue = (int) ((sumOfD / sum) * 100);
             int numOfExpenditure = (int) ((sumOfW / sum) * 100);
             System.out.println("\033[1m 0%       10%       20%       30%       40%       50%       60%       70%       80%       90%     100%\033[0m");

@@ -108,7 +108,7 @@ public class Account implements AccountInterface {
     public State withdraw(double amount) {
         if (amount <= 0) {
             return new State(false, "Invalid amount");
-        } else if (amount >= balance) {
+        } else if (amount > balance) {
             return new State(false, "Insufficient funds");
         } else {
             balance -= amount;
@@ -133,7 +133,7 @@ public class Account implements AccountInterface {
                 return new State(false, "You can't transfer to yourself");
             } else if (amount <= 0) {
                 return new State(false, "Invalid amount");
-            } else if (amount >= balance) {
+            } else if (amount > balance) {
                 return new State(false, "Insufficient funds");
             } else {
                 balance -= amount;

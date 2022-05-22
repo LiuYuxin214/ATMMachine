@@ -11,7 +11,6 @@ public class Administrator implements AdministratorInterface {
     private String password;
 
     public Administrator() {
-
     }
 
     public Administrator(String userName) {

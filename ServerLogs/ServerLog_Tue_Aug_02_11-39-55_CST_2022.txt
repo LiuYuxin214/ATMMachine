@@ -1,0 +1,45 @@
+[Tue Aug 02 11:39:56 CST 2022] ATM Machine Server Version 2.0
+[Tue Aug 02 11:39:56 CST 2022] Server booting up...
+[Tue Aug 02 11:39:56 CST 2022] Server started at Tue Aug 02 11:39:56 CST 2022
+[Tue Aug 02 11:39:56 CST 2022] Server IP is 172.26.208.1
+[Tue Aug 02 11:39:56 CST 2022] Server is listening on port 20000
+[Tue Aug 02 11:39:56 CST 2022] Waiting for client...
+[Tue Aug 02 11:40:01 CST 2022] A new Client Connected
+[Tue Aug 02 11:40:01 CST 2022] The number of clients is 1
+[Tue Aug 02 11:40:01 CST 2022] Client 0: Date&Time sent to client
+[Tue Aug 02 11:40:01 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Tue Aug 02 11:40:01 CST 2022] Client 0: Announcement sent to client
+[Tue Aug 02 11:40:18 CST 2022] Client 0 User 1: User ID: 1
+[Tue Aug 02 11:40:18 CST 2022] Client 0 User 1: Password: 123
+[Tue Aug 02 11:40:18 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Tue Aug 02 11:40:18 CST 2022] Client 0 User 1: User 1 exists
+[Tue Aug 02 11:40:18 CST 2022] Client 0 User 1: User 1 Password Correct
+[Tue Aug 02 11:40:32 CST 2022] Client 0 User 1: Request: check Balance Balance: 3.0
+[Tue Aug 02 11:40:35 CST 2022] Client 0 User 1: Request: display basic information
+[Tue Aug 02 11:40:35 CST 2022] Client 0 User 1: Request: display transaction history
+[Tue Aug 02 11:40:35 CST 2022] Client 0 User 1: Request: display proportion chart
+[Tue Aug 02 11:40:53 CST 2022] Client 0 User 1: Request: change password
+[Tue Aug 02 11:40:57 CST 2022] Client 0 User 1: New password: 123456
+[Tue Aug 02 11:40:57 CST 2022] Client 0 User 1: Password changed
+[Tue Aug 02 11:41:02 CST 2022] Client 0 User 1: Request: change question and answer
+[Tue Aug 02 11:41:09 CST 2022] Client 0 User 1: Question and answer changed
+[Tue Aug 02 11:41:18 CST 2022] Client 0 User 1: Request: withdraw Amount: 1000.0
+[Tue Aug 02 11:41:18 CST 2022] Client 0 User 1: Withdraw failed: Insufficient funds
+[Tue Aug 02 11:41:27 CST 2022] Client 0 User 1: Request: deposit Amount: 10.0
+[Tue Aug 02 11:41:27 CST 2022] Client 0 User 1: Deposit successfully
+[Tue Aug 02 11:41:31 CST 2022] Client 0 User 1: Request: withdraw Amount: 2.0
+[Tue Aug 02 11:41:31 CST 2022] Client 0 User 1: Withdraw successfully
+[Tue Aug 02 11:41:38 CST 2022] Client 0 User 1: Client logs out
+[Tue Aug 02 11:41:38 CST 2022] Client 0 User 1: The client is disconnected normally
+[Tue Aug 02 11:41:44 CST 2022] A new Client Connected
+[Tue Aug 02 11:41:44 CST 2022] The number of clients is 1
+[Tue Aug 02 11:41:44 CST 2022] Client 0: Date&Time sent to client
+[Tue Aug 02 11:41:44 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Tue Aug 02 11:41:44 CST 2022] Client 0: Announcement sent to client
+[Tue Aug 02 11:41:52 CST 2022] Client 0 User 1: User ID: 1
+[Tue Aug 02 11:41:52 CST 2022] Client 0 User 1: Password: 123456
+[Tue Aug 02 11:41:52 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Tue Aug 02 11:41:52 CST 2022] Client 0 User 1: User 1 exists
+[Tue Aug 02 11:41:52 CST 2022] Client 0 User 1: User 1 Password Correct
+[Tue Aug 02 11:42:15 CST 2022] Client 0 User 1: Client logs out
+[Tue Aug 02 11:42:16 CST 2022] Client 0 User 1: The client is disconnected normally

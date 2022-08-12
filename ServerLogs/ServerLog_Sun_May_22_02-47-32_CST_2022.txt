@@ -1,0 +1,193 @@
+[Sun May 22 02:47:32 CST 2022] ATM Machine Server Version 2.0
+[Sun May 22 02:47:32 CST 2022] Server booting up...
+[Sun May 22 02:47:32 CST 2022] Server started at Sun May 22 02:47:32 CST 2022
+[Sun May 22 02:47:32 CST 2022] Server IP is 10.33.141.253
+[Sun May 22 02:47:32 CST 2022] Server is listening on port 20000
+[Sun May 22 02:47:32 CST 2022] Waiting for client...
+[Sun May 22 02:47:53 CST 2022] A new Client Connected
+[Sun May 22 02:47:53 CST 2022] The number of clients is 1
+[Sun May 22 02:47:53 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:47:53 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:47:53 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:48:32 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Sun May 22 02:48:32 CST 2022] Client 0 User 0: Error: Connection reset
+[Sun May 22 02:48:53 CST 2022] A new Client Connected
+[Sun May 22 02:48:53 CST 2022] The number of clients is 1
+[Sun May 22 02:48:53 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:48:53 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:48:53 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:49:06 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Sun May 22 02:49:06 CST 2022] Client 0 User 0: Error: Connection reset
+[Sun May 22 02:49:16 CST 2022] A new Client Connected
+[Sun May 22 02:49:16 CST 2022] The number of clients is 1
+[Sun May 22 02:49:16 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:49:16 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:49:16 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:49:50 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Sun May 22 02:49:50 CST 2022] Client 0 User 0: Error: Connection reset
+[Sun May 22 02:50:00 CST 2022] A new Client Connected
+[Sun May 22 02:50:00 CST 2022] The number of clients is 1
+[Sun May 22 02:50:00 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:50:00 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:50:00 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:50:05 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 02:50:05 CST 2022] Client 0 User 1: Password: 123456
+[Sun May 22 02:50:05 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 02:50:05 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 02:50:05 CST 2022] Client 0 User 1: Wrong Password
+[Sun May 22 02:50:05 CST 2022] Client 0 User 1: Number of wrong password: 1
+[Sun May 22 02:50:05 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sun May 22 02:50:11 CST 2022] A new Client Connected
+[Sun May 22 02:50:11 CST 2022] The number of clients is 1
+[Sun May 22 02:50:11 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:50:11 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:50:11 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:50:16 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 02:50:16 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 02:50:16 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 02:50:16 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 02:50:16 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 02:50:59 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sun May 22 02:50:59 CST 2022] Client 0 User 1: Error: Connection reset
+[Sun May 22 02:51:15 CST 2022] A new Client Connected
+[Sun May 22 02:51:15 CST 2022] The number of clients is 1
+[Sun May 22 02:51:15 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:51:15 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:51:15 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:52:21 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Sun May 22 02:52:21 CST 2022] Client 0 User 0: Error: Connection reset
+[Sun May 22 02:52:29 CST 2022] A new Client Connected
+[Sun May 22 02:52:29 CST 2022] The number of clients is 1
+[Sun May 22 02:52:29 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:52:29 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:52:29 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:53:49 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Sun May 22 02:53:49 CST 2022] Client 0 User 0: Error: Connection reset
+[Sun May 22 02:54:00 CST 2022] A new Client Connected
+[Sun May 22 02:54:00 CST 2022] The number of clients is 1
+[Sun May 22 02:54:00 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:54:00 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:54:00 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:54:06 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 02:54:06 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 02:54:06 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 02:54:06 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 02:54:06 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 02:54:52 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sun May 22 02:54:52 CST 2022] Client 0 User 1: Error: Connection reset
+[Sun May 22 02:55:00 CST 2022] A new Client Connected
+[Sun May 22 02:55:00 CST 2022] The number of clients is 1
+[Sun May 22 02:55:00 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:55:00 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:55:00 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:55:04 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 02:55:04 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 02:55:04 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 02:55:04 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 02:55:04 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 02:57:41 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sun May 22 02:57:41 CST 2022] Client 0 User 1: Error: Connection reset
+[Sun May 22 02:58:47 CST 2022] A new Client Connected
+[Sun May 22 02:58:47 CST 2022] The number of clients is 1
+[Sun May 22 02:58:47 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:58:47 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 02:58:47 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 02:59:12 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Sun May 22 02:59:12 CST 2022] Client 0 User 0: Error: Connection reset
+[Sun May 22 02:59:21 CST 2022] A new Client Connected
+[Sun May 22 02:59:21 CST 2022] The number of clients is 1
+[Sun May 22 02:59:21 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 02:59:21 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 02:59:21 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 03:00:12 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Sun May 22 03:00:12 CST 2022] Client 0 User 0: Error: Connection reset
+[Sun May 22 03:00:24 CST 2022] A new Client Connected
+[Sun May 22 03:00:24 CST 2022] The number of clients is 1
+[Sun May 22 03:00:24 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 03:00:24 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 03:00:24 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 03:00:27 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 03:00:27 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 03:00:27 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 03:00:27 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 03:00:27 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 03:01:04 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sun May 22 03:01:04 CST 2022] Client 0 User 1: Error: Connection reset
+[Sun May 22 03:01:14 CST 2022] A new Client Connected
+[Sun May 22 03:01:14 CST 2022] The number of clients is 1
+[Sun May 22 03:01:14 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 03:01:14 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 03:01:14 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 03:01:17 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 03:01:17 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 03:01:17 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 03:01:17 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 03:01:17 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 03:02:14 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sun May 22 03:02:14 CST 2022] Client 0 User 1: Error: Connection reset
+[Sun May 22 03:02:25 CST 2022] A new Client Connected
+[Sun May 22 03:02:25 CST 2022] The number of clients is 1
+[Sun May 22 03:02:25 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 03:02:25 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 03:02:25 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 03:02:29 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 03:02:29 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 03:02:29 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 03:02:29 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 03:02:29 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 03:03:29 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sun May 22 03:03:29 CST 2022] Client 0 User 1: Error: Connection reset
+[Sun May 22 03:03:41 CST 2022] A new Client Connected
+[Sun May 22 03:03:41 CST 2022] The number of clients is 1
+[Sun May 22 03:03:41 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 03:03:41 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 03:03:41 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 03:03:44 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 03:03:44 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 03:03:44 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 03:03:44 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 03:03:44 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 03:03:53 CST 2022] Client 0 User 1: Request: display basic information
+[Sun May 22 03:03:53 CST 2022] Client 0 User 1: Request: display transaction history
+[Sun May 22 03:03:53 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sun May 22 03:03:59 CST 2022] Client 0 User 1: Request: withdraw Amount: 1.0
+[Sun May 22 03:03:59 CST 2022] Client 0 User 1: Withdraw failed: Insufficient funds
+[Sun May 22 03:06:19 CST 2022] Client 0 User 1: Request: display basic information
+[Sun May 22 03:06:19 CST 2022] Client 0 User 1: Request: display transaction history
+[Sun May 22 03:06:19 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sun May 22 03:06:24 CST 2022] Client 0 User 1: Request: deposit Amount: 10.0
+[Sun May 22 03:06:24 CST 2022] Client 0 User 1: Deposit successfully
+[Sun May 22 03:06:30 CST 2022] Client 0 User 1: Request: withdraw Amount: 5.0
+[Sun May 22 03:06:30 CST 2022] Client 0 User 1: Withdraw successfully
+[Sun May 22 03:06:33 CST 2022] Client 0 User 1: Request: display basic information
+[Sun May 22 03:06:33 CST 2022] Client 0 User 1: Request: display transaction history
+[Sun May 22 03:06:33 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sun May 22 03:06:57 CST 2022] Client 0 User 1: Client logs out
+[Sun May 22 03:06:57 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sun May 22 03:08:15 CST 2022] A new Client Connected
+[Sun May 22 03:08:15 CST 2022] The number of clients is 1
+[Sun May 22 03:08:15 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 03:08:15 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 03:08:15 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 03:08:21 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 03:08:21 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 03:08:21 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 03:08:21 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 03:08:21 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 03:08:26 CST 2022] Client 0 User 1: Request: display basic information
+[Sun May 22 03:08:26 CST 2022] Client 0 User 1: Request: display transaction history
+[Sun May 22 03:08:26 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sun May 22 03:24:55 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sun May 22 03:24:55 CST 2022] Client 0 User 1: Error: Connection reset
+[Sun May 22 03:25:04 CST 2022] A new Client Connected
+[Sun May 22 03:25:04 CST 2022] The number of clients is 1
+[Sun May 22 03:25:04 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 03:25:04 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 03:25:04 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 03:25:09 CST 2022] Client 0 User 54: User ID: 54
+[Sun May 22 03:25:09 CST 2022] Client 0 User 54: Password: 123
+[Sun May 22 03:25:09 CST 2022] Client 0 User 54: Checking User ID and Password...
+[Sun May 22 03:25:09 CST 2022] Client 0 User 54: User 54 exists
+[Sun May 22 03:25:09 CST 2022] Client 0 User 54: User 54 Password Correct
+[Sun May 22 03:25:13 CST 2022] Client 0 User 54: Client logs out
+[Sun May 22 03:25:13 CST 2022] Client 0 User 54: The client is disconnected normally

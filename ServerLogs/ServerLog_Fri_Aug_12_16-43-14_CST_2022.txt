@@ -1,0 +1,18 @@
+[Fri Aug 12 16:43:14 CST 2022] ATM Machine Server Version 2.0
+[Fri Aug 12 16:43:14 CST 2022] Server booting up...
+[Fri Aug 12 16:43:14 CST 2022] Server started at Fri Aug 12 16:43:14 CST 2022
+[Fri Aug 12 16:43:14 CST 2022] Server IP is 172.19.32.1
+[Fri Aug 12 16:43:14 CST 2022] Server is listening on port 20000
+[Fri Aug 12 16:43:14 CST 2022] Waiting for client...
+[Fri Aug 12 16:44:03 CST 2022] A new Client Connected
+[Fri Aug 12 16:44:03 CST 2022] The number of clients is 1
+[Fri Aug 12 16:44:03 CST 2022] Client 0: Date&Time sent to client
+[Fri Aug 12 16:44:03 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Fri Aug 12 16:44:03 CST 2022] Client 0: Announcement sent to client
+[Fri Aug 12 16:44:14 CST 2022] Client 0 User 1: User ID: 1
+[Fri Aug 12 16:44:14 CST 2022] Client 0 User 1: Password: 123
+[Fri Aug 12 16:44:14 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Fri Aug 12 16:44:14 CST 2022] Client 0 User 1: User 1 exists
+[Fri Aug 12 16:44:14 CST 2022] Client 0 User 1: Wrong Password
+[Fri Aug 12 16:44:14 CST 2022] Client 0 User 1: Number of wrong password: 1
+[Fri Aug 12 16:44:14 CST 2022] Client 0 User 1: The client is disconnected normally

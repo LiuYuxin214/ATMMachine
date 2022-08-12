@@ -1,0 +1,25 @@
+[Sun May 22 01:33:21 CST 2022] ATM Machine Server Version 2.0
+[Sun May 22 01:33:21 CST 2022] Server booting up...
+[Sun May 22 01:33:21 CST 2022] Server started at Sun May 22 01:33:21 CST 2022
+[Sun May 22 01:33:21 CST 2022] Server IP is 10.33.141.253
+[Sun May 22 01:33:21 CST 2022] Server is listening on port 20000
+[Sun May 22 01:33:21 CST 2022] Waiting for client...
+[Sun May 22 01:33:34 CST 2022] A new Client Connected
+[Sun May 22 01:33:34 CST 2022] The number of clients is 1
+[Sun May 22 01:33:34 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 01:33:34 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 01:33:34 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 01:33:59 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Sun May 22 01:33:59 CST 2022] Client 0 User 0: Error: Connection reset
+[Sun May 22 01:34:12 CST 2022] A new Client Connected
+[Sun May 22 01:34:12 CST 2022] The number of clients is 1
+[Sun May 22 01:34:12 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 01:34:12 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 01:34:12 CST 2022] Client[Sun May 22 01:34:30 CST 2022] Client 0 User 1: 0: Announcement sent to client
+ User ID: 1
+[Sun May 22 01:34:30 CST 2022] Client 0 User 1: Password: 123456
+[Sun May 22 01:34:30 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 01:34:30 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 01:34:30 CST 2022] Client 0 User 1: Wrong Password
+[Sun May 22 01:34:30 CST 2022] Client 0 User 1: Number of wrong password: 1
+[Sun May 22 01:34:30 CST 2022] Client 0 User 1: The client is disconnected normally

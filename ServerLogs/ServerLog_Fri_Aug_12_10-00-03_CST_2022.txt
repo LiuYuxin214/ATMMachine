@@ -1,0 +1,13 @@
+[Fri Aug 12 10:00:03 CST 2022] ATM Machine Server Version 2.0
+[Fri Aug 12 10:00:03 CST 2022] Server booting up...
+[Fri Aug 12 10:00:03 CST 2022] Server started at Fri Aug 12 10:00:03 CST 2022
+[Fri Aug 12 10:00:03 CST 2022] Server IP is 172.29.176.1
+[Fri Aug 12 10:00:03 CST 2022] Server is listening on port 20000
+[Fri Aug 12 10:00:03 CST 2022] Waiting for client...
+[Fri Aug 12 10:01:44 CST 2022] A new Client Connected
+[Fri Aug 12 10:01:44 CST 2022] The number of clients is 1
+[Fri Aug 12 10:01:44 CST 2022] Client 0: Date&Time sent to client
+[Fri Aug 12 10:01:44 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Fri Aug 12 10:01:44 CST 2022] Client 0: Announcement sent to client
+[Fri Aug 12 10:01:49 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Fri Aug 12 10:01:49 CST 2022] Client 0 User 0: Error: Connection reset

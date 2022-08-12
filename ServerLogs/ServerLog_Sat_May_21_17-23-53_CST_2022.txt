@@ -1,0 +1,99 @@
+[Sat May 21 17:23:53 CST 2022] ATM Machine Server Version 2.0
+[Sat May 21 17:23:53 CST 2022] Server booting up...
+[Sat May 21 17:23:53 CST 2022] Server started at Sat May 21 17:23:53 CST 2022
+[Sat May 21 17:23:53 CST 2022] Server IP is 10.33.141.253
+[Sat May 21 17:23:53 CST 2022] Server is listening on port 20000
+[Sat May 21 17:23:53 CST 2022] Waiting for client...
+[Sat May 21 17:24:03 CST 2022] A new Client Connected
+[Sat May 21 17:24:03 CST 2022] The number of clients is 1
+[Sat May 21 17:24:03 CST 2022] Client 0: Date&Time sent to client
+[Sat May 21 17:24:03 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sat May 21 17:24:03 CST 2022] Client 0: Announcement sent to client
+[Sat May 21 17:24:08 CST 2022] Client 0 User 1: User ID: 1
+[Sat May 21 17:24:08 CST 2022] Client 0 User 1: Password: 123456
+[Sat May 21 17:24:08 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sat May 21 17:24:08 CST 2022] Client 0 User 1: User 1 exists
+[Sat May 21 17:24:08 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sat May 21 17:24:18 CST 2022] Client 0 User 1: Request: display basic information
+[Sat May 21 17:24:18 CST 2022] Client 0 User 1: Request: display transaction history
+[Sat May 21 17:24:18 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sat May 21 17:26:08 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sat May 21 17:26:08 CST 2022] Client 0 User 1: Error: Connection reset
+[Sat May 21 17:26:20 CST 2022] A new Client Connected
+[Sat May 21 17:26:20 CST 2022] The number of clients is 1
+[Sat May 21 17:26:20 CST 2022] Client 0: Date&Time sent to client
+[Sat May 21 17:26:20 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sat May 21 17:26:20 CST 2022] Client 0: Announcement sent to client
+[Sat May 21 17:26:22 CST 2022] Client 0 User 1: User ID: 1
+[Sat May 21 17:26:22 CST 2022] Client 0 User 1: Password: 123456
+[Sat May 21 17:26:22 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sat May 21 17:26:22 CST 2022] Client 0 User 1: User 1 exists
+[Sat May 21 17:26:22 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sat May 21 17:26:25 CST 2022] Client 0 User 1: Request: display basic information
+[Sat May 21 17:26:25 CST 2022] Client 0 User 1: Request: display transaction history
+[Sat May 21 17:26:25 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sat May 21 17:26:45 CST 2022] Client 0 User 1: Request: transfer Amount: 1.0 Receive ID: 2
+[Sat May 21 17:26:45 CST 2022] Client 0 User 1: Transfer failed: Insufficient funds
+[Sat May 21 17:26:51 CST 2022] Client 0 User 1: Request: deposit Amount: 10.0
+[Sat May 21 17:26:51 CST 2022] Client 0 User 1: Deposit successfully
+[Sat May 21 17:26:56 CST 2022] Client 0 User 1: Request: withdraw Amount: 1.0
+[Sat May 21 17:26:56 CST 2022] Client 0 User 1: Withdraw successfully
+[Sat May 21 17:27:04 CST 2022] Client 0 User 1: Request: transfer Amount: 1.0 Receive ID: 2
+[Sat May 21 17:27:04 CST 2022] Client 0 User 1: Transfer successfully
+[Sat May 21 17:27:06 CST 2022] Client 0 User 1: Request: display basic information
+[Sat May 21 17:27:06 CST 2022] Client 0 User 1: Request: display transaction history
+[Sat May 21 17:27:06 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sat May 21 17:27:19 CST 2022] Client 0 User 1: Client logs out
+[Sat May 21 17:27:19 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sat May 21 17:28:04 CST 2022] A new Client Connected
+[Sat May 21 17:28:04 CST 2022] The number of clients is 1
+[Sat May 21 17:28:04 CST 2022] Client 0: Date&Time sent to client
+[Sat May 21 17:28:04 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sat May 21 17:28:04 CST 2022] Client 0: Announcement sent to client
+[Sat May 21 17:28:07 CST 2022] Client 0 User 2: User ID: 2
+[Sat May 21 17:28:07 CST 2022] Client 0 User 2: Password: 123456
+[Sat May 21 17:28:07 CST 2022] Client 0 User 2: Checking User ID and Password...
+[Sat May 21 17:28:07 CST 2022] Client 0 User 2: User 2 exists
+[Sat May 21 17:28:07 CST 2022] Client 0 User 2: User 2 Password Correct
+[Sat May 21 17:28:12 CST 2022] Client 0 User 2: Request: check Balance Balance: 1.0
+[Sat May 21 17:28:17 CST 2022] Client 0 User 2: Request: deposit Amount: 10.0
+[Sat May 21 17:28:17 CST 2022] Client 0 User 2: Deposit successfully
+[Sat May 21 17:28:22 CST 2022] Client 0 User 2: Request: transfer Amount: 1.0 Receive ID: 1
+[Sat May 21 17:28:22 CST 2022] Client 0 User 2: Transfer successfully
+[Sat May 21 17:28:25 CST 2022] Client 0 User 2: Client logs out
+[Sat May 21 17:28:25 CST 2022] Client 0 User 2: The client is disconnected normally
+[Sat May 21 17:28:31 CST 2022] A new Client Connected
+[Sat May 21 17:28:31 CST 2022] The number of clients is 1
+[Sat May 21 17:28:31 CST 2022] Client 0: Date&Time sent to client
+[Sat May 21 17:28:31 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sat May 21 17:28:31 CST 2022] Client 0: Announcement sent to client
+[Sat May 21 17:28:33 CST 2022] Client 0 User 1: User ID: 1
+[Sat May 21 17:28:33 CST 2022] Client 0 User 1: Password: 123456
+[Sat May 21 17:28:33 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sat May 21 17:28:33 CST 2022] Client 0 User 1: User 1 exists
+[Sat May 21 17:28:33 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sat May 21 17:28:35 CST 2022] Client 0 User 1: Request: display basic information
+[Sat May 21 17:28:35 CST 2022] Client 0 User 1: Request: display transaction history
+[Sat May 21 17:28:35 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sat May 21 17:29:43 CST 2022] Client 0 User 1: Request: transfer Amount: 2.0 Receive ID: 2
+[Sat May 21 17:29:43 CST 2022] Client 0 User 1: Transfer successfully
+[Sat May 21 17:29:46 CST 2022] Client 0 User 1: Request: display basic information
+[Sat May 21 17:29:46 CST 2022] Client 0 User 1: Request: display transaction history
+[Sat May 21 17:29:46 CST 2022] Client 0 User 1: Request: display proportion chart
+[Sat May 21 17:30:10 CST 2022] Client 0 User 1: Client logs out
+[Sat May 21 17:30:10 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sat May 21 17:30:16 CST 2022] A new Client Connected
+[Sat May 21 17:30:16 CST 2022] The number of clients is 1
+[Sat May 21 17:30:16 CST 2022] Client 0: Date&Time sent to client
+[Sat May 21 17:30:16 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sat May 21 17:30:16 CST 2022] Client 0: Announcement sent to client
+[Sat May 21 17:30:19 CST 2022] Client 0 User 2: User ID: 2
+[Sat May 21 17:30:19 CST 2022] Client 0 User 2: Password: 123456
+[Sat May 21 17:30:19 CST 2022] Client 0 User 2: Checking User ID and Password...
+[Sat May 21 17:30:19 CST 2022] Client 0 User 2: User 2 exists
+[Sat May 21 17:30:19 CST 2022] Client 0 User 2: User 2 Password Correct
+[Sat May 21 17:30:22 CST 2022] Client 0 User 2: Request: display basic information
+[Sat May 21 17:30:22 CST 2022] Client 0 User 2: Request: display transaction history
+[Sat May 21 17:30:22 CST 2022] Client 0 User 2: Request: display proportion chart
+[Sat May 21 17:30:39 CST 2022] Client 0 User 2: Client logs out
+[Sat May 21 17:30:39 CST 2022] Client 0 User 2: The client is disconnected normally

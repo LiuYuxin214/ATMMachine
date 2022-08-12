@@ -1,0 +1,46 @@
+[Sun May 22 04:38:29 CST 2022] ATM Machine Server Version 2.0
+[Sun May 22 04:38:29 CST 2022] Server booting up...
+[Sun May 22 04:38:29 CST 2022] Server started at Sun May 22 04:38:29 CST 2022
+[Sun May 22 04:38:29 CST 2022] Server IP is 10.33.141.253
+[Sun May 22 04:38:29 CST 2022] Server is listening on port 20000
+[Sun May 22 04:38:29 CST 2022] Waiting for client...
+[Sun May 22 04:38:34 CST 2022] A new Client Connected
+[Sun May 22 04:38:34 CST 2022] The number of clients is 1
+[Sun May 22 04:38:34 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 04:38:34 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 04:38:34 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 04:38:38 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 04:38:38 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 04:38:38 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 04:38:38 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 04:38:38 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 04:38:41 CST 2022] Client 0 User 1: Request: check Balance Balance: 5.0
+[Sun May 22 04:38:46 CST 2022] Client 0 User 1: Request: transfer Amount: 2.0 Receive ID: 2
+[Sun May 22 04:38:46 CST 2022] Client 0 User 1: Transfer successfully
+[Sun May 22 04:38:48 CST 2022] Client 0 User 1: Client logs out
+[Sun May 22 04:38:48 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sun May 22 04:38:53 CST 2022] A new Client Connected
+[Sun May 22 04:38:53 CST 2022] The number of clients is 1
+[Sun May 22 04:38:53 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 04:38:53 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 04:38:53 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 04:38:57 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 04:38:57 CST 2022] Client 0 User 1: Password: 2222
+[Sun May 22 04:38:57 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 04:38:57 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 04:38:57 CST 2022] Client 0 User 1: Wrong Password
+[Sun May 22 04:38:57 CST 2022] Client 0 User 1: Number of wrong password: 1
+[Sun May 22 04:38:57 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sun May 22 04:39:02 CST 2022] A new Client Connected
+[Sun May 22 04:39:02 CST 2022] The number of clients is 1
+[Sun May 22 04:39:02 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 04:39:02 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sun May 22 04:39:02 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 04:39:06 CST 2022] Client 0 User 2: User ID: 2
+[Sun May 22 04:39:06 CST 2022] Client 0 User 2: Password: 123
+[Sun May 22 04:39:06 CST 2022] Client 0 User 2: Checking User ID and Password...
+[Sun May 22 04:39:06 CST 2022] Client 0 User 2: User 2 exists
+[Sun May 22 04:39:06 CST 2022] Client 0 User 2: User 2 Password Correct
+[Sun May 22 04:39:09 CST 2022] Client 0 User 2: Request: check Balance Balance: 2.0
+[Sun May 22 04:39:13 CST 2022] Client 0 User 2: Client logs out
+[Sun May 22 04:39:13 CST 2022] Client 0 User 2: The client is disconnected normally

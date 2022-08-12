@@ -1,0 +1,64 @@
+[Sun May 22 01:41:19 CST 2022] ATM Machine Server Version 2.0
+[Sun May 22 01:41:19 CST 2022] Server booting up...
+[Sun May 22 01:41:19 CST 2022] Server started at Sun May 22 01:41:19 CST 2022
+[Sun May 22 01:41:20 CST 2022] Server IP is 10.33.141.253
+[Sun May 22 01:41:20 CST 2022] Server is listening on port 20000
+[Sun May 22 01:41:20 CST 2022] Waiting for client...
+[Sun May 22 01:41:33 CST 2022] A new Client Connected
+[Sun May 22 01:41:33 CST 2022] The number of clients is 1
+[Sun May 22 01:41:33 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 01:41:33 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 01:41:33 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 01:41:42 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 01:41:43 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 01:41:43 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 01:41:43 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 01:41:43 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 01:43:23 CST 2022] Client 0 User 1: The client was disconnected unexpectedly
+[Sun May 22 01:43:23 CST 2022] Client 0 User 1: Error: Connection reset
+[Sun May 22 01:43:35 CST 2022] A new Client Connected
+[Sun May 22 01:43:35 CST 2022] The number of clients is 1
+[Sun May 22 01:43:35 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 01:43:35 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 01:43:35 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 01:43:41 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 01:43:41 CST 2022] Client 0 User 1: Password: 123456
+[Sun May 22 01:43:41 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 01:43:41 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 01:43:41 CST 2022] Client 0 User 1: Wrong Password
+[Sun May 22 01:43:41 CST 2022] Client 0 User 1: Number of wrong password: 1
+[Sun May 22 01:43:41 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sun May 22 01:43:47 CST 2022] A new Client Connected
+[Sun May 22 01:43:47 CST 2022] The number of clients is 1
+[Sun May 22 01:43:47 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 01:43:47 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 01:43:47 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 01:43:50 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 01:43:50 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 01:43:50 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 01:43:50 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 01:43:50 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 01:44:27 CST 2022] Client 0 User 1: Client logs out
+[Sun May 22 01:44:27 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sun May 22 01:46:47 CST 2022] A new Client Connected
+[Sun May 22 01:46:47 CST 2022] The number of clients is 1
+[Sun May 22 01:46:47 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 01:46:47 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 01:46:47 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 01:46:51 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 01:46:51 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 01:46:51 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 01:46:51 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 01:46:51 CST 2022] Client 0 User 1: User 1 Password Correct
+[Sun May 22 01:47:04 CST 2022] Client 0 User 1: Client logs out
+[Sun May 22 01:47:04 CST 2022] Client 0 User 1: The client is disconnected normally
+[Sun May 22 01:50:37 CST 2022] A new Client Connected
+[Sun May 22 01:50:37 CST 2022] The number of clients is 1
+[Sun May 22 01:50:37 CST 2022] Client 0: Date&Time sent to client
+[Sun May 22 01:50:37 CST 2022] Client 0: Announcement: CPS2231 Final Project
+[Sun May 22 01:50:37 CST 2022] Client 0: Announcement sent to client
+[Sun May 22 01:50:41 CST 2022] Client 0 User 1: User ID: 1
+[Sun May 22 01:50:41 CST 2022] Client 0 User 1: Password: 123
+[Sun May 22 01:50:41 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Sun May 22 01:50:41 CST 2022] Client 0 User 1: User 1 exists
+[Sun May 22 01:50:41 CST 2022] Client 0 User 1: User 1 Password Correct

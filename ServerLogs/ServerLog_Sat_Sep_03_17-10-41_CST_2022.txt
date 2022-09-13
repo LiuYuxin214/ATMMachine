@@ -1,0 +1,12 @@
+[Sat Sep 03 17:10:41 CST 2022] ATM Machine Server Version 2.0
+[Sat Sep 03 17:10:41 CST 2022] Server booting up...
+[Sat Sep 03 17:10:41 CST 2022] Server started at Sat Sep 03 17:10:41 CST 2022
+[Sat Sep 03 17:10:41 CST 2022] Server IP is 192.168.1.143
+[Sat Sep 03 17:10:41 CST 2022] Server is listening on port 20000
+[Sat Sep 03 17:10:41 CST 2022] Waiting for client...
+[Sat Sep 03 17:10:48 CST 2022] A new Client Connected
+[Sat Sep 03 17:10:48 CST 2022] The number of clients is 1
+[Sat Sep 03 17:10:48 CST 2022] Client 0: Date&Time sent to client
+[Sat Sep 03 17:10:48 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Sat Sep 03 17:10:48 CST 2022] Client 0: Announcement sent to client
+[Sat Sep 03 17:10:54 CST 2022] Client 0: Client actively disconnects

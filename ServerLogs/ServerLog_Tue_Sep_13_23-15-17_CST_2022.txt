@@ -1,0 +1,44 @@
+[Tue Sep 13 23:15:17 CST 2022] ATM Machine Server Version 2.0
+[Tue Sep 13 23:15:17 CST 2022] Server booting up...
+[Tue Sep 13 23:15:17 CST 2022] Server started at Tue Sep 13 23:15:17 CST 2022
+[Tue Sep 13 23:15:17 CST 2022] Server IP is 192.168.1.143
+[Tue Sep 13 23:15:17 CST 2022] Server is listening on port 20000
+[Tue Sep 13 23:15:17 CST 2022] Waiting for client...
+[Tue Sep 13 23:15:26 CST 2022] A new Client Connected
+[Tue Sep 13 23:15:26 CST 2022] The number of clients is 1
+[Tue Sep 13 23:15:26 CST 2022] Client 0: Date&Time sent to client
+[Tue Sep 13 23:15:26 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Tue Sep 13 23:15:26 CST 2022] Client 0: Announcement sent to client
+[Tue Sep 13 23:15:41 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Tue Sep 13 23:15:41 CST 2022] Client 0 User 0: Error: Connection reset
+[Tue Sep 13 23:15:49 CST 2022] A new Client Connected
+[Tue Sep 13 23:15:49 CST 2022] The number of clients is 1
+[Tue Sep 13 23:15:49 CST 2022] Client 0: Date&Time sent to client
+[Tue Sep 13 23:15:49 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Tue Sep 13 23:15:49 CST 2022] Client 0: Announcement sent to client
+[Tue Sep 13 23:16:05 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Tue Sep 13 23:16:05 CST 2022] Client 0 User 0: Error: Connection reset
+[Tue Sep 13 23:16:13 CST 2022] A new Client Connected
+[Tue Sep 13 23:16:13 CST 2022] The number of clients is 1
+[Tue Sep 13 23:16:13 CST 2022] Client 0: Date&Time sent to client
+[Tue Sep 13 23:16:13 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Tue Sep 13 23:16:13 CST 2022] Client 0: Announcement sent to client
+[Tue Sep 13 23:16:33 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Tue Sep 13 23:16:33 CST 2022] Client 0 User 0: Error: Connection reset
+[Tue Sep 13 23:16:41 CST 2022] A new Client Connected
+[Tue Sep 13 23:16:41 CST 2022] The number of clients is 1
+[Tue Sep 13 23:16:41 CST 2022] Client 0: Date&Time sent to client
+[Tue Sep 13 23:16:41 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Tue Sep 13 23:16:41 CST 2022] Client 0: Announcement sent to client
+[Tue Sep 13 23:18:10 CST 2022] Client 0 User 0: The client was disconnected unexpectedly
+[Tue Sep 13 23:18:10 CST 2022] Client 0 User 0: Error: Connection reset
+[Tue Sep 13 23:18:19 CST 2022] A new Client Connected
+[Tue Sep 13 23:18:19 CST 2022] The number of clients is 1
+[Tue Sep 13 23:18:19 CST 2022] Client 0: Date&Time sent to client
+[Tue Sep 13 23:18:19 CST 2022] Client 0: Announcement: Liu Yuxin CPS2231 Final Project
+[Tue Sep 13 23:18:19 CST 2022] Client 0: Announcement sent to client
+[Tue Sep 13 23:18:24 CST 2022] Client 0 User 1: User ID: 1
+[Tue Sep 13 23:18:24 CST 2022] Client 0 User 1: Password: 123
+[Tue Sep 13 23:18:24 CST 2022] Client 0 User 1: Checking User ID and Password...
+[Tue Sep 13 23:18:24 CST 2022] Client 0 User 1: User 1 exists
+[Tue Sep 13 23:18:24 CST 2022] Client 0 User 1: User 1 Password Correct

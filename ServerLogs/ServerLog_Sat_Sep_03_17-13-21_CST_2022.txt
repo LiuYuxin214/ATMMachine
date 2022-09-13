@@ -1,0 +1,6 @@
+[Sat Sep 03 17:13:21 CST 2022] ATM Machine Server Version 2.0
+[Sat Sep 03 17:13:21 CST 2022] Server booting up...
+[Sat Sep 03 17:13:21 CST 2022] Server started at Sat Sep 03 17:13:21 CST 2022
+[Sat Sep 03 17:13:21 CST 2022] Server IP is 192.168.1.143
+[Sat Sep 03 17:13:21 CST 2022] Server is listening on port 20000
+[Sat Sep 03 17:13:21 CST 2022] Waiting for client...

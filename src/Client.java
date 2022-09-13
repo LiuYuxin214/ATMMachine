@@ -130,7 +130,7 @@ public class Client {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("\033[33m+==================\033[1mNot logged in\033[0m\033[33m==================+\033[0m");
                 System.out.println("\033[33m|\033[0m             \033[1mWelcome to ATM Machine!\033[0m             \033[33m|\033[0m");
-                System.out.println("\033[33m|\033[0m\033[1mAnnouncement: \033[35m" + announcement + "\033[0m" + "    \033[33m|\033[0m");
+                System.out.printf("\033[33m|\033[0m\033[1mAnnouncement: \033[35m%-35s\033[0m\033[33m|\033[0m\n", announcement);
                 System.out.println("\033[33m|\033[0m\033[1mServer Time&Date: \033[36m" + dateTime + "\033[0m" + "   \033[33m|\033[0m");
                 System.out.println("\033[33m+=================================================+\033[0m");
                 System.out.println("If you forget your password, type \033[33mf\033[0m.");
@@ -244,7 +244,7 @@ public class Client {
                             System.out.println("\033[32m+====================\033[1mLogged in\033[0m\033[32m====================+\033[0m");
                             System.out.println("\033[32m|\033[0m             \033[1mWelcome to ATM Machine!\033[0m             \033[32m|\033[0m");
                             System.out.println("\033[32m|\033[0m\033[1mUser ID: \033[33m" + id + "\033[0m" + "                                       \033[32m|\033[0m");
-                            System.out.println("\033[32m|\033[0m\033[1mAnnouncement: \033[35m" + announcement + "\033[0m" + "    \033[32m|\033[0m");
+                            System.out.printf("\033[32m|\033[0m\033[1mAnnouncement: \033[35m%-35s\033[0m\033[32m|\033[0m\n", announcement);
                             System.out.println("\033[32m|\033[0m\033[1mLogin Date&Time: \033[36m" + dateTime + "\033[0m" + "    \033[32m|\033[0m");
                             System.out.println("\033[32m+=================================================+\033[0m");
                             System.out.println();

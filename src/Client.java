@@ -38,7 +38,7 @@ public class Client {
         while (true) {
             System.out.println("\033[31m+==================\033[1mNot connected\033[0m\033[31m==================+\033[0m");
             System.out.println("\033[31m|\033[0m             \033[1mWelcome to ATM Machine!\033[0m             \033[31m|\033[0m");
-            System.out.println("\033[31m|\033[0m           ATM Machine Client Version 2.0        \033[31m|\033[0m");
+            System.out.println("\033[31m|\033[0m           ATM Machine Client Version 2.1        \033[31m|\033[0m");
             System.out.println("\033[31m+=================================================+\033[0m");
             System.out.println("\033[5mPress enter to connect\033[0m");
             System.out.println("Type \033[31me\033[0m then press enter to exit.");

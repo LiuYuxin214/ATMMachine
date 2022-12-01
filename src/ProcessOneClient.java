@@ -20,7 +20,6 @@ public class ProcessOneClient implements Runnable {
             this.serverLog = Log;
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
-
         } catch (IOException e) {
             serverLog.add("The connection to the client failed");
             serverLog.add("Error: " + e.getMessage());
